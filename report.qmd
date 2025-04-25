@@ -1,8 +1,8 @@
 ---
 title: "Title of your report"
-subtitle: "Project report of Group #"
+subtitle: "Group B"
 author:
-  - name: "Student 1"
+  - name: "Stepan Prikazchikov"
     affiliation: "MSc Geomatics"
   - name: "Student 2"
     affiliation: "MSc Landscape Architecture"
