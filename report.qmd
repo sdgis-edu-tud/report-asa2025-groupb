@@ -1,5 +1,5 @@
 ---
-title: "Title of your report"
+title: "Test title"
 subtitle: "Group B"
 author:
   - name: "Stepan Prikazchikov"
