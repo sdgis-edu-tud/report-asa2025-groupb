@@ -4,7 +4,7 @@ subtitle: "Group B"
 author:
   - name: "Stepan Prikazchikov"
     affiliation: "MSc Geomatics"
-  - name: "Student 2"
+  - name: "Roger Marin de Yzaguirre"
     affiliation: "MSc Landscape Architecture"
   - name: "Student 3"
     affiliation: "MSc Urbanism"
