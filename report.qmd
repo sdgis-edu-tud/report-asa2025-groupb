@@ -49,6 +49,14 @@ and start the report from the Introduction section below.
 
 ## Introduction
 
+### Roles and Explanations  
+
+ * Stepan:   
+ * Roger:  
+ * **Yaying: Mapping and Design**  
+   Data visualization and mapping. Spatial intervention design.
+ * Jaee:  
+
 ## Methods
 
 ### MCDA
