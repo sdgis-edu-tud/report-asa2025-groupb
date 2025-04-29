@@ -8,7 +8,7 @@ author:
     affiliation: "MSc Landscape Architecture"
   - name: "Yaying Hao"
     affiliation: "MSc Urbanism"
-  - name: "Jaee Naik"
+  - name: "Jaee A. Naik"
     affiliation: "MSc Urbanism"
 format: html
 ---
