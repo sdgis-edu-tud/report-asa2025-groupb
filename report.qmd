@@ -1,14 +1,14 @@
 ---
-title: "Title of your report"
+title: "Test title"
 subtitle: "Group B"
 author:
   - name: "Stepan Prikazchikov"
     affiliation: "MSc Geomatics"
-  - name: "Student 2"
+  - name: "Roger Marin de Yzaguirre"
     affiliation: "MSc Landscape Architecture"
   - name: "Yaying Hao"
     affiliation: "MSc Urbanism"
-  - name: "Student 4"
+  - name: "Jaee Naik"
     affiliation: "MSc Urbanism"
 format: html
 ---
