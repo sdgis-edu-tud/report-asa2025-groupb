@@ -55,7 +55,8 @@ and start the report from the Introduction section below.
  * Roger:  
  * **Yaying: Mapping and Design**  
    Data visualization and mapping. Spatial intervention design.
- * Jaee:  
+ * **Jaee: Research Lead**  
+   Oversees background research
 
 ## Methods
 
