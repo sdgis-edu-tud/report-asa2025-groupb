@@ -51,7 +51,8 @@ and start the report from the Introduction section below.
 
 ### Roles and Explanations  
 
- * Stepan:   
+ * **Stepan: Data analyst**
+    Data analyst and Presentation lead.
  * Roger:  
  * **Yaying: Mapping and Design**  
    Data visualization and mapping. Spatial intervention design.
