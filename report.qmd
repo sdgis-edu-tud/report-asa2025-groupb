@@ -55,13 +55,27 @@ and start the report from the Introduction section below.
     Data analyst and Presentation lead.
  * Roger:  
  * **Yaying: Mapping and Design**  
-   Data visualization and mapping. Spatial intervention design.
+   Data visualization and mapping.
  * **Jaee: Research Lead**  
    Oversees background research
 
 ## Methods
 
 ### MCDA
+
+#### GOAL
+
+ * **Urban Stream Restoration**: building a more resilient urban environmental system
+
+#### OBJECTIVE 
+
+ * **Enrich Biodiversity**: Achieve a biodiversity richness and build a more resilient natural system
+ * **Promote Climate Adaptation**: Make use of the eco-systemic goods to create a resilient and climate adaptive riparian landscape
+ * **Improve Quality of Life**: Persue the co-existence of human and nature. explore recreational use of the restored streams for people living in the urban area
+
+#### ATTRIBUTE FOR EACH OBJECTIVE
+
+#### CRITERIA
 
 ### Typology construction
 
