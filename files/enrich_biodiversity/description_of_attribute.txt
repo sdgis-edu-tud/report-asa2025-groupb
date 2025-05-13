@@ -1,3 +1,5 @@
+name of attribute: 
+for which criteria is it relevant: 
 description of attribute: e.g. population of each grid
 data used: e.g. pol_ppp_2020
 processing method: sum/mean/min/max
