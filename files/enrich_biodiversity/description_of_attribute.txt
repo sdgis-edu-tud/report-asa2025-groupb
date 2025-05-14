@@ -1,8 +1,8 @@
-name of attribute: healthy_vegetation_density_1
+name of attribute: healthy_vegetation_density_2
 for which criteria is it relevant: biodiversity
 description of attribute: density of healthy vegetations in each grid using NDVI calculaton
-data used: Sentinel-2 map from Copernicus.eu
-processing method: sum
+data used: Sentinel-2 map(20240917) from Copernicus.eu
+processing method: NDVI calculation, sum
 
 name of attribute:
 for which criteria is it relevant:
