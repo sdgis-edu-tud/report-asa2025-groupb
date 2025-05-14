@@ -1,4 +1,9 @@
-description of attribute: e.g. population of each grid
-data used: e.g. pol_ppp_2020
-processing method: sum/mean/min/max
+name of attribute: hard pavement density
+description of attribute: density of impermeable surface in each grid
+data used: landcover2021 from Google Earth Engine dataset
+processing method: mean
 
+name of attribute:
+description of attribute:
+data used:
+processing method:
