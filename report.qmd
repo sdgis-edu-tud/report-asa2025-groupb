@@ -1,17 +1,15 @@
 ---
-title: "Title of your report"
-subtitle: "Project report of Group #"
+title: "Urban Stream Restoration: building a more resilient urban environmental system"
+subtitle: "Group B"
 author:
-  - name: "Student 1"
+  - name: "Stepan Prikazchikov"
     affiliation: "MSc Geomatics"
-  - name: "Student 2"
+  - name: "Roger Marin de Yzaguirre"
     affiliation: "MSc Landscape Architecture"
-  - name: "Student 3"
+  - name: "Yaying Hao"
     affiliation: "MSc Urbanism"
-  - name: "Student 4"
+  - name: "Jaee A. Naik"
     affiliation: "MSc Urbanism"
-  - name: "Student 5"
-    affiliation: "MSc Landscape Architecture"
 format: html
 ---
 
@@ -51,9 +49,33 @@ and start the report from the Introduction section below.
 
 ## Introduction
 
+### Roles and Explanations  
+
+ * **Stepan: Data analyst**
+    Data analyst and Presentation lead.
+ * Roger:  
+ * **Yaying: Mapping and Design**  
+   Data visualization and mapping.
+ * **Jaee: Research Lead**  
+   Oversees background research
+
 ## Methods
 
 ### MCDA
+
+#### GOAL
+
+ * **Urban Stream Restoration**: building a more resilient urban environmental system
+
+#### OBJECTIVE 
+
+ * **Enrich Biodiversity**: Achieve a biodiversity richness and build a more resilient natural system
+ * **Promote Climate Adaptation**: Make use of the eco-systemic goods to create a resilient and climate adaptive riparian landscape
+ * **Improve Quality of Life**: Persue the co-existence of human and nature. explore recreational use of the restored streams for people living in the urban area
+
+#### ATTRIBUTE FOR EACH OBJECTIVE
+
+#### CRITERIA
 
 ### Typology construction
 
