@@ -7,3 +7,4 @@ name of attribute:
 description of attribute:
 data used:
 processing method:
+source of flood data: Margarita Choulga; Francesca Moschini; Cinzia Mazzetti; Grimaldi, Stefania; Disperati, Juliana; Beck, Hylke; Salamon, Peter; Prudhomme, Christel (2023): LISFLOOD static and parameter maps for Europe. European Commission, Joint Research Centre (JRC) [Dataset] PID: http://data.europa.eu/89h/f572c443-7466-4adf-87aa-c0847a169f23
