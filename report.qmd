@@ -26,7 +26,7 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this 
+You can add options to executable code like this
 
 ```{r}
 #| echo: false
@@ -36,28 +36,31 @@ You can add options to executable code like this
 The `echo: false` option disables the printing of code (only output is displayed).
 
 You can delete this entire callout between and including the lines
-```
+
+```         
 ::: callout
 ```
+
 and
 
-```
+```         
 :::
 ```
+
 and start the report from the Introduction section below.
 :::
 
 ## Introduction
 
-### Roles and Explanations  
+### Roles and Explanations
 
- * **Stepan: Data analyst**
+-   **Stepan: Data analyst** \
     Data analyst and Presentation lead.
- * Roger:  
- * **Yaying: Mapping and Design**  
-   Data visualization and mapping.
- * **Jaee: Research Lead**  
-   Oversees background research
+-   Roger:\
+-   **Yaying: Mapping and Design**\
+    Data visualization and mapping.
+-   **Jaee: Research Lead**\
+    Oversees background research
 
 ## Methods
 
@@ -65,17 +68,19 @@ and start the report from the Introduction section below.
 
 #### GOAL
 
- * **Urban Stream Restoration**: building a more resilient urban environmental system
+-   **Urban Stream Restoration**: building a more resilient urban environmental system
 
-#### OBJECTIVE 
+#### OBJECTIVE AND RESEARCH QUESTIONS
 
- * **Enrich Biodiversity**: Achieve a biodiversity richness and build a more resilient natural system
- * **Promote Climate Adaptation**: Make use of the eco-systemic goods to create a resilient and climate adaptive riparian landscape
- * **Improve Quality of Life**: Persue the co-existence of human and nature. explore recreational use of the restored streams for people living in the urban area
+-   **Enrich Biodiversity**: Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?
 
-#### ATTRIBUTE FOR EACH OBJECTIVE
+-   **Promote Climate Adaptation**: Which areas are most in need of interventions to promote climate adaptation?
+
+-   **Improve Quality of Life**: Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?
 
 #### CRITERIA
+
+#### MEASUREMENTS
 
 ### Typology construction
 
@@ -84,4 +89,3 @@ and start the report from the Introduction section below.
 ## Discussion
 
 ## Conclusion
-
