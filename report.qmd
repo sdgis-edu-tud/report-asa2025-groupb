@@ -94,7 +94,13 @@ and start the report from the Introduction section below.
 #### Methodology
 
 -   **MCDA Structure**\
-    ![](report_files/libs/imgs/1-1_MCDA_structure.jpg) (placeholder1-2)
+    ![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
+
+    ***explanation texts***
+
+    ![](report_files/libs/imgs/1-2.jpg)\
+    
+    ***explanation texts***
 
 -   **Grid Division**: Why Hexagon Grid and What are the Parameters?
 
