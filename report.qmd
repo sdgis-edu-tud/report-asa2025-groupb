@@ -116,7 +116,7 @@ and start the report from the Introduction section below.
 
 1.  **Enrich Biodiversity**\
     1-1. Healthy Vegetation Density\
-    ![](report_files/libs/imgs/2-1_CIR%20base%20map.jpg)\
+    ![](report_files/libs/imgs/2-1.jpg)\
     Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
     ![](report_files/libs/imgs/2-2_vegetation%20health%20index.jpeg)\
     1-2. Natural Land Use Density\
