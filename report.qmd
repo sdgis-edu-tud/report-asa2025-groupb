@@ -67,13 +67,8 @@ and start the report from the Introduction section below.
 
 **What is the Context of Stream Restoration in Poznan?**
 
-1.  Streams go through multiple land use/typology: ***need to choose the suitable restoration strategy based on specific context***
-
-(placeholder for image0-1)
-
-2.  Streams end up in Warta River Valley: ***River Warta included in the research together with the stream system***
-
-(placeholder for image0-2)
+1.  Streams go through multiple land use/typology: ***need to choose the suitable restoration strategy based on specific context*** ![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
+2.  Streams end up in Warta River Valley: ***River Warta included in the research together with the stream system*** ![](report_files/libs/imgs/0-2_topography.jpeg)\
 
 ## Methods
 
@@ -102,15 +97,21 @@ and start the report from the Introduction section below.
 
     ***explanation texts***
 
--   **Grid Division**: Why Hexagon Grid and What are the Parameters?
+-   **Grid Division**: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)\
 
-(placeholder1-3)
+**Hexagons**:\
+- Equal distance to neighboring cells\
+- Reduced edge effect\
+**Diameter = 1km**:\
+- 15min walk distance\
+- Integrate stream restoration intervention into urban life in the vicinity\
+- Reasonable amount of cells in the city area\
 
-**Hexagons**: **Diameter = 1km**:
+![](report_files/libs/imgs/1-4_buffer.jpeg)\
 
-(placeholder 1-4)
-
-**Buffer Zone = 500m**:
+**Buffer Zone = 500m**:\
+- Walkable distance for residents\
+- Relevant context information
 
 #### MEASUREMENTS AND WEIGHTS
 
@@ -126,7 +127,7 @@ and start the report from the Introduction section below.
     1-3. Species Richness\
     (placeholder 2-5)\
     Processing:\
-    (placeholder 2-6)\
+    ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
     1-4. Nuisance from Industries\
     (placeholder 2-7)\
     Processing:\
