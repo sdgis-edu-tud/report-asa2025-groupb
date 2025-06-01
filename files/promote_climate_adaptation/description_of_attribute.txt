@@ -8,3 +8,32 @@ description of attribute:
 data used:
 processing method:
 source of flood data: Margarita Choulga; Francesca Moschini; Cinzia Mazzetti; Grimaldi, Stefania; Disperati, Juliana; Beck, Hylke; Salamon, Peter; Prudhomme, Christel (2023): LISFLOOD static and parameter maps for Europe. European Commission, Joint Research Centre (JRC) [Dataset] PID: http://data.europa.eu/89h/f572c443-7466-4adf-87aa-c0847a169f23
+
+name of attribute: river_sinuosity
+description of attribute: the winding, curving path of a river, quantified by a ratio of the river's actual length to the straight-line distance between its source and mouth
+data used: OSM_waterways
+processing method: 
+	Dissolve waterways
+	Intersect Dissolved waterways with grid
+	Multipart to Singlepart ( Geometry validity )
+	Calculate length ( length ) ( length along geometry)
+	Calculate distance ( distance(start_point($geometry), end_point($geometry)) ) ( euclidian distance between start and end point )
+	Create centroids of waterways ( increase accuracy in calculation )
+	Join attributes by location ( summary )
+	Calculate sinuosity ( length(sum)/distance(sum) )
+
+	Calculate weighted sum sinuosity:
+		weighted_sum = Σ (sinuosity_i * length_i)
+		total_length = Σ length_i
+		mean_sinuosity = weighted_sum / total_length
+
+name of attribute: number of hot nights
+description of attribute: number of nights between June 1 and September 1 exceding 22C, for the years 2015 to 2024. 
+data used: ECMWF/ERA5_LAND/HOURLY
+processing method: Code to generate data in Google EE added separately, add no. nights per year to make aggregated mode, Zonal statistics.
+
+name of attribute: UHI_max
+description of attribute: https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)
+data used: ECMWF/ERA5_LAND/HOURLY, ESA_WorldCoverv200, DTM.
+processing method: As described from Tygron. SVF calculated with terrain modelling plugin QGIS. F_veg calculated from ESA_WC using reclassification. Effect_temp calculated from several sources from ECMFW
+	Zonal statistics on UHI_max raster to grid
