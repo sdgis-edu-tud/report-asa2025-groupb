@@ -52,7 +52,7 @@ and start the report from the Introduction section below.
 
 ## Introduction
 
-In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework. In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section. 
+In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework. In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section.
 
 ### MCDA
 
@@ -103,15 +103,18 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 ### MCDA
 
 #### MCDA Structure
-    ![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
 
-    ***explanation texts***
+```         
+![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
 
-    ![](report_files/libs/imgs/1-2.jpg)\
+***explanation texts***
 
-    ***explanation texts***
+![](report_files/libs/imgs/1-2.jpg)\
 
-#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)\
+***explanation texts***
+```
+
+#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg) 
 
 **Hexagons**:\
 - Equal distance to neighboring cells\
@@ -130,10 +133,10 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 #### Indcators and Argumentations
 
 1.  **Enrich Biodiversity**\
-1-1. Healthy Vegetation Density\
-1-2. Natural Land Use Density\
-1-3. Species Richness\
-1-4. Nuisance from Industries\
+    1-1. Healthy Vegetation Density\
+    1-2. Natural Land Use Density\
+    1-3. Species Richness\
+    1-4. Nuisance from Industries\
 
 2.  **Promote Climate Adaptation**\
 
