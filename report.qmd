@@ -128,7 +128,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 - Walkable distance for residents\
 - Relevant context information
 
-#### Indcators and Argumentations
+#### Indicators and Argumentations
 
 1.  **Enrich Biodiversity**\
     1-1. Healthy Vegetation Density\
