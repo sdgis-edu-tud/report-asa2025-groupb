@@ -104,7 +104,6 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 #### MCDA Structure
 
-```         
 ![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
 
 ***explanation texts***
@@ -112,7 +111,6 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 ![](report_files/libs/imgs/1-2.jpg)\
 
 ***explanation texts***
-```
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg) 
 
