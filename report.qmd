@@ -52,6 +52,32 @@ and start the report from the Introduction section below.
 
 ## Introduction
 
+In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework. In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section. 
+
+### MCDA
+
+#### GOAL
+
+-   **Urban Stream Restoration**: building a more resilient urban environmental system
+
+#### OBJECTIVES AND RESEARCH QUESTIONS
+
+-   **Enrich Biodiversity**: Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?
+
+-   **Promote Climate Adaptation**: Which areas are most in need of interventions to promote climate adaptation?
+
+-   **Improve Quality of Life**: Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?
+
+### Typology Construction
+
+#### GOAL
+
+-   *to be updated*
+
+#### OBJECTIVES AND RESEARCH QUESTIONS
+
+-   *to be updated*
+
 ## Roles and Explanations
 
 -   **Stepan: Data analyst**\
@@ -72,23 +98,11 @@ and start the report from the Introduction section below.
 
 ## Methods
 
+*In the Methods section, describe what are the the spatial unit (and the rationale), the indicators you choose and why, the workflow of MCDA, and later the typology construction. (from comment)*
+
 ### MCDA
 
-#### GOAL
-
--   **Urban Stream Restoration**: building a more resilient urban environmental system
-
-#### OBJECTIVES AND RESEARCH QUESTIONS
-
--   **Enrich Biodiversity**: Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?
-
--   **Promote Climate Adaptation**: Which areas are most in need of interventions to promote climate adaptation?
-
--   **Improve Quality of Life**: Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?
-
-#### Methodology
-
--   **MCDA Structure**\
+#### MCDA Structure
     ![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
 
     ***explanation texts***
@@ -97,7 +111,7 @@ and start the report from the Introduction section below.
 
     ***explanation texts***
 
--   **Grid Division**: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)\
+#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)\
 
 **Hexagons**:\
 - Equal distance to neighboring cells\
@@ -113,7 +127,25 @@ and start the report from the Introduction section below.
 - Walkable distance for residents\
 - Relevant context information
 
-#### MEASUREMENTS AND WEIGHTS
+#### Indcators and Argumentations
+
+1.  **Enrich Biodiversity**\
+1-1. Healthy Vegetation Density\
+1-2. Natural Land Use Density\
+1-3. Species Richness\
+1-4. Nuisance from Industries\
+
+2.  **Promote Climate Adaptation**\
+
+3.  **Improve Quality of Life**\
+
+### Typology construction
+
+## Results
+
+### MCDA
+
+#### Analysis and Results
 
 1.  **Enrich Biodiversity**\
     1-1. Healthy Vegetation Density\
@@ -242,7 +274,7 @@ Saaty Matrix:
 
 (placeholder 4-16)
 
-#### AGGREGATED RESULTS FOR RESEARCH QUESTIONS
+#### Aggregated Results for Research Questions
 
 1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
     (placeholder image5-1)\
@@ -259,9 +291,7 @@ Saaty Matrix:
     -*Landuse in this area allow community-oriented intervention*\
     -*Already some attractions for people are in this area*
 
-## Typology construction
-
-## Results
+### Typology Construction
 
 ## Discussion
 
