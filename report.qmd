@@ -124,9 +124,9 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 ![](report_files/libs/imgs/1-4_buffer.jpeg)\
 
-**Buffer Zone = 500m**:\
-- Walk-able distance for residents\
-- Relevant context information
+**Buffer Zone = 300m**:\
+- Potential area under the influence of the streams for local residents\
+- Suitable for collecting relevant context information
 
 #### Indicators and Argumentation
 
