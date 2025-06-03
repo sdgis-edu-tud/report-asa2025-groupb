@@ -155,7 +155,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
     ![](report_files/libs/imgs/2-2_vegetation%20health%20index.jpeg)\
 
     1-2. Natural Land Use Density\
-    ![](report_files/libs/imgs/2-3and5_Greenscapes base map.jpg){width="467"}\
+    ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
     Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
     ![](report_files/libs/imgs/2-4_GreensLandusemap.jpg){width="466"}\
 
@@ -165,8 +165,8 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
     ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
 
     1-4. Nuisance from Industries\
-    (placeholder 2-7)\
-    Processing:\
+    ![](report_files/libs/imgs/2-7_Industries base map .jpg){width="466"}\
+    Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
     (placeholder 2-8)\
 
     1-5. Nuisance from Hard Borders\
@@ -238,9 +238,9 @@ Saaty Matrix:
     ![](report_files/libs/imgs/4-2_population_index.jpeg)\
 
     3-2. Urbanized Land Use Density\
-    (placeholder 4-3)\
-    Processing:\
-    (placeholder 4-4)\
+    ![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
+    Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
+    ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
 
     3-3. Density of Attractions for People\
     ![](report_files/libs/imgs/4-5_poi_data.jpeg)\
