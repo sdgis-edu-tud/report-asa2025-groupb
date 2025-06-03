@@ -112,7 +112,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 ***explanation texts***
 
-#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg) 
+#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
 **Hexagons**:\
 - Equal distance to neighboring cells\
@@ -161,7 +161,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
     1-3. Species Richness\
     (placeholder 2-5)\
-    Processing:\
+    Processing: ***Give biodiversity value --\> Intersect with greed --\> Area** *Biodiversity Value --\> Add Biodiversity index from same hex --\> Dissolve --\> Join attributes by location***\
     ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
 
     1-4. Nuisance from Industries\
