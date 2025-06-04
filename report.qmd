@@ -18,20 +18,25 @@ format: html
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
-## Running Code 
+## Running Code
 
 Install necessary packages
+
 ```{r}
 #install.packages("sf") 
 #install.packages("dplyr")
+#install.packages("leaflet")
+#install.packages("RColorBrewer")
 ```
 
 Load necessary packages
+
 ```{r}
 library(sf) # for processing vector data 
 library(dplyr) # for selecting and transforming data
+library(leaflet)
+library(RColorBrewer)
 ```
-
 :::
 
 ## Introduction
@@ -203,15 +208,13 @@ Saaty Matrix:
     Processing:\
     (placeholder 3-8)\
 
-    2-5. Urban Heat Island Effect\
-    (placeholder 3-9)\
-    Processing:\
-    (placeholder 3-10)\
+    2-5 & 6. Heat Risk Index
 
-    2-6. Number of Hot Nights\
+    Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+
 ```{r}
-hot_nights <- "C:/Users/stepa/OneDrive/Documents/GEO/ARFW0501/report-asa2025-groupb/files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
-UHI_max <- "C:/Users/stepa/OneDrive/Documents/GEO/ARFW0501/report-asa2025-groupb/files/promote_climate_adaptation/UHI_max.gpkg"
+hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
+UHI_max <- "files/promote_climate_adaptation/UHI_max.gpkg"
 
 hn <- st_read(hot_nights, quiet = TRUE)
 uhi <- st_read(UHI_max, quiet = TRUE)
@@ -228,6 +231,9 @@ hn_scaled <- hn |>
 uhi_scaled <- uhi |> 
   mutate(UHI_max_scaled = as.numeric(scale(uhi$UHI_max_norm)))
 
+plot(hn_scaled["X10y_hotnights_scaled"], border = NA, main = "Hot nights - scaled")
+plot(uhi_scaled["UHI_max_scaled"], border = NA, main = "UHI max - scaled")
+
 #head(hn_scaled)
 
 # Combine by dropping geometry from one
@@ -239,11 +245,53 @@ combined <- hn_scaled |>
 # Plot combined heat risk index as a true spatial map
 plot(combined["heat_risk_index"], border = NA, main = "Combined Heat Risk Index (Standardized)")
 
+# Write the combined file (Comment out if it has been done once)
+#st_write(combined, "files/promote_climate_adaptation/heat_risk.gpkg")
+
 ```
 
-    (placeholder 3-11)\
-    Processing:\
-    (placeholder 3-12)\
+```{r}
+# Read the combined result
+combined <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+combined_wgs84 <- st_transform(combined, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "YlOrRd", 
+  domain = combined_wgs84$heat_risk_index,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(combined_wgs84)
+
+leaflet(data = combined_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(heat_risk_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~heat_risk_index,
+    title = "Heat Risk Index",
+    position = "bottomright"
+  ) 
+
+```
 
 Measurements Importance Ranking:\
 
