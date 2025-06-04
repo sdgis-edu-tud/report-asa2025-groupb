@@ -18,36 +18,20 @@ format: html
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
-## Running Code
+## Running Code 
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
+Install necessary packages
 ```{r}
-1 + 1
+#install.packages("sf") 
+#install.packages("dplyr")
 ```
 
-You can add options to executable code like this
-
+Load necessary packages
 ```{r}
-#| echo: false
-2 * 2
+library(sf) # for processing vector data 
+library(dplyr) # for selecting and transforming data
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
-
-You can delete this entire callout between and including the lines
-
-```         
-::: callout
-```
-
-and
-
-```         
-:::
-```
-
-and start the report from the Introduction section below.
 :::
 
 ## Introduction
@@ -225,6 +209,38 @@ Saaty Matrix:
     (placeholder 3-10)\
 
     2-6. Number of Hot Nights\
+```{r}
+hot_nights <- "C:/Users/stepa/OneDrive/Documents/GEO/ARFW0501/report-asa2025-groupb/files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
+UHI_max <- "C:/Users/stepa/OneDrive/Documents/GEO/ARFW0501/report-asa2025-groupb/files/promote_climate_adaptation/UHI_max.gpkg"
+
+hn <- st_read(hot_nights, quiet = TRUE)
+uhi <- st_read(UHI_max, quiet = TRUE)
+
+#head(hn)
+
+plot(hn["X10y_hotnights"], border = NA, main = "Number of Hot nights (>22°C) aggregated between 2015-24")
+plot(uhi["UHI_max_norm"], border = NA, main = "UHI max")
+
+# Standardize (scale) values
+hn_scaled <- hn |> 
+  mutate(X10y_hotnights_scaled = as.numeric(scale(hn$X10y_hotnights)))
+
+uhi_scaled <- uhi |> 
+  mutate(UHI_max_scaled = as.numeric(scale(uhi$UHI_max_norm)))
+
+#head(hn_scaled)
+
+# Combine by dropping geometry from one
+combined <- hn_scaled |> 
+  select(geom, X10y_hotnights_scaled) |> 
+  bind_cols(uhi_scaled |> st_drop_geometry() |> select(UHI_max_scaled)) |> 
+  mutate(heat_risk_index = X10y_hotnights_scaled + UHI_max_scaled)
+
+# Plot combined heat risk index as a true spatial map
+plot(combined["heat_risk_index"], border = NA, main = "Combined Heat Risk Index (Standardized)")
+
+```
+
     (placeholder 3-11)\
     Processing:\
     (placeholder 3-12)\
