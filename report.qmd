@@ -165,7 +165,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
     ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
 
     1-4. Nuisance from Industries\
-    ![](report_files/libs/imgs/2-7_Industries base map .jpg){width="466"}\
+    ![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
     Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
     (placeholder 2-8)\
 
