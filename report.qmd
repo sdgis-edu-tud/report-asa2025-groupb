@@ -1,18 +1,18 @@
 ---
-title: "Title of your report"
-subtitle: "Project report of Group #"
+title: "Urban Stream Restoration: building a more resilient urban environmental system"
+subtitle: "Group B"
 author:
-  - name: "Student 1"
+  - name: "Stepan Prikazchikov"
     affiliation: "MSc Geomatics"
-  - name: "Student 2"
+  - name: "Roger Marin de Yzaguirre"
     affiliation: "MSc Landscape Architecture"
-  - name: "Student 3"
+  - name: "Yaying Hao"
     affiliation: "MSc Urbanism"
-  - name: "Student 4"
+  - name: "Jaee A. Naik"
     affiliation: "MSc Urbanism"
-  - name: "Student 5"
-    affiliation: "MSc Landscape Architecture"
 format: html
+lightbox: TRUE
+code-fold: TRUE # collapse code in the HTML output
 ---
 
 ::: callout
@@ -22,44 +22,447 @@ Quarto enables you to weave together content and executable code into a finished
 
 ## Running Code
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Install necessary packages
 
 ```{r}
-1 + 1
+#install.packages("sf") 
+#install.packages("dplyr")
+#install.packages("leaflet")
+#install.packages("RColorBrewer")
+#system("echo %JAVA_HOME%", intern = TRUE)
+#install.packages("rJava")
+#install.packages("swipeR")
+#install.packages("ggplot2")
 ```
 
-You can add options to executable code like this 
+Load necessary packages
 
 ```{r}
-#| echo: false
-2 * 2
+library(sf) # for processing vector data 
+library(dplyr) # for selecting and transforming data
+library(leaflet)
+library(RColorBrewer)
+library(rJava)
+#library(swipeR) # Could be depreciated, as in I don't want to use it 
+library(ggplot2)
+library(htmltools)
 ```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
-You can delete this entire callout between and including the lines
-```
-::: callout
-```
-and
-
-```
-:::
-```
-and start the report from the Introduction section below.
 :::
 
 ## Introduction
 
-## Methods
+In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework. In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section.
 
 ### MCDA
 
+#### GOAL
+
+-   **Urban Stream Restoration**: building a more resilient urban environmental system
+
+#### OBJECTIVES AND RESEARCH QUESTIONS
+
+-   **Enrich Biodiversity**: Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?
+
+-   **Promote Climate Adaptation**: Which areas are most in need of interventions to promote climate adaptation?
+
+-   **Improve Quality of Life**: Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?
+
+### Typology Construction
+
+#### GOAL
+
+-   *to be updated*
+
+#### OBJECTIVES AND RESEARCH QUESTIONS
+
+-   *to be updated*
+
+## Roles and Explanations
+
+-   **Stepan: Data analyst**\
+    Data analyst and Presentation lead.
+-   **Roger: Landscape architect**\
+    Landscape expert and Mapping
+-   **Yaying: Mapping and Design**\
+    Data visualization and Mapping.
+-   **Jaee: Research Lead**\
+    Oversees background research
+
+## Research Background
+
+**What is the Context of Stream Restoration in Poznan?**
+
+1.  Streams go through multiple land use/typology: ***need to choose the suitable restoration strategy based on specific context*** ![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
+2.  Streams end up in Warta River Valley: ***River Warta included in the research together with the stream system*** ![](report_files/libs/imgs/0-2_topography.jpeg)\
+
+## Methods
+
+*In the Methods section, describe what are the the spatial unit (and the rationale), the indicators you choose and why, the workflow of MCDA, and later the typology construction. (from comment)*
+
+### MCDA
+
+#### MCDA Structure
+
+![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
+
+***explanation texts***
+
+![](report_files/libs/imgs/1-2.jpg)\
+
+***explanation texts***
+
+#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
+
+**Hexagons**:\
+- Equal distance to neighboring cells\
+- Reduced edge effect\
+**Diameter = 500m**:\
+- 5-10min walk distance\
+- Integrate stream restoration intervention into urban life in the vicinity\
+- Reasonable amount of cells in the whole city area\
+
+![](report_files/libs/imgs/1-4_buffer.jpeg)\
+
+**Buffer Zone = 300m**:\
+- Potential area under the influence of the streams for local residents\
+- Suitable for collecting relevant context information
+
+#### Indicators and Argumentation
+
+1.  **Enrich Biodiversity**\
+    1-1. Healthy Vegetation Density\
+    1-2. Natural Land Use Density\
+    1-3. Species Richness\
+    1-4. Nuisance from Industries\
+
+2.  **Promote Climate Adaptation**\
+
+3.  **Improve Quality of Life**\
+
 ### Typology construction
 
+#### Chosen Fields
+
+#### K-Means Method
+
+#### Constructing Types
+
 ## Results
+
+### MCDA
+
+#### Analysis and Results
+
+1.  **Enrich Biodiversity**\
+    1-1. Healthy Vegetation Density\
+    ![](report_files/libs/imgs/2-1.jpg)\
+    Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
+    ![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
+
+    1-2. Natural Land Use Density\
+    ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
+    Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
+    ![](report_files/libs/imgs/2-4_GreensLandusemap.jpg){width="466"}\
+
+    1-3. Species Richness\
+    ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
+    Processing: ***Give biodiversity value --\> Intersect with greed --\> Area Biodiversity Value --\> Add Biodiversity index from same hex --\> Dissolve --\> Join attributes by location***\
+    ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
+
+    1-4. Nuisance from Industries\
+    ![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
+    Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
+    (placeholder 2-8)\
+
+    1-5. Nuisance from Hard Borders\
+    ![](report_files/libs/imgs/2-9_road_data.jpeg)\
+    Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection and Join --\> Sum --\> Normalization***\
+    ![](report_files/libs/imgs/2-10_road_index.jpeg)\
+
+    1-6. Historic Stream Waterway\
+    (placeholder 2-11)\
+    Processing:\
+    (placeholder 2-12)\
+
+    1-7. Historic Soil Type\
+    (placeholder 2-13)\
+    Processing:\
+    (placeholder 2-14)\
+
+Measurements Importance Ranking:\
+
+(placeholder 2-15)\
+
+Saaty Matrix:
+
+(placeholder 2-16)
+
+2.  **Promote Climate Adaptation**\
+    2-1. Risk of Flooding\
+    ![](report_files/libs/imgs/3-1_flood_data.jpeg)\
+    Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
+    ![](report_files/libs/imgs/3-2_flood_risk_index.jpeg)\
+
+    2-2. Density of Impermeable Surfaces\
+    ![](report_files/libs/imgs/3-3_permeability_data.jpeg)\
+    Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
+    ![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
+
+    2-3. Water system connectivity\
+    (placeholder 3-5)\
+    Processing:\
+    (placeholder 3-6)\
+
+    2-4. Drought High-Risk Areas\
+    (placeholder 3-7)\
+    Processing:\
+    (placeholder 3-8)\
+
+    2-5 & 6. Heat Risk Index
+
+    Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+
+```{r}
+hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
+UHI_max <- "files/promote_climate_adaptation/UHI_max.gpkg"
+
+hn <- st_read(hot_nights, quiet = TRUE)
+uhi <- st_read(UHI_max, quiet = TRUE)
+
+# Standardize (scale) values
+hn_scaled <- hn |> 
+  mutate(X10y_hotnights_scaled = as.numeric(scale(hn$X10y_hotnights)))
+
+uhi_scaled <- uhi |> 
+  mutate(UHI_max_scaled = as.numeric(scale(uhi$UHI_max_norm)))
+
+#head(hn_scaled)
+
+# Combine by dropping geometry from one
+combined <- hn_scaled |> 
+  select(geom, X10y_hotnights_scaled) |> 
+  bind_cols(uhi_scaled |> st_drop_geometry() |> select(UHI_max_scaled)) |> 
+  mutate(heat_risk_index = X10y_hotnights_scaled + UHI_max_scaled)
+
+### Map plotting
+p1 <- ggplot(hn) +
+  geom_sf(aes(fill = X10y_hotnights), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
+  theme_minimal()
+
+p2 <- ggplot(uhi) +
+  geom_sf(aes(fill = UHI_max_norm), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "UHI max", fill = "UHI") +
+  theme_minimal()
+
+p3 <- ggplot(hn_scaled) +
+  geom_sf(aes(fill = X10y_hotnights_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized Hot Nights", fill = "Z-score") +
+  theme_minimal()
+
+p4 <- ggplot(uhi_scaled) +
+  geom_sf(aes(fill = UHI_max_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized UHI max", fill = "Z-score") +
+  theme_minimal()
+
+p5 <- ggplot(combined) +
+  geom_sf(aes(fill = heat_risk_index), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
+  theme_minimal()
+
+print(p1)
+print(p2)
+print(p3)
+print(p4)
+print(p5)
+
+# Write the combined file (Comment out if it has been done once)
+#st_write(combined, "files/promote_climate_adaptation/heat_risk.gpkg")
+
+```
+
+```{r}
+# Read the combined result
+combined <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+combined_wgs84 <- st_transform(combined, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "RdBu", 
+  domain = combined_wgs84$heat_risk_index,
+  reverse = TRUE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(combined_wgs84)
+
+leaflet(data = combined_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(heat_risk_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~heat_risk_index,
+    title = "Heat Risk Index",
+    position = "bottomright"
+  ) 
+
+```
+
+Measurements Importance Ranking:\
+
+(placeholder 3-13)\
+
+Saaty Matrix:
+
+(placeholder 3-14)
+
+3.  **Improve Quality of Life**\
+    3-1. Population living in the Vicinity\
+    ![](report_files/libs/imgs/4-1_population_data.jpeg)\
+    Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
+    ![](report_files/libs/imgs/4-2_population_index.jpeg)\
+
+    3-2. Urbanized Land Use Density\
+    ![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
+    Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
+    ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
+
+    3-3. Density of Attractions for People\
+    ![](report_files/libs/imgs/4-5_poi_data.jpeg)\
+    Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
+    ![](report_files/libs/imgs/4-6_poi_index.jpeg)\
+
+    3-4. Navigability of Stream Network\
+    (placeholder 4-7)\
+    Processing:\
+    (placeholder 4-8)\
+
+    3-5. Local Centrality Index\
+    ![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
+    Processing:***Angular Integration (500M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
+    ![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
+
+    3-6. Public Transport Accessibility\
+    ![](report_files/libs/imgs/4-11_public_transport_data.jpeg)\
+    Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
+    ![](report_files/libs/imgs/4-12_public_transport_index.jpeg)\
+
+    3-7. Angular Betweeness Index\
+    (placeholder 4-13)\
+    Processing:\
+    (placeholder 4-14)\
+    
+    3-8. Density Indicators (FSI/GSI/ORS)
+    Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon * number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows: 
+
+```{r}
+density_indicator <- "files/improve_quality_of_life/DensityIndicators_raw.gpkg"
+
+di <- st_read(density_indicator, quiet = TRUE)
+
+#head(di)
+
+di_result <- di |> 
+  mutate(FSI = floorspace_sum /area) |>
+  mutate(GSI = footprint_sum / area) |>
+  mutate(OSR = (1-GSI)/FSI) 
+
+#head(di_result)
+
+#Write Density Indicator results to file KEEP COMMENTED OUT
+#st_write(di_result, "files/improve_quality_of_life/density_indicators.gpkg")
+
+p6 <- ggplot(di_result) +
+  geom_sf(aes(fill = OSR), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Open Space Ratio", fill = "OSR") +
+  theme_minimal()
+
+print(p6)
+
+# Add quantile bins (3x3 grid = 9 color categories)
+di_bivar <- di_result |>
+  mutate(
+    FSI_q = ntile(FSI, 3),
+    GSI_q = ntile(GSI, 3),
+    bivar_class = paste0(FSI_q, "-", GSI_q)
+  )
+
+bivar_palette <- c(
+  "1-1" = "#e8e8e8",  
+  "1-2" = "#b5c0da",
+  "1-3" = "#6c83b5",
+  "2-1" = "#b8d6be",
+  "2-2" = "#90b2b3",
+  "2-3" = "#567994",
+  "3-1" = "#73ae80",
+  "3-2" = "#5a9178",
+  "3-3" = "#2a5a5b"   
+)
+
+### Experimental BIVARIATE CHOROPLETH MAP 
+p7 <- ggplot(di_bivar) +
+    geom_sf(aes(fill = bivar_class), color = NA) +
+    scale_fill_manual(values = bivar_palette) +
+    labs(
+      title = "Bivariate Choropleth: FSI vs GSI",
+      fill = "FSI (x) / GSI (y)"
+    ) +
+    theme_minimal()
+
+print(p7)
+```
+
+
+Measurements Importance Ranking:\
+
+(placeholder 4-15)\
+
+Saaty Matrix:
+
+(placeholder 4-16)
+
+#### Aggregated Results for Research Questions
+
+1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
+    (placeholder image5-1)\
+
+2.  **Which areas are most in need of interventions to promote climate adaptation?**\
+    (placeholder image5-2)\
+
+3.  **Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?**\
+    ![](report_files/libs/imgs/5-3_rq3_index.jpeg)\
+    ***When the area has higher index, it means: (relatively)***\
+    -*More people live in this area*\
+    -*The area is close to existing settlement center*\
+    -*The area has good public transport accessibility*\
+    -*Landuse in this area allow community-oriented intervention*\
+    -*Already some attractions for people are in this area*
+
+### Typology Construction
 
 ## Discussion
 
 ## Conclusion
-
