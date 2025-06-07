@@ -11,6 +11,8 @@ author:
   - name: "Jaee A. Naik"
     affiliation: "MSc Urbanism"
 format: html
+lightbox: TRUE
+code-fold: TRUE # collapse code in the HTML output
 ---
 
 ::: callout
@@ -20,34 +22,31 @@ Quarto enables you to weave together content and executable code into a finished
 
 ## Running Code
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Install necessary packages
 
 ```{r}
-1 + 1
+#install.packages("sf") 
+#install.packages("dplyr")
+#install.packages("leaflet")
+#install.packages("RColorBrewer")
+#system("echo %JAVA_HOME%", intern = TRUE)
+#install.packages("rJava")
+#install.packages("swipeR")
+#install.packages("ggplot2")
 ```
 
-You can add options to executable code like this
+Load necessary packages
 
 ```{r}
-#| echo: false
-2 * 2
+library(sf) # for processing vector data 
+library(dplyr) # for selecting and transforming data
+library(leaflet)
+library(RColorBrewer)
+library(rJava)
+#library(swipeR) # Could be depreciated, as in I don't want to use it 
+library(ggplot2)
+library(htmltools)
 ```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
-You can delete this entire callout between and including the lines
-
-```         
-::: callout
-```
-
-and
-
-```         
-:::
-```
-
-and start the report from the Introduction section below.
 :::
 
 ## Introduction
@@ -117,16 +116,16 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 **Hexagons**:\
 - Equal distance to neighboring cells\
 - Reduced edge effect\
-**Diameter = 1km**:\
-- 15min walk distance\
+**Diameter = 500m**:\
+- 5-10min walk distance\
 - Integrate stream restoration intervention into urban life in the vicinity\
-- Reasonable amount of cells in the city area\
+- Reasonable amount of cells in the whole city area\
 
 ![](report_files/libs/imgs/1-4_buffer.jpeg)\
 
-**Buffer Zone = 500m**:\
-- Walk-able distance for residents\
-- Relevant context information
+**Buffer Zone = 300m**:\
+- Potential area under the influence of the streams for local residents\
+- Suitable for collecting relevant context information
 
 #### Indicators and Argumentation
 
@@ -142,6 +141,12 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 ### Typology construction
 
+#### Chosen Fields
+
+#### K-Means Method
+
+#### Constructing Types
+
 ## Results
 
 ### MCDA
@@ -152,7 +157,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
     1-1. Healthy Vegetation Density\
     ![](report_files/libs/imgs/2-1.jpg)\
     Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
-    ![](report_files/libs/imgs/2-2_vegetation%20health%20index.jpeg)\
+    ![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
 
     1-2. Natural Land Use Density\
     ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
@@ -213,15 +218,117 @@ Saaty Matrix:
     Processing:\
     (placeholder 3-8)\
 
-    2-5. Urban Heat Island Effect\
-    (placeholder 3-9)\
-    Processing:\
-    (placeholder 3-10)\
+    2-5 & 6. Heat Risk Index
 
-    2-6. Number of Hot Nights\
-    (placeholder 3-11)\
-    Processing:\
-    (placeholder 3-12)\
+    Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+
+```{r}
+hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
+UHI_max <- "files/promote_climate_adaptation/UHI_max.gpkg"
+
+hn <- st_read(hot_nights, quiet = TRUE)
+uhi <- st_read(UHI_max, quiet = TRUE)
+
+# Standardize (scale) values
+hn_scaled <- hn |> 
+  mutate(X10y_hotnights_scaled = as.numeric(scale(hn$X10y_hotnights)))
+
+uhi_scaled <- uhi |> 
+  mutate(UHI_max_scaled = as.numeric(scale(uhi$UHI_max_norm)))
+
+#head(hn_scaled)
+
+# Combine by dropping geometry from one
+combined <- hn_scaled |> 
+  select(geom, X10y_hotnights_scaled) |> 
+  bind_cols(uhi_scaled |> st_drop_geometry() |> select(UHI_max_scaled)) |> 
+  mutate(heat_risk_index = X10y_hotnights_scaled + UHI_max_scaled)
+
+### Map plotting
+p1 <- ggplot(hn) +
+  geom_sf(aes(fill = X10y_hotnights), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
+  theme_minimal()
+
+p2 <- ggplot(uhi) +
+  geom_sf(aes(fill = UHI_max_norm), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "UHI max", fill = "UHI") +
+  theme_minimal()
+
+p3 <- ggplot(hn_scaled) +
+  geom_sf(aes(fill = X10y_hotnights_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized Hot Nights", fill = "Z-score") +
+  theme_minimal()
+
+p4 <- ggplot(uhi_scaled) +
+  geom_sf(aes(fill = UHI_max_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized UHI max", fill = "Z-score") +
+  theme_minimal()
+
+p5 <- ggplot(combined) +
+  geom_sf(aes(fill = heat_risk_index), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
+  theme_minimal()
+
+print(p1)
+print(p2)
+print(p3)
+print(p4)
+print(p5)
+
+# Write the combined file (Comment out if it has been done once)
+#st_write(combined, "files/promote_climate_adaptation/heat_risk.gpkg")
+
+```
+
+```{r}
+# Read the combined result
+combined <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+combined_wgs84 <- st_transform(combined, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "RdBu", 
+  domain = combined_wgs84$heat_risk_index,
+  reverse = TRUE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(combined_wgs84)
+
+leaflet(data = combined_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(heat_risk_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~heat_risk_index,
+    title = "Heat Risk Index",
+    position = "bottomright"
+  ) 
+
+```
 
 Measurements Importance Ranking:\
 
@@ -266,6 +373,68 @@ Saaty Matrix:
     (placeholder 4-13)\
     Processing:\
     (placeholder 4-14)\
+    
+    3-8. Density Indicators (FSI/GSI/ORS)
+    Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon * number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows: 
+
+```{r}
+density_indicator <- "files/improve_quality_of_life/DensityIndicators_raw.gpkg"
+
+di <- st_read(density_indicator, quiet = TRUE)
+
+#head(di)
+
+di_result <- di |> 
+  mutate(FSI = floorspace_sum /area) |>
+  mutate(GSI = footprint_sum / area) |>
+  mutate(OSR = (1-GSI)/FSI) 
+
+#head(di_result)
+
+#Write Density Indicator results to file KEEP COMMENTED OUT
+#st_write(di_result, "files/improve_quality_of_life/density_indicators.gpkg")
+
+p6 <- ggplot(di_result) +
+  geom_sf(aes(fill = OSR), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Open Space Ratio", fill = "OSR") +
+  theme_minimal()
+
+print(p6)
+
+# Add quantile bins (3x3 grid = 9 color categories)
+di_bivar <- di_result |>
+  mutate(
+    FSI_q = ntile(FSI, 3),
+    GSI_q = ntile(GSI, 3),
+    bivar_class = paste0(FSI_q, "-", GSI_q)
+  )
+
+bivar_palette <- c(
+  "1-1" = "#e8e8e8",  
+  "1-2" = "#b5c0da",
+  "1-3" = "#6c83b5",
+  "2-1" = "#b8d6be",
+  "2-2" = "#90b2b3",
+  "2-3" = "#567994",
+  "3-1" = "#73ae80",
+  "3-2" = "#5a9178",
+  "3-3" = "#2a5a5b"   
+)
+
+### Experimental BIVARIATE CHOROPLETH MAP 
+p7 <- ggplot(di_bivar) +
+    geom_sf(aes(fill = bivar_class), color = NA) +
+    scale_fill_manual(values = bivar_palette) +
+    labs(
+      title = "Bivariate Choropleth: FSI vs GSI",
+      fill = "FSI (x) / GSI (y)"
+    ) +
+    theme_minimal()
+
+print(p7)
+```
+
 
 Measurements Importance Ranking:\
 
