@@ -155,6 +155,16 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 1.  **Enrich Biodiversity**\
     1-1. Healthy Vegetation Density\
+```{r}
+healthy_vegetation <- "files/enrich_biodiversity/vegetation_health_index.gpkg"
+
+hv <- st_read(healthy_vegetation, quiet = TRUE)
+
+# Standardize (scale) values
+hv_scaled <- hv |> 
+  mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
+```
+    
     ![](report_files/libs/imgs/2-1.jpg)\
     Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
     ![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
@@ -199,16 +209,34 @@ Saaty Matrix:
 
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding\
+    ```{r}
+flood_risk <- "files/promote_climate_adaptation/flood_risk_rp50.gpkg"
+
+fr <- st_read(flood_risk, quiet = TRUE)
+
+# Standardize (scale) values
+fr_scaled <- fr |> 
+  mutate(fr_scaled = as.numeric(scale(fr$flood_sum)))
+```
     ![](report_files/libs/imgs/3-1_flood_data.jpeg)\
     Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
     ![](report_files/libs/imgs/3-2_flood_risk_index.jpeg)\
 
     2-2. Density of Impermeable Surfaces\
+    ```{r}
+impermeable_surface <- "files/promote_climate_adaptation/surface_impermeability.gpkg"
+
+is <- st_read(impermeable_surface, quiet = TRUE)
+
+# Standardize (scale) values
+is_scaled <- is |> 
+  mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
+```
     ![](report_files/libs/imgs/3-3_permeability_data.jpeg)\
     Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
     ![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
 
-    2-3. Water system connectivity\
+    2-3. Water system connectivity\ # DELETE THIS? ITS BEEN REPLACED BY NAVIGABILITY OF STREAM NETWORK? 
     (placeholder 3-5)\
     Processing:\
     (placeholder 3-6)\
@@ -218,7 +246,7 @@ Saaty Matrix:
     Processing:\
     (placeholder 3-8)\
 
-    2-5 & 6. Heat Risk Index
+    2-5 & 6. Heat Risk Index\
 
     Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
 
@@ -231,18 +259,21 @@ uhi <- st_read(UHI_max, quiet = TRUE)
 
 # Standardize (scale) values
 hn_scaled <- hn |> 
-  mutate(X10y_hotnights_scaled = as.numeric(scale(hn$X10y_hotnights)))
+  mutate(hn_scaled = as.numeric(scale(hn$X10y_hotnights)))
 
 uhi_scaled <- uhi |> 
-  mutate(UHI_max_scaled = as.numeric(scale(uhi$UHI_max_norm)))
+  mutate(uhi_scaled = as.numeric(scale(uhi$UHI_max_norm)))
 
 #head(hn_scaled)
 
 # Combine by dropping geometry from one
-combined <- hn_scaled |> 
-  select(geom, X10y_hotnights_scaled) |> 
-  bind_cols(uhi_scaled |> st_drop_geometry() |> select(UHI_max_scaled)) |> 
-  mutate(heat_risk_index = X10y_hotnights_scaled + UHI_max_scaled)
+hr_index <- hn_scaled |> 
+  select(geom, hn_scaled) |> 
+  bind_cols(uhi_scaled |> st_drop_geometry() |> select(uhi_scaled)) |> 
+  mutate(heat_risk_index = hn_scaled + uhi_scaled)
+
+hr_scaled <- hr_index |>
+  mutate(hr_scaled = as.numeric(scale(hr_index$heat_risk_index)))
 
 ### Map plotting
 p1 <- ggplot(hn) +
@@ -258,18 +289,18 @@ p2 <- ggplot(uhi) +
   theme_minimal()
 
 p3 <- ggplot(hn_scaled) +
-  geom_sf(aes(fill = X10y_hotnights_scaled), color = NA) +
+  geom_sf(aes(fill = hn_scaled), color = NA) +
   scale_fill_gradient2() +
   labs(title = "Standardized Hot Nights", fill = "Z-score") +
   theme_minimal()
 
 p4 <- ggplot(uhi_scaled) +
-  geom_sf(aes(fill = UHI_max_scaled), color = NA) +
+  geom_sf(aes(fill = uhi_scaled), color = NA) +
   scale_fill_gradient2() +
   labs(title = "Standardized UHI max", fill = "Z-score") +
   theme_minimal()
 
-p5 <- ggplot(combined) +
+p5 <- ggplot(hr_index) +
   geom_sf(aes(fill = heat_risk_index), color = NA) +
   scale_fill_gradient2() +
   labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
@@ -282,27 +313,27 @@ print(p4)
 print(p5)
 
 # Write the combined file (Comment out if it has been done once)
-#st_write(combined, "files/promote_climate_adaptation/heat_risk.gpkg")
+#st_write(hr_index, "files/promote_climate_adaptation/heat_risk.gpkg")
 
 ```
 
 ```{r}
 # Read the combined result
-combined <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
 
 # Reproject to WGS 84 for leaflet
-combined_wgs84 <- st_transform(combined, crs = 4326)
+hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
 
 pal <- colorNumeric(
   palette = "RdBu", 
-  domain = combined_wgs84$heat_risk_index,
+  domain = hr_index_wgs84$heat_risk_index,
   reverse = TRUE,
   na.color = "transparent"
 )
 
-bbox <- st_bbox(combined_wgs84)
+bbox <- st_bbox(hr_index_wgs84)
 
-leaflet(data = combined_wgs84) %>%
+leaflet(data = hr_index_wgs84) %>%
   addProviderTiles(
     providers$Esri.WorldImagery,
     options = providerTileOptions(opacity = 0.5)
@@ -330,6 +361,47 @@ leaflet(data = combined_wgs84) %>%
 
 ```
 
+    2-7. Terrain slope\
+```{r}
+terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
+
+ts <- st_read(terrain_slope, quiet = TRUE)
+
+ts_scaled <- ts |> 
+  mutate(ts_scaled = as.numeric(scale(ts$slope_mean)))
+
+p6 <- ggplot(ts_scaled) +
+  geom_sf(aes(fill = ts_scaled), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Mean slope angle", fill = "Std slope") +
+  theme_minimal()
+
+print(p6)
+
+```
+
+      
+    2-8. River sinuosity\  
+```{r}
+river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
+
+rs <- st_read(river_sinuosity, quiet = TRUE)
+
+rs_scaled <- rs |> 
+  mutate(rs_scaled = as.numeric(scale(rs$wm_sinuosity)))
+
+p7 <- ggplot(rs_scaled) +
+  geom_sf(aes(fill = rs_scaled), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "River sinuosity", fill = "Sinuosity") +
+  theme_minimal()
+
+print(p7)
+
+```
+
+
+
 Measurements Importance Ranking:\
 
 (placeholder 3-13)\
@@ -355,8 +427,26 @@ Saaty Matrix:
     ![](report_files/libs/imgs/4-6_poi_index.jpeg)\
 
     3-4. Navigability of Stream Network\
-    (placeholder 4-7)\
-    Processing:\
+```{r}
+stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
+
+sn <- st_read(stream_navigability, quiet = TRUE)
+
+# Standardize (scale) values
+sn_scaled <- sn |> 
+  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
+
+head(sn_scaled)
+
+p8 <- ggplot(sn_scaled) +
+  geom_sf(aes(fill = sn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
+  theme_minimal()
+
+print(p8)
+```
+    Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
     (placeholder 4-8)\
 
     3-5. Local Centrality Index\
@@ -373,34 +463,34 @@ Saaty Matrix:
     (placeholder 4-13)\
     Processing:\
     (placeholder 4-14)\
-    
-    3-8. Density Indicators (FSI/GSI/ORS)
-    Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon * number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows: 
+
+    3-8. Density Indicators (FSI/GSI/ORS) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
 
 ```{r}
 density_indicator <- "files/improve_quality_of_life/DensityIndicators_raw.gpkg"
 
 di <- st_read(density_indicator, quiet = TRUE)
 
-#head(di)
+di_result <- di |>
+  mutate(
+    FSI = ifelse(is.finite(floorspace_sum / area), floorspace_sum / area, 0),
+    GSI = ifelse(is.finite(footprint_sum / area), footprint_sum / area, 0),
+    OSR = ifelse(FSI != 0 & !is.na(FSI), (1 - GSI) / FSI, 0)
+  )
 
-di_result <- di |> 
-  mutate(FSI = floorspace_sum /area) |>
-  mutate(GSI = footprint_sum / area) |>
-  mutate(OSR = (1-GSI)/FSI) 
+osr_scaled <- di_result |> 
+  mutate(osr_scaled = as.numeric(scale(di_result$OSR)))
 
-#head(di_result)
-
-#Write Density Indicator results to file KEEP COMMENTED OUT
+#Write Density Indicator results to file KEEP COMMENTED OUTx
 #st_write(di_result, "files/improve_quality_of_life/density_indicators.gpkg")
 
-p6 <- ggplot(di_result) +
+p9 <- ggplot(di_result) +
   geom_sf(aes(fill = OSR), color = NA) +
   scale_fill_viridis_c() +
   labs(title = "Open Space Ratio", fill = "OSR") +
   theme_minimal()
 
-print(p6)
+print(p9)
 
 # Add quantile bins (3x3 grid = 9 color categories)
 di_bivar <- di_result |>
@@ -423,7 +513,7 @@ bivar_palette <- c(
 )
 
 ### Experimental BIVARIATE CHOROPLETH MAP 
-p7 <- ggplot(di_bivar) +
+p10 <- ggplot(di_bivar) +
     geom_sf(aes(fill = bivar_class), color = NA) +
     scale_fill_manual(values = bivar_palette) +
     labs(
@@ -432,10 +522,28 @@ p7 <- ggplot(di_bivar) +
     ) +
     theme_minimal()
 
-print(p7)
+print(p10)
 ```
 
+    3-9. Attraction betweenness\
+    ```{r}
+attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
 
+ab <- st_read(attraction_betweenness, quiet = TRUE)
+
+# Replace NA with 0 before scaling
+ab_cleaned <- ab |> 
+  mutate(abt_cell_data_mean = ifelse(is.na(abt_cell_data_mean), 0, abt_cell_data_mean))
+
+# Standardize and ensure result is numeric with no NAs
+ab_scaled <- ab_cleaned |> 
+  mutate(ab_scaled = as.numeric(scale(abt_cell_data_mean)),
+         ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
+```    
+    (placeholder 4-17)\
+    Processing:\
+    (placeholder 4-18)\
+    
 Measurements Importance Ranking:\
 
 (placeholder 4-15)\
@@ -462,6 +570,112 @@ Saaty Matrix:
     -*Already some attractions for people are in this area*
 
 ### Typology Construction
+
+Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product). 
+
+We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
+
+Our typology creation thus follows two narratives: Which locations are in need of intervention, and Which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for 
+
+**Variables**\ 
+Discussed variables: 
+Channel morphology
+  Sinuosity
+  Floodplain width
+  Open water surface
+Land use cover
+  Impervious
+  Vegetation
+Landscape 
+  Green space connectivity
+Mobility
+  Slow mobility accessibility
+Building morphology
+  Floor area ratio
+  
+Our variables: 
+  RISK ATTRRIBUTES
+  Heat_risk (aggregated hot nights and UHI max)
+  flood_risk_rp50
+  surface_impermeability
+  vegetation_health_index
+  
+  BENEFIT ATTRIBUTES:
+  terrain_slope
+  density_indicators (any can be used, OSR as most logical?)
+  attraction_betweenness 
+  navigability_indicator 
+
+```{r}
+# Create Clustering input from previous datasets. 
+geometry <- st_geometry(hr_scaled)
+
+# Combine all scaled variables into one data frame
+cluster_attributes <- data.frame(
+  hr_scaled = hr_scaled$hr_scaled,
+  fr_scaled = fr_scaled$fr_scaled,
+  is_scaled = is_scaled$is_scaled,
+  hv_scaled = hv_scaled$hv_scaled,
+  ts_scaled = ts_scaled$ts_scaled,
+  osr_scaled = osr_scaled$osr_scaled,
+  ab_scaled = ab_scaled$ab_scaled,
+  sn_scaled = sn_scaled$sn_scaled
+)
+
+# Combine geometry and attributes into one sf object
+cluster_input <- st_sf(cluster_attributes, geometry = geometry)
+#head(cluster_input)
+#st_write(cluster_input, "files/cluster_analysis/clusters_raw.gpkg")  
+
+inertia <- numeric()
+
+# Try k values from 2 to 9
+k_values <- 2:9
+
+# Loop through each k value
+for (k in k_values) {
+  km <- kmeans(cluster_attributes, centers = k, nstart = 100) 
+  
+   #tot.withinss is Total within-cluster sum of squares
+   #This measures how compact the clusters are: lower is better.
+  inertia <- c(inertia, km$tot.withinss)
+}
+
+# Combine the results into a data frame for plotting
+elbow_df <- data.frame(k = k_values, inertia = inertia)
+
+print(elbow_df)
+
+# Make the elbow plot
+plot(k_values, inertia,
+     type = "b",                  # shown both points + lines 
+     col = "darkblue",
+     main = "Elbow Method")
+
+# `set.seed()` sets the random number generator to a fixed state
+# Set the seed so the clustering result is always the same when re-run
+set.seed(0)  # The number 0 is just a fixed choice. You can also use 10, 345, etc.
+
+# Choose the number of clusters based on the elbow plot
+k <- 5
+
+# Run K-means clustering on the standardized data
+kmeans_result <- kmeans(cluster_attributes, centers = k, nstart = 20)
+
+# Add the cluster labels to the spatial data
+cluster_input$cluster <- as.factor(kmeans_result$cluster) # The result kmeans_result$cluster is a list of cluster labels (1 to 4), in the same order as the original rows in X_scaled and grids
+
+head(cluster_input)
+
+# Show how many grids fall into each cluster
+print(table(cluster_input$cluster))
+
+# Plot clusters with base R
+plot(cluster_input["cluster"], 
+     main = "Spatial Pattern of Urban Stream Clusters", 
+     border = NA)
+```
+
 
 ## Discussion
 
