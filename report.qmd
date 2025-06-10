@@ -216,9 +216,9 @@ Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by fi
 Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
-![](report_files/libs/imgs/2-9_road_typologies_data.jpeg)\
+![](report_files/libs/imgs/2-9_road_typologies_data.jpg)\
 Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection and Join --\> Sum --\> Normalization***\
-![](report_files/libs/imgs/2-10_traffic_noise_distrubance.jpeg)\
+![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg)\
 Accuracy/Reflection:
 
 1-6. Nuisance from Urban Barrier\
