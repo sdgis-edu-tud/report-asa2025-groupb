@@ -243,7 +243,6 @@ flood_risk <- "files/promote_climate_adaptation/flood_risk_rp50.gpkg"
 
 fr <- st_read(flood_risk, quiet = TRUE)
 
-# Standardize (scale) values
 fr_scaled <- fr |> 
   mutate(fr_scaled = as.numeric(scale(fr$flood_sum)))
 
@@ -261,7 +260,6 @@ impermeable_surface <- "files/promote_climate_adaptation/surface_impermeability.
 
 is <- st_read(impermeable_surface, quiet = TRUE)
 
-# Standardize (scale) values
 is_scaled <- is |> 
   mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
 ```
@@ -440,11 +438,10 @@ stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpk
 
 sn <- st_read(stream_navigability, quiet = TRUE)
 
-# Standardize (scale) values
 sn_scaled <- sn |> 
   mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
 
-head(sn_scaled)
+#head(sn_scaled)
 
 p8 <- ggplot(sn_scaled) +
   geom_sf(aes(fill = sn_scaled), color = NA) +
@@ -581,6 +578,7 @@ Saaty Matrix:
 
 ### Typology Construction
 
+<<<<<<< Updated upstream
 Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product).
 
 We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
@@ -612,25 +610,76 @@ p6 <- ggplot(ts_scaled) +
 print(p6)
 
 ```
+=======
+Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list. 
+
+We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
+
+Our typology creation thus follows two narratives: Which locations are in need of intervention, and which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for Urban Stream Restoration. 
+
+**Variables**\ 
+Discussed variables: 
+Channel morphology
+  Sinuosity
+  Floodplain width
+  Open water surface
+Land use cover
+  Impervious
+  Vegetation
+Landscape 
+  Green space connectivity
+Mobility
+  Slow mobility accessibility
+Building morphology
+  Floor area ratio
+  
+Our variables: 
+  RISK ATTRRIBUTES (require intervention):
+  Heat_risk (aggregated hot nights and UHI max)
+  flood_risk_rp50
+  surface_impermeability
+  vegetation_health_index
+  
+  BENEFIT ATTRIBUTES (ready for intervention):
+  terrain_slope
+  density_indicators (any can be used, OSR as most logical?) # THIS DOES NOT PROVIDE GOOD RESULTS
+  attraction_betweenness 
+  navigability_indicator 
+>>>>>>> Stashed changes
 
 ```{r}
 # Create Clustering input from previous datasets. 
 geometry <- st_geometry(hr_scaled)
 
 # Combine all scaled variables into one data frame
+#cluster_attributes <- data.frame(
+  #hr_scaled = hr_scaled$hr_scaled,
+  #fr_scaled = fr_scaled$fr_scaled,
+  #is_scaled = is_scaled$is_scaled,
+  #hv_scaled = hv_scaled$hv_scaled,
+  #ts_scaled = ts_scaled$ts_scaled,
+  #osr_scaled = osr_scaled$osr_scaled,
+  #ab_scaled = ab_scaled$ab_scaled,
+  #sn_scaled = sn_scaled$sn_scaled
+#)
+
+# Better to combine NON-SCALED variables since we want to revert back to normal values later
 cluster_attributes <- data.frame(
-  hr_scaled = hr_scaled$hr_scaled,
-  fr_scaled = fr_scaled$fr_scaled,
-  is_scaled = is_scaled$is_scaled,
-  hv_scaled = hv_scaled$hv_scaled,
-  ts_scaled = ts_scaled$ts_scaled,
-  osr_scaled = osr_scaled$osr_scaled,
-  ab_scaled = ab_scaled$ab_scaled,
-  sn_scaled = sn_scaled$sn_scaled
+  hr = hr_index$heat_risk_index,
+  fr = fr$flood_sum,
+  is = is$inperm_sum,
+  hv = hv$vegetation_health_index_small_grid_ndvi_mean,
+  ts = ts$slope_mean,
+  #osr = di_result$OSR, #osr gives bad results, thus omission  
+  ab = ab_cleaned$abt_cell_data_mean,
+  sn = sn$navigability_indicator
 )
 
+# Scale attributes together
+cluster_scaled <- scale(cluster_attributes)
+
 # Combine geometry and attributes into one sf object
-cluster_input <- st_sf(cluster_attributes, geometry = geometry)
+cluster_input <- st_sf(cluster_scaled, geometry = geometry)
 #head(cluster_input)
 #st_write(cluster_input, "files/cluster_analysis/clusters_raw.gpkg")  
 
@@ -641,7 +690,7 @@ k_values <- 2:9
 
 # Loop through each k value
 for (k in k_values) {
-  km <- kmeans(cluster_attributes, centers = k, nstart = 100) 
+  km <- kmeans(cluster_scaled, centers = k, nstart = 100) 
   
    #tot.withinss is Total within-cluster sum of squares
    #This measures how compact the clusters are: lower is better.
@@ -667,20 +716,95 @@ set.seed(0)  # The number 0 is just a fixed choice. You can also use 10, 345, et
 k <- 5
 
 # Run K-means clustering on the standardized data
-kmeans_result <- kmeans(cluster_attributes, centers = k, nstart = 20)
+kmeans_result <- kmeans(cluster_scaled, centers = k, nstart = 100)
 
 # Add the cluster labels to the spatial data
 cluster_input$cluster <- as.factor(kmeans_result$cluster) # The result kmeans_result$cluster is a list of cluster labels (1 to 4), in the same order as the original rows in X_scaled and grids
 
 head(cluster_input)
+#st_write(cluster_input, "files/cluster_analysis/clusters_1.gpkg")
 
 # Show how many grids fall into each cluster
 print(table(cluster_input$cluster))
 
 # Plot clusters with base R
-plot(cluster_input["cluster"], 
-     main = "Spatial Pattern of Urban Stream Clusters", 
-     border = NA)
+#plot(cluster_input["cluster"], 
+     #main = "Spatial Pattern of Urban Stream Clusters", 
+     #border = NA)
+```
+
+```{r}
+# Get the cluster centers (in standardized form)
+scaled_centers <- kmeans_result$centers
+
+# Print them
+print("Cluster centers (standardized):")
+print(scaled_centers)
+
+# Convert the centers back to original scale: x * SD + mean
+original_centers <- t(apply(
+  scaled_centers, 1, 
+  function(x) x * attr(cluster_scaled, "scaled:scale") + attr(cluster_scaled, "scaled:center")
+))
+
+# Print the real-world values
+print("Cluster centers (original):")
+print(original_centers)
+```
+
+Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability. 
+
+Cluster description:
+1 - (45 features) Cluster situated predominantly around the river, high fr (since this is generally the only area that has potential for flooding), and otherwise generally strong positive results (hr, is, hv, ab). Due to the high ts, the sn is also on the lower end.
+2 - (335 features) Cluster represents strongly vegetated areas, with a high hv and low hr, is is also strongly correlated here. Relatively high ts results in both low ab and sn. 
+3 - (271 features) HIGHEST hr, LOWEST hv. Broadly urban areas with low fr and sn since not very close to water bodies. High is and low ab, meaning that while it is a high risk area, the impact of interventions would be low. 
+4 - (24 features) Generally quite median scores across the board. With a high ab and relatively high sn, the impact of interventions would be felt quite highly, and there is generally a large amount of 'promenade' area. 
+5 - (61 features) Highly scoring in all RISK attributes (hr, fr, is, inverse(hv)). Relatively high ab, and very high sn suggest high impact of interventions which would greatly impact the streams themselves. 
+```{r}
+cluster_map <- st_read("files/cluster_analysis/clusters_1.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+cluster_input_wgs84 <- st_transform(cluster_map, crs = 4326)
+
+# Create a color factor palette for discrete clusters
+pal <- colorFactor(
+  palette = "Set1",
+  domain = as.character(cluster_input_wgs84$cluster),  # ensure domain is treated as character
+  na.color = "transparent"
+)
+
+# Get bounding box to zoom
+#bbox <- st_bbox(cluster_input_wgs84)
+
+leaflet(data = cluster_input_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(as.character(cluster)),  # force character here too
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.6,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Spatial Cluster:", cluster)
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~as.character(cluster),
+    title = "Cluster",
+    position = "bottomright"
+  ) %>%
+  fitBounds(st_bbox(cluster_input_wgs84)[["xmin"]],
+            st_bbox(cluster_input_wgs84)[["ymin"]],
+            st_bbox(cluster_input_wgs84)[["xmax"]],
+            st_bbox(cluster_input_wgs84)[["ymax"]])
 ```
 
 ## Discussion
