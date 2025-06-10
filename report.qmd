@@ -206,7 +206,7 @@ Accuracy/Reflection:
 1-3. Species Richness\
 ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
 Processing: ***Give biodiversity value --\> Intersect with greed --\> Area Biodiversity Value --\> Add Biodiversity index from same hex --\> Dissolve --\> Join attributes by location***\
-![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
+![](report_files/libs/imgs/2-6_Species_Richness_index.jpg)\
 Accuracy/Reflection:
 
 1-4. Nuisance from Industries\
