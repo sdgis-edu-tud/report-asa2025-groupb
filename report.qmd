@@ -740,8 +740,7 @@ print(table(cluster_input$cluster))
 #plot(cluster_input["cluster"], 
      #main = "Spatial Pattern of Urban Stream Clusters", 
      #border = NA)
-<<<<<<< Updated upstream
-=======
+
 ```
 
 ```{r}
@@ -816,7 +815,6 @@ leaflet(data = cluster_input_wgs84) %>%
             st_bbox(cluster_input_wgs84)[["ymin"]],
             st_bbox(cluster_input_wgs84)[["xmax"]],
             st_bbox(cluster_input_wgs84)[["ymax"]])
->>>>>>> Stashed changes
 ```
 
 ```{r}
