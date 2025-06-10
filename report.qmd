@@ -142,7 +142,9 @@ In the context of our study on urban stream restoration in Poznań, the principa
     3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area.\
     3-8. **Attraction Betweenness**: attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the areas with more frequently chosen roads when heading towards streams have better accessibility, thus more suitable for community-oriented solutions.\
 
-#### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
+#### Grid Division: Why Hexagon Grid and What are the Parameters? \
+
+![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
 **Hexagons**:\
 - Equal distance to neighboring cells\
