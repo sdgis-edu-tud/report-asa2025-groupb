@@ -205,7 +205,7 @@ Accuracy/Reflection:
 
 1-3. Species Richness\
 ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
-Processing: ***Give biodiversity value --\> Join --\> Join (with itself, to add biodiversity values of overlapping shapes together) --\> Erase duplicate geometry --\> use only higher biodiversity value (if(biodivercity > biodivercity_2, biodivercity, biodivercity_2)) --\> Intersect with greed --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex (array_sum(array_agg("bio_area", group_by:="hex_id"))) --\> Join attributes by field value --\> Normalize***\
+Processing: ***Give biodiversity value --\> Join --\> Join (with itself, to add biodiversity values of overlapping shapes together) --\> Erase duplicate geometry --\> use only higher biodiversity value (if(biodivercity \> biodivercity_2, biodivercity, biodivercity_2)) --\> Intersect with greed --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex (array_sum(array_agg("bio_area", group_by:="hex_id"))) --\> Join attributes by field value --\> Normalization***\
 ![](report_files/libs/imgs/2-6_Species_Richness_index.jpg)\
 Accuracy/Reflection:
 
@@ -217,7 +217,7 @@ Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
 ![](report_files/libs/imgs/2-9_road_typologies_data.jpg)\
-Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection and Join --\> Sum --\> Normalization***\
+Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Rasterize (vector to raster) --\> Proximity: max distance 200 --\> Zonal statistics --\> Normalization***\
 ![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg)\
 Accuracy/Reflection:
 
