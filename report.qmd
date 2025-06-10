@@ -192,10 +192,10 @@ hv_scaled <- hv |>
   mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
 ```
 
-![](report_files/libs/imgs/2-1.jpg)\
+![](report_files/libs/imgs/2-1.jpeg)\
 Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
 ![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
-Accuracy/Reflection:
+Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold of 0.2 is based on research from Gandhi, 2015
 
 1-2. Natural Land Use Density\
 ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
@@ -222,10 +222,10 @@ Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection a
 Accuracy/Reflection:
 
 1-6. Nuisance from Urban Barrier\
-(placeholder 2-11)\
-Processing:\
-(placeholder 2-12)\
-Accuracy/Reflection:
+![](report_files/libs/imgs/2-11_urban_barrier_data.jpeg)\
+Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection  --\> Sum of length in each cell --\> Normalization***\
+![](report_files/libs/imgs/2-12_urban_barrier_index.jpeg)\
+Accuracy/Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
 
 Measurements Importance Ranking:\
 
