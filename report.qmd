@@ -57,7 +57,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 #### GOAL
 
--   **Urban Stream Restoration**: building a more resilient urban environmental system
+-   **Urban Stream Restoration**: Building a more resilient urban environmental system
 
 #### OBJECTIVES AND RESEARCH QUESTIONS
 
@@ -116,14 +116,29 @@ In the context of our study on urban stream restoration in Poznań, the principa
 ![](report_files/libs/imgs/1-2.jpg)\
 
 1.  **Enrich Biodiversity**\
-    1-1. Healthy Vegetation Density\
-    1-2. Natural Land Use Density\
-    1-3. Species Richness\
-    1-4. Nuisance from Industries\
+    1-1. Healthy Vegetation Density: using NDVI calculation, the areas with the most active photosynthesis process can be identified, which indicates the areas have a better vegetation health condition for enriching biodiversity.\
+    1-2. Natural Land Use Density: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
+    1-3. Species Richness: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity. \
+    1-4. Nuisance from Industries: industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development.\
+    1-5. Nuisance from Traffic: infrastructure such as highways act as barrier preventing animals from migrating and also cause nuisance such as noise and pollution, thus hindering the biodiversity in the area.\
 
 2.  **Promote Climate Adaptation**\
+    2-1. Risk of Flooding: \
+    2-2. Surface Impermeability: \
+    2-3. Waterway Sinuosity: \
+    2-4. Terrain Slope: \
+    2-5. Urban Heat Island (UHI) Effect: \
+    2-6. Number of Hot Nights: \
+    2-7. Heat Risk: \
 
 3.  **Improve Quality of Life**\
+    3-1. FSI/GSI/OSR: \
+    3-2. Residents number: \
+    3-3. Urbanized Landuse Density: \
+    3-4. People Attraction Density: \
+    3-5. Stream Navigability: \
+    3-6. Local Centrality: \
+    3-7. Public Transport Accessibility: \
 
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
@@ -142,7 +157,6 @@ In the context of our study on urban stream restoration in Poznań, the principa
 - Potential area under the influence of the streams for local residents\
 - Suitable for collecting relevant context information
 
-
 ### Typology construction
 
 #### Chosen Fields
@@ -150,6 +164,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 #### K-Means Method
 
 #### Constructing Types
+
 
 ## Results
 
