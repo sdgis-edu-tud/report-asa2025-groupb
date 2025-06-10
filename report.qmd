@@ -107,6 +107,7 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 #### MCDA Structure
 
 ![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
+
 **Multi-Criteria Decision Analysis (MCDA)** is a subfield of operations research that systematically evaluates multiple, often conflicting, criteria in the decision-making process. The application of the MCDA methodology begins with the formulation of a primary goal. This overarching goal is then decomposed into specific objectives, each of which is translated into a research question. For each research question, a set of criteria is identified to assess various dimensions relevant to the objective. These criteria are subsequently assigned weights to reflect their relative importance in influencing the overall outcome.\
 
 The evaluation culminates in the development of a synthetic map for each research question, which integrates the weighted criteria into a comprehensive spatial representation. These maps serve as analytical tools that encapsulate the combined perspectives of multiple stakeholders, thereby supporting informed and balanced decision-making.\
@@ -146,6 +147,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 **Hexagons**:\
 - Equal distance to neighboring cells\
 - Reduced edge effect\
+
 **Diameter = 500m**:\
 - 5-10min walk distance\
 - Integrate stream restoration intervention into urban life in the vicinity\
@@ -159,13 +161,17 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 ### Typology construction
 
+*general description of workflow, each step what is the operation and what is the goal*
+
 #### Chosen Fields
 
+*please move the parts below here*
 2-4. Terrain Slope:\
 
 #### K-Means Method
 
 #### Constructing Types
+
 
 ## Results
 
@@ -186,42 +192,40 @@ hv_scaled <- hv |>
   mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
 ```
 
-```         
 ![](report_files/libs/imgs/2-1.jpg)\
 Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
 ![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 1-2. Natural Land Use Density\
 ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
 Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
 ![](report_files/libs/imgs/2-4_GreensLandusemap.jpg){width="466"}\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 1-3. Species Richness\
 ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
 Processing: ***Give biodiversity value --\> Intersect with greed --\> Area Biodiversity Value --\> Add Biodiversity index from same hex --\> Dissolve --\> Join attributes by location***\
 ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 1-4. Nuisance from Industries\
 ![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
 Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
 (placeholder 2-8)\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
 ![](report_files/libs/imgs/2-9_road_data.jpeg)\
 Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection and Join --\> Sum --\> Normalization***\
 ![](report_files/libs/imgs/2-10_road_index.jpeg)\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 1-6. Nuisance from Urban Barrier\
 (placeholder 2-11)\
 Processing:\
 (placeholder 2-12)\
-Accuracy/Reflection: 
-```
+Accuracy/Reflection:
 
 Measurements Importance Ranking:\
 
@@ -245,13 +249,13 @@ fr_scaled <- fr |>
 
 ```
 
-````         
 ![](report_files/libs/imgs/3-1_flood_data.jpeg)\
 Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
 ![](report_files/libs/imgs/3-2_flood_risk_index.jpeg)\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 2-2. Density of Impermeable Surfaces\
+
 ```{r}
 impermeable_surface <- "files/promote_climate_adaptation/surface_impermeability.gpkg"
 
@@ -261,15 +265,15 @@ is <- st_read(impermeable_surface, quiet = TRUE)
 is_scaled <- is |> 
   mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
 ```
+
 ![](report_files/libs/imgs/3-3_permeability_data.jpeg)\
 Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
 ![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
-Accuracy/Reflection: 
+Accuracy/Reflection:
 
 2-3. Heat Risk Index\
 
 Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
-````
 
 ```{r}
 hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
@@ -382,9 +386,7 @@ leaflet(data = hr_index_wgs84) %>%
 
 ```
 
-```         
-2-4. River sinuosity\  
-```
+2-4. River sinuosity 
 
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
@@ -419,57 +421,57 @@ Saaty Matrix:
     ![](report_files/libs/imgs/4-2_population_index.jpeg)\
     Accuracy/Reflection:
 
-    3-2. Urbanized Land Use Density\
-    ![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
-    Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
-    ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
-    Accuracy/Reflection:
+3-2. Urbanized Land Use Density\
+![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
+Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
+![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
+Accuracy/Reflection:
 
-    3-3. People Attraction Density\
-    ![](report_files/libs/imgs/4-5_poi_data.jpeg)\
-    Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
-    ![](report_files/libs/imgs/4-6_poi_index.jpeg)\
-    Accuracy/Reflection:
+3-3. People Attraction Density\
+![](report_files/libs/imgs/4-5_poi_data.jpeg)\
+Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
+![](report_files/libs/imgs/4-6_poi_index.jpeg)\
+Accuracy/Reflection:
 
-    3-4. Stream Navigability\
+3-4. Stream Navigability\
 
-    ```{r}
-    stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
+```{{r}}
+stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
 
-    sn <- st_read(stream_navigability, quiet = TRUE)
+sn <- st_read(stream_navigability, quiet = TRUE)
 
-    # Standardize (scale) values
-    sn_scaled <- sn |> 
-      mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
+# Standardize (scale) values
+sn_scaled <- sn |> 
+  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
 
-    head(sn_scaled)
+head(sn_scaled)
 
-    p8 <- ggplot(sn_scaled) +
-      geom_sf(aes(fill = sn_scaled), color = NA) +
-      scale_fill_gradient2() +
-      labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
-      theme_minimal()
+p8 <- ggplot(sn_scaled) +
+  geom_sf(aes(fill = sn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
+  theme_minimal()
 
-    print(p8)
-    ```
+print(p8)
+```
 
-    Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
-    (placeholder 4-8)\
-    Accuracy/Reflection:
+Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
+(placeholder 4-8)\
+Accuracy/Reflection:
 
-    3-5. Local Centrality\
-    ![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
-    Processing:***Angular Integration (500M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
-    ![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
-    Accuracy/Reflection:
+3-5. Local Centrality\
+![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
+Processing:***Angular Integration (500M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
+![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
+Accuracy/Reflection:
 
-    3-6. Public Transport Accessibility\
-    ![](report_files/libs/imgs/4-11_public_transport_data.jpeg)\
-    Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
-    ![](report_files/libs/imgs/4-12_public_transport_index.jpeg)\
-    Accuracy/Reflection:
+3-6. Public Transport Accessibility\
+![](report_files/libs/imgs/4-11_public_transport_data.jpeg)\
+Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
+![](report_files/libs/imgs/4-12_public_transport_index.jpeg)\
+Accuracy/Reflection:
 
-    3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
+3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
 
 ```{r}
 density_indicator <- "files/improve_quality_of_life/DensityIndicators_raw.gpkg"
@@ -530,8 +532,8 @@ p10 <- ggplot(di_bivar) +
 print(p10)
 ```
 
-````         
 3-8. Attraction betweenness\
+
 ```{r}
 attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
 
@@ -545,12 +547,12 @@ ab_cleaned <- ab |>
 ab_scaled <- ab_cleaned |> 
   mutate(ab_scaled = as.numeric(scale(abt_cell_data_mean)),
      ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
-```    
+```
+
 (placeholder 4-17)\
 Processing:\
 (placeholder 4-18)\
-Accuracy/Reflection: 
-````
+Accuracy/Reflection:
 
 Measurements Importance Ranking:\
 
@@ -591,9 +593,7 @@ Our variables: RISK ATTRRIBUTES Heat_risk (aggregated hot nights and UHI max) fl
 
 BENEFIT ATTRIBUTES: terrain_slope density_indicators (any can be used, OSR as most logical?) attraction_betweenness navigability_indicator
 
-```         
 2-4. Terrain slope\
-```
 
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
