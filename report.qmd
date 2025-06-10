@@ -142,7 +142,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
     3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area.\
     3-8. **Attraction Betweenness**: attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the areas with more frequently chosen roads when heading towards streams have better accessibility, thus more suitable for community-oriented solutions.\
 
-#### Grid Division: Why Hexagon Grid and What are the Parameters? 
+#### Grid Division: Why Hexagon Grid and What are the Parameters?
 
 ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
@@ -198,7 +198,7 @@ Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> N
 Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold of 0.2 is based on research from Gandhi, 2015
 
 1-2. Natural Land Use Density\
-![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
+![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg)\
 Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
 ![](report_files/libs/imgs/2-4_GreensLandusemap.png)\
 Accuracy/Reflection:
@@ -210,9 +210,9 @@ Processing: ***Give biodiversity value --\> Intersect with greed --\> Area Biodi
 Accuracy/Reflection:
 
 1-4. Nuisance from Industries\
-![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
+![](report_files/libs/imgs/2-7_Industries_basemap .jpg)\
 Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
-![](report_files/libs/imgs/2-8_nuisence by industries.png)\
+![](report_files/libs/imgs/2-8_nuisence_by_industries.png)\
 Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
@@ -420,7 +420,7 @@ Saaty Matrix:
     Accuracy/Reflection:
 
 3-2. Urbanized Land Use Density\
-![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
+![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg)\
 Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
 ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png)\
 Accuracy/Reflection:
