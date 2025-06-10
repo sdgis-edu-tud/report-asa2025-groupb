@@ -107,9 +107,20 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 ***explanation texts***
 
+#### Indicators and Argumentation
+
 ![](report_files/libs/imgs/1-2.jpg)\
 
-***explanation texts***
+1.  **Enrich Biodiversity**\
+    1-1. Healthy Vegetation Density\
+    1-2. Natural Land Use Density\
+    1-3. Species Richness\
+    1-4. Nuisance from Industries\
+
+2.  **Promote Climate Adaptation**\
+
+3.  **Improve Quality of Life**\
+
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
@@ -127,17 +138,6 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 - Potential area under the influence of the streams for local residents\
 - Suitable for collecting relevant context information
 
-#### Indicators and Argumentation
-
-1.  **Enrich Biodiversity**\
-    1-1. Healthy Vegetation Density\
-    1-2. Natural Land Use Density\
-    1-3. Species Richness\
-    1-4. Nuisance from Industries\
-
-2.  **Promote Climate Adaptation**\
-
-3.  **Improve Quality of Life**\
 
 ### Typology construction
 
