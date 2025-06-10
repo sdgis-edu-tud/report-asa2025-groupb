@@ -105,7 +105,11 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 ![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
 
-***explanation texts***
+**Multi-Criteria Decision Analysis (MCDA)** is a subfield of operations research that systematically evaluates multiple, often conflicting, criteria in the decision-making process. The application of the MCDA methodology begins with the formulation of a primary goal. This overarching goal is then decomposed into specific objectives, each of which is translated into a research question. For each research question, a set of criteria is identified to assess various dimensions relevant to the objective. These criteria are subsequently assigned weights to reflect their relative importance in influencing the overall outcome.\
+
+The evaluation culminates in the development of a synthetic map for each research question, which integrates the weighted criteria into a comprehensive spatial representation. These maps serve as analytical tools that encapsulate the combined perspectives of multiple stakeholders, thereby supporting informed and balanced decision-making.\
+
+In the context of our study on urban stream restoration in Poznań, the principal objective is to enhance the resilience of the urban environmental system. In this study, resilience is conceptualized through three key dimensions: **Enhancing Biodiversity**, **Promoting Climate Adaptation** and **Improving Quality of Life**. Each of these dimensions is formulated as a distinct research question, for which multiple relevant evaluation criteria are selected to guide the analysis.
 
 #### Indicators and Argumentation
 
