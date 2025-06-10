@@ -126,20 +126,19 @@ In the context of our study on urban stream restoration in Poznań, the principa
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding: \
     2-2. Density of Impermeable Surfaces: \
-    2-3. Waterway Sinuosity: \
+    2-3. Heat Risk Index: \
     2-4. Terrain Slope: \
-    2-5. Urban Heat Island (UHI) Effect: \
-    2-6. Number of Hot Nights: \
-    2-7. Heat Risk: \
+    2-5. River Sinuosity: \
 
 3.  **Improve Quality of Life**\
-    3-1. FSI/GSI/OSR: \
-    3-2. Residents number: \
-    3-3. Urbanized Landuse Density: \
-    3-4. People Attraction Density: \
-    3-5. Stream Navigability: \
-    3-6. Local Centrality: \
-    3-7. Public Transport Accessibility: \
+    3-1. Residents Number: \
+    3-2. Urbanized Land Use Density: \
+    3-3. People Attraction Density: \
+    3-4. Stream Navigability: \
+    3-5. Local Centrality: \
+    3-6. Public Transport Accessibility: \
+    3-7. Density Indicator (FSI/GSI/OSR): \
+    3-8. Attraction Betweenness: \
 
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
@@ -424,7 +423,7 @@ Saaty Matrix:
 (placeholder 3-14)
 
 3.  **Improve Quality of Life**\
-    3-1. Population living in the Vicinity\
+    3-1. Residents Number\
     ![](report_files/libs/imgs/4-1_population_data.jpeg)\
     Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
     ![](report_files/libs/imgs/4-2_population_index.jpeg)\
@@ -436,13 +435,13 @@ Saaty Matrix:
     ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
     Accuracy/Reflection: 
 
-    3-3. Density of Attractions for People\
+    3-3. People Attraction Density\
     ![](report_files/libs/imgs/4-5_poi_data.jpeg)\
     Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
     ![](report_files/libs/imgs/4-6_poi_index.jpeg)\
     Accuracy/Reflection: 
 
-    3-4. Navigability of Stream Network\
+    3-4. Stream Navigability\
 ```{r}
 stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
 
@@ -466,7 +465,7 @@ print(p8)
     (placeholder 4-8)\
     Accuracy/Reflection: 
 
-    3-5. Local Centrality Index\
+    3-5. Local Centrality\
     ![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
     Processing:***Angular Integration (500M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
     ![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
@@ -477,14 +476,8 @@ print(p8)
     Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
     ![](report_files/libs/imgs/4-12_public_transport_index.jpeg)\
     Accuracy/Reflection: 
-
-    3-7. Angular Betweeness Index\
-    (placeholder 4-13)\
-    Processing:\
-    (placeholder 4-14)\
-    Accuracy/Reflection: 
-
-    3-8. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
+    
+    3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
 
 ```{r}
 density_indicator <- "files/improve_quality_of_life/DensityIndicators_raw.gpkg"
@@ -545,7 +538,7 @@ p10 <- ggplot(di_bivar) +
 print(p10)
 ```
 
-    3-9. Attraction betweenness\
+    3-8. Attraction betweenness\
     ```{r}
 attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
 
