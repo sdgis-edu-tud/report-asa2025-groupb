@@ -92,12 +92,15 @@ In this course, we explored urban stream restoration in Poznań, Poland, using t
 
 **What is the Context of Stream Restoration in Poznan?**
 
-1.  Streams go through multiple land use/typology: ***need to choose the suitable restoration strategy based on specific context*** ![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
-2.  Streams end up in Warta River Valley: ***River Warta included in the research together with the stream system*** ![](report_files/libs/imgs/0-2_topography.jpeg)\
+1.  Streams go through multiple land use/typology: ***need to choose the suitable restoration strategy based on specific context***\
+
+![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
+
+2.  Streams end up in Warta River Valley: ***River Warta included in the research together with the stream system***\
+
+![](report_files/libs/imgs/0-2_topography.jpeg)\
 
 ## Methods
-
-*In the Methods section, describe what are the the spatial unit (and the rationale), the indicators you choose and why, the workflow of MCDA, and later the typology construction. (from comment)*
 
 ### MCDA
 
@@ -115,29 +118,28 @@ In the context of our study on urban stream restoration in Poznań, the principa
 ![](report_files/libs/imgs/1-2.jpg)\
 
 1.  **Enrich Biodiversity**\
-    1-1. Healthy Vegetation Density: using NDVI calculation, the areas with the most active photosynthesis process can be identified, which indicates the areas have a better vegetation health condition for enriching biodiversity.\
-    1-2. Natural Land Use Density: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
-    1-3. Species Richness: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity. \
-    1-4. Nuisance from Industries: industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development.\
-    1-5. Nuisance from Traffic: infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area.\
-    1-6. Nuisance from Urban Barriers: roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity.\
+    1-1. **Healthy Vegetation Density**: using NDVI calculation, the areas with the most active photosynthesis process can be identified, which indicates the areas have a better vegetation health condition for enriching biodiversity.\
+    1-2. **Natural Land Use Density**: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
+    1-3. **Species Richness**: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity. \
+    1-4. **Nuisance from Industries**: industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development.\
+    1-5. **Nuisance from Traffic**: infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area.\
+    1-6. **Nuisance from Urban Barriers**: roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity.\
 
 2.  **Promote Climate Adaptation**\
-    2-1. Risk of Flooding: there have been major flooding in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations. \
-    2-2. Density of Impermeable Surfaces: the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls. \
-    2-3. Heat Risk Index: the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation. \
-    2-4. Terrain Slope: \
-    2-5. River Sinuosity: \
+    2-1. **Risk of Flooding**: there have been major flooding in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations. \
+    2-2. **Density of Impermeable Surfaces**: the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls. \
+    2-3. **Heat Risk Index**: the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation. \
+    2-4. **River Sinuosity**: the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, thus helping to promote climate adaptation.\
 
 3.  **Improve Quality of Life**\
-    3-1. Residents Number: \
-    3-2. Urbanized Land Use Density: \
-    3-3. People Attraction Density: \
-    3-4. Stream Navigability: \
-    3-5. Local Centrality: \
-    3-6. Public Transport Accessibility: \
-    3-7. Density Indicator (FSI/GSI/OSR): \
-    3-8. Attraction Betweenness: \
+    3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams. \
+    3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions and it also indicates a higher urbanization degree. \
+    3-3. **People Attraction Density**: if the area already contains some attractions for people, it is more likely to become a more active space in the future. \
+    3-4. **Stream Navigability**: the areas with denser roads have better accessibility; it also indicates higher degree of urbanization. \
+    3-5. **Local Centrality**: the local integration analysis shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions to be carried out. \
+    3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions. \
+    3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area. \
+    3-8. **Attraction Betweenness**: attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the areas with more frequently chosen roads when heading towards streams have better accessibility, thus more suitable for community-oriented solutions. \
 
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
@@ -159,6 +161,8 @@ In the context of our study on urban stream restoration in Poznań, the principa
 ### Typology construction
 
 #### Chosen Fields
+
+2-4. Terrain Slope: \
 
 #### K-Means Method
 
@@ -372,27 +376,8 @@ leaflet(data = hr_index_wgs84) %>%
 
 ```
 
-    2-4. Terrain slope\
-```{r}
-terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
-
-ts <- st_read(terrain_slope, quiet = TRUE)
-
-ts_scaled <- ts |> 
-  mutate(ts_scaled = as.numeric(scale(ts$slope_mean)))
-
-p6 <- ggplot(ts_scaled) +
-  geom_sf(aes(fill = ts_scaled), color = NA) +
-  scale_fill_viridis_c() +
-  labs(title = "Mean slope angle", fill = "Std slope") +
-  theme_minimal()
-
-print(p6)
-
-```
-
       
-    2-5. River sinuosity\  
+    2-4. River sinuosity\  
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
 
@@ -618,6 +603,29 @@ Our variables:
   density_indicators (any can be used, OSR as most logical?)
   attraction_betweenness 
   navigability_indicator 
+  
+
+
+    2-4. Terrain slope\
+```{r}
+terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
+
+ts <- st_read(terrain_slope, quiet = TRUE)
+
+ts_scaled <- ts |> 
+  mutate(ts_scaled = as.numeric(scale(ts$slope_mean)))
+
+p6 <- ggplot(ts_scaled) +
+  geom_sf(aes(fill = ts_scaled), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Mean slope angle", fill = "Std slope") +
+  theme_minimal()
+
+print(p6)
+
+```
+
+
 
 ```{r}
 # Create Clustering input from previous datasets. 
