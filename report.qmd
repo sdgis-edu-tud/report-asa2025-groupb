@@ -120,27 +120,42 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 1.  **Enrich Biodiversity**\
     1-1. **Healthy Vegetation Density**: using NDVI calculation, the areas with the most active photosynthesis process can be identified, which indicates the areas have a better vegetation health condition for enriching biodiversity.\
+
     1-2. **Natural Land Use Density**: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
-    1-3. **Species Richness**: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity.\
+
+    1-3. **Species Richness**: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower.\
+
     1-4. **Nuisance from Industries**: industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development.\
+
     1-5. **Nuisance from Traffic**: infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area.\
+
     1-6. **Nuisance from Urban Barriers**: roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity.\
 
 2.  **Promote Climate Adaptation**\
-    2-1. **Risk of Flooding**: there have been major flooding in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations.\
+    2-1. **Risk of Flooding**: there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations.\
+
     2-2. **Density of Impermeable Surfaces**: the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls.\
+
     2-3. **Heat Risk Index**: the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation.\
-    2-4. **River Sinuosity**: the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, thus helping to promote climate adaptation.\
+
+    2-4. **River Sinuosity**: the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape.\
 
 3.  **Improve Quality of Life**\
     3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams.\
-    3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions and it also indicates a higher urbanization degree.\
-    3-3. **People Attraction Density**: if the area already contains some attractions for people, it is more likely to become a more active space in the future.\
-    3-4. **Stream Navigability**: the areas with denser roads have better accessibility; it also indicates higher degree of urbanization.\
-    3-5. **Local Centrality**: the local integration analysis shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions to be carried out.\
+    
+    3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions.\
+    
+    3-3. **People Attraction Density**: if the area already contains some attractions for people, it has a good base to become a more active space in the future.\
+    
+    3-4. **Stream Navigability**: this index is calculated based on the density of roads in the area. The areas with denser roads have better accessibility; it also indicates higher degree of urbanization.\
+    
+    3-5. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
+    
     3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
-    3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area.\
-    3-8. **Attraction Betweenness**: attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the areas with more frequently chosen roads when heading towards streams have better accessibility, thus more suitable for community-oriented solutions.\
+    
+    3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area, the areas with higher urbanization degree are more suitable for community-oriented interventions.\
+    
+    3-8. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters?
 
@@ -384,7 +399,7 @@ leaflet(data = hr_index_wgs84) %>%
 
 ```
 
-2-4. River sinuosity 
+2-4. River sinuosity\
 
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
@@ -458,7 +473,7 @@ Accuracy/Reflection:
 
 3-5. Local Centrality\
 ![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
-Processing:***Angular Integration (500M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
+Processing:***Angular Integration (800M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
 ![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
 Accuracy/Reflection:
 
@@ -529,7 +544,7 @@ p10 <- ggplot(di_bivar) +
 print(p10)
 ```
 
-3-8. Attraction betweenness\
+3-8. Pedestrian Accessibility Index\
 
 ```{r}
 attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
@@ -546,9 +561,9 @@ ab_scaled <- ab_cleaned |>
      ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
 ```
 
-(placeholder 4-17)\
-Processing:\
-(placeholder 4-18)\
+![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpeg)\
+Processing:***Attraction Betweeness (800M) destination set as points along streams, distance = 500m --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
+![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpeg)\
 Accuracy/Reflection:
 
 Measurements Importance Ranking:\
