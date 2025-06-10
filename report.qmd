@@ -202,7 +202,7 @@ Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold 
 1-2. Natural Land Use Density\
 ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
 Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
-![](report_files/libs/imgs/2-4_GreensLandusemap.jpg){width="466"}\
+![](report_files/libs/imgs/2-4_GreensLandusemap.png)\
 Accuracy/Reflection:
 
 1-3. Species Richness\
@@ -214,7 +214,7 @@ Accuracy/Reflection:
 1-4. Nuisance from Industries\
 ![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
 Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
-(placeholder 2-8)\
+![](report_files/libs/imgs/2-8_nuisence by industries.png)\
 Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
@@ -424,7 +424,7 @@ Saaty Matrix:
 3-2. Urbanized Land Use Density\
 ![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
 Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
-![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
+![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png)\
 Accuracy/Reflection:
 
 3-3. People Attraction Density\
