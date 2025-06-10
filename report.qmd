@@ -232,7 +232,7 @@ Saaty Matrix:
 
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding\
-    ```{r}
+```{r}
 flood_risk <- "files/promote_climate_adaptation/flood_risk_rp50.gpkg"
 
 fr <- st_read(flood_risk, quiet = TRUE)
@@ -240,6 +240,7 @@ fr <- st_read(flood_risk, quiet = TRUE)
 # Standardize (scale) values
 fr_scaled <- fr |> 
   mutate(fr_scaled = as.numeric(scale(fr$flood_sum)))
+
 ```
     ![](report_files/libs/imgs/3-1_flood_data.jpeg)\
     Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
