@@ -120,27 +120,26 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
     1-1. **Healthy Vegetation Density**: using NDVI calculation, the areas with the most active photosynthesis process can be identified, which indicates the areas have a better vegetation health condition for enriching biodiversity.\
     1-2. **Natural Land Use Density**: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
-    1-3. **Species Richness**: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity. \
+    1-3. **Species Richness**: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity.\
     1-4. **Nuisance from Industries**: industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development.\
     1-5. **Nuisance from Traffic**: infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area.\
     1-6. **Nuisance from Urban Barriers**: roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity.\
 
 2.  **Promote Climate Adaptation**\
-    2-1. **Risk of Flooding**: there have been major flooding in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations. \
-    2-2. **Density of Impermeable Surfaces**: the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls. \
-    2-3. **Heat Risk Index**: the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation. \
+    2-1. **Risk of Flooding**: there have been major flooding in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations.\
+    2-2. **Density of Impermeable Surfaces**: the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls.\
+    2-3. **Heat Risk Index**: the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation.\
     2-4. **River Sinuosity**: the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, thus helping to promote climate adaptation.\
 
 3.  **Improve Quality of Life**\
-    3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams. \
-    3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions and it also indicates a higher urbanization degree. \
-    3-3. **People Attraction Density**: if the area already contains some attractions for people, it is more likely to become a more active space in the future. \
-    3-4. **Stream Navigability**: the areas with denser roads have better accessibility; it also indicates higher degree of urbanization. \
-    3-5. **Local Centrality**: the local integration analysis shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions to be carried out. \
-    3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions. \
-    3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area. \
-    3-8. **Attraction Betweenness**: attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the areas with more frequently chosen roads when heading towards streams have better accessibility, thus more suitable for community-oriented solutions. \
-
+    3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams.\
+    3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions and it also indicates a higher urbanization degree.\
+    3-3. **People Attraction Density**: if the area already contains some attractions for people, it is more likely to become a more active space in the future.\
+    3-4. **Stream Navigability**: the areas with denser roads have better accessibility; it also indicates higher degree of urbanization.\
+    3-5. **Local Centrality**: the local integration analysis shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions to be carried out.\
+    3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
+    3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area.\
+    3-8. **Attraction Betweenness**: attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the areas with more frequently chosen roads when heading towards streams have better accessibility, thus more suitable for community-oriented solutions.\
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters? ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
@@ -162,12 +161,11 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 #### Chosen Fields
 
-2-4. Terrain Slope: \
+2-4. Terrain Slope:\
 
 #### K-Means Method
 
 #### Constructing Types
-
 
 ## Results
 
@@ -177,6 +175,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 1.  **Enrich Biodiversity**\
     1-1. Healthy Vegetation Density\
+
 ```{r}
 healthy_vegetation <- "files/enrich_biodiversity/vegetation_health_index.gpkg"
 
@@ -186,41 +185,43 @@ hv <- st_read(healthy_vegetation, quiet = TRUE)
 hv_scaled <- hv |> 
   mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
 ```
-    
-    ![](report_files/libs/imgs/2-1.jpg)\
-    Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
-    ![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
-    Accuracy/Reflection: 
 
-    1-2. Natural Land Use Density\
-    ![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
-    Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
-    ![](report_files/libs/imgs/2-4_GreensLandusemap.jpg){width="466"}\
-    Accuracy/Reflection: 
+```         
+![](report_files/libs/imgs/2-1.jpg)\
+Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
+![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
+Accuracy/Reflection: 
 
-    1-3. Species Richness\
-    ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
-    Processing: ***Give biodiversity value --\> Intersect with greed --\> Area Biodiversity Value --\> Add Biodiversity index from same hex --\> Dissolve --\> Join attributes by location***\
-    ![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
-    Accuracy/Reflection: 
+1-2. Natural Land Use Density\
+![](report_files/libs/imgs/2-3and5_Greenscapes%20base%20map.jpg){width="467"}\
+Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
+![](report_files/libs/imgs/2-4_GreensLandusemap.jpg){width="466"}\
+Accuracy/Reflection: 
 
-    1-4. Nuisance from Industries\
-    ![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
-    Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
-    (placeholder 2-8)\
-    Accuracy/Reflection: 
+1-3. Species Richness\
+![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
+Processing: ***Give biodiversity value --\> Intersect with greed --\> Area Biodiversity Value --\> Add Biodiversity index from same hex --\> Dissolve --\> Join attributes by location***\
+![](report_files/libs/imgs/2-6_Species_Richness.jpg)\
+Accuracy/Reflection: 
 
-    1-5. Nuisance from Traffic\
-    ![](report_files/libs/imgs/2-9_road_data.jpeg)\
-    Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection and Join --\> Sum --\> Normalization***\
-    ![](report_files/libs/imgs/2-10_road_index.jpeg)\
-    Accuracy/Reflection: 
+1-4. Nuisance from Industries\
+![](report_files/libs/imgs/2-7_Industries%20base%20map%20.jpg){width="466"}\
+Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
+(placeholder 2-8)\
+Accuracy/Reflection: 
 
-    1-6. Nuisance from Urban Barrier\
-    (placeholder 2-11)\
-    Processing:\
-    (placeholder 2-12)\
-    Accuracy/Reflection: 
+1-5. Nuisance from Traffic\
+![](report_files/libs/imgs/2-9_road_data.jpeg)\
+Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection and Join --\> Sum --\> Normalization***\
+![](report_files/libs/imgs/2-10_road_index.jpeg)\
+Accuracy/Reflection: 
+
+1-6. Nuisance from Urban Barrier\
+(placeholder 2-11)\
+Processing:\
+(placeholder 2-12)\
+Accuracy/Reflection: 
+```
 
 Measurements Importance Ranking:\
 
@@ -232,6 +233,7 @@ Saaty Matrix:
 
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding\
+
 ```{r}
 flood_risk <- "files/promote_climate_adaptation/flood_risk_rp50.gpkg"
 
@@ -242,13 +244,15 @@ fr_scaled <- fr |>
   mutate(fr_scaled = as.numeric(scale(fr$flood_sum)))
 
 ```
-    ![](report_files/libs/imgs/3-1_flood_data.jpeg)\
-    Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
-    ![](report_files/libs/imgs/3-2_flood_risk_index.jpeg)\
-    Accuracy/Reflection: 
 
-    2-2. Density of Impermeable Surfaces\
-    ```{r}
+````         
+![](report_files/libs/imgs/3-1_flood_data.jpeg)\
+Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
+![](report_files/libs/imgs/3-2_flood_risk_index.jpeg)\
+Accuracy/Reflection: 
+
+2-2. Density of Impermeable Surfaces\
+```{r}
 impermeable_surface <- "files/promote_climate_adaptation/surface_impermeability.gpkg"
 
 is <- st_read(impermeable_surface, quiet = TRUE)
@@ -257,14 +261,15 @@ is <- st_read(impermeable_surface, quiet = TRUE)
 is_scaled <- is |> 
   mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
 ```
-    ![](report_files/libs/imgs/3-3_permeability_data.jpeg)\
-    Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
-    ![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
-    Accuracy/Reflection: 
+![](report_files/libs/imgs/3-3_permeability_data.jpeg)\
+Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
+![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
+Accuracy/Reflection: 
 
-    2-3. Heat Risk Index\
+2-3. Heat Risk Index\
 
-    Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+````
 
 ```{r}
 hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
@@ -377,8 +382,10 @@ leaflet(data = hr_index_wgs84) %>%
 
 ```
 
-      
-    2-4. River sinuosity\  
+```         
+2-4. River sinuosity\  
+```
+
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
 
@@ -397,8 +404,6 @@ print(p7)
 
 ```
 
-
-
 Measurements Importance Ranking:\
 
 (placeholder 3-13)\
@@ -412,56 +417,58 @@ Saaty Matrix:
     ![](report_files/libs/imgs/4-1_population_data.jpeg)\
     Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
     ![](report_files/libs/imgs/4-2_population_index.jpeg)\
-    Accuracy/Reflection: 
+    Accuracy/Reflection:
 
     3-2. Urbanized Land Use Density\
     ![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="463"}\
     Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
     ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.jpg){width="462"}\
-    Accuracy/Reflection: 
+    Accuracy/Reflection:
 
     3-3. People Attraction Density\
     ![](report_files/libs/imgs/4-5_poi_data.jpeg)\
     Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
     ![](report_files/libs/imgs/4-6_poi_index.jpeg)\
-    Accuracy/Reflection: 
+    Accuracy/Reflection:
 
     3-4. Stream Navigability\
-```{r}
-stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
 
-sn <- st_read(stream_navigability, quiet = TRUE)
+    ```{r}
+    stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
 
-# Standardize (scale) values
-sn_scaled <- sn |> 
-  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
+    sn <- st_read(stream_navigability, quiet = TRUE)
 
-head(sn_scaled)
+    # Standardize (scale) values
+    sn_scaled <- sn |> 
+      mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
 
-p8 <- ggplot(sn_scaled) +
-  geom_sf(aes(fill = sn_scaled), color = NA) +
-  scale_fill_gradient2() +
-  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
-  theme_minimal()
+    head(sn_scaled)
 
-print(p8)
-```
+    p8 <- ggplot(sn_scaled) +
+      geom_sf(aes(fill = sn_scaled), color = NA) +
+      scale_fill_gradient2() +
+      labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
+      theme_minimal()
+
+    print(p8)
+    ```
+
     Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
     (placeholder 4-8)\
-    Accuracy/Reflection: 
+    Accuracy/Reflection:
 
     3-5. Local Centrality\
     ![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
     Processing:***Angular Integration (500M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
     ![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
-    Accuracy/Reflection: 
+    Accuracy/Reflection:
 
     3-6. Public Transport Accessibility\
     ![](report_files/libs/imgs/4-11_public_transport_data.jpeg)\
     Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
     ![](report_files/libs/imgs/4-12_public_transport_index.jpeg)\
-    Accuracy/Reflection: 
-    
+    Accuracy/Reflection:
+
     3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
 
 ```{r}
@@ -523,8 +530,9 @@ p10 <- ggplot(di_bivar) +
 print(p10)
 ```
 
-    3-8. Attraction betweenness\
-    ```{r}
+````         
+3-8. Attraction betweenness\
+```{r}
 attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
 
 ab <- st_read(attraction_betweenness, quiet = TRUE)
@@ -536,13 +544,14 @@ ab_cleaned <- ab |>
 # Standardize and ensure result is numeric with no NAs
 ab_scaled <- ab_cleaned |> 
   mutate(ab_scaled = as.numeric(scale(abt_cell_data_mean)),
-         ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
+     ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
 ```    
-    (placeholder 4-17)\
-    Processing:\
-    (placeholder 4-18)\
-    Accuracy/Reflection: 
-    
+(placeholder 4-17)\
+Processing:\
+(placeholder 4-18)\
+Accuracy/Reflection: 
+````
+
 Measurements Importance Ranking:\
 
 (placeholder 4-15)\
@@ -570,44 +579,22 @@ Saaty Matrix:
 
 ### Typology Construction
 
-Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product). 
+Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product).
 
 We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
 
-Our typology creation thus follows two narratives: Which locations are in need of intervention, and Which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for 
+Our typology creation thus follows two narratives: Which locations are in need of intervention, and Which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for
 
-**Variables**\ 
-Discussed variables: 
-Channel morphology
-  Sinuosity
-  Floodplain width
-  Open water surface
-Land use cover
-  Impervious
-  Vegetation
-Landscape 
-  Green space connectivity
-Mobility
-  Slow mobility accessibility
-Building morphology
-  Floor area ratio
-  
-Our variables: 
-  RISK ATTRRIBUTES
-  Heat_risk (aggregated hot nights and UHI max)
-  flood_risk_rp50
-  surface_impermeability
-  vegetation_health_index
-  
-  BENEFIT ATTRIBUTES:
-  terrain_slope
-  density_indicators (any can be used, OSR as most logical?)
-  attraction_betweenness 
-  navigability_indicator 
-  
+**Variables**  Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
 
+Our variables: RISK ATTRRIBUTES Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
 
-    2-4. Terrain slope\
+BENEFIT ATTRIBUTES: terrain_slope density_indicators (any can be used, OSR as most logical?) attraction_betweenness navigability_indicator
+
+```         
+2-4. Terrain slope\
+```
+
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
 
@@ -625,8 +612,6 @@ p6 <- ggplot(ts_scaled) +
 print(p6)
 
 ```
-
-
 
 ```{r}
 # Create Clustering input from previous datasets. 
@@ -697,7 +682,6 @@ plot(cluster_input["cluster"],
      main = "Spatial Pattern of Urban Stream Clusters", 
      border = NA)
 ```
-
 
 ## Discussion
 
