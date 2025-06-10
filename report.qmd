@@ -259,13 +259,7 @@ is_scaled <- is |>
     ![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
     Accuracy/Reflection: 
 
-    2-3. Drought High-Risk Areas\
-    (placeholder 3-7)\
-    Processing:\
-    (placeholder 3-8)\
-    Accuracy/Reflection: 
-
-    2-4 & 5. Heat Risk Index\
+    2-3. Heat Risk Index\
 
     Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
 
@@ -380,7 +374,7 @@ leaflet(data = hr_index_wgs84) %>%
 
 ```
 
-    2-6. Terrain slope\
+    2-4. Terrain slope\
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
 
@@ -400,7 +394,7 @@ print(p6)
 ```
 
       
-    2-7. River sinuosity\  
+    2-5. River sinuosity\  
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
 
