@@ -79,7 +79,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 
 #### GOAL
 
--   *to be updated*
+-   requirement by priority
 
 #### OBJECTIVES AND RESEARCH QUESTIONS
 
