@@ -51,7 +51,15 @@ library(htmltools)
 
 ## Introduction
 
-In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework. In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section.
+In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework.\
+
+In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section.\
+
+For Typology Construction, we introduce the objective of generating meaningful clusters that categorize spatial units adopted from MCDA based on shared characteristics. In the context of stream restoration in Poznań, a specific research question is formulated to align with this methodological approach. To address this question, a set of variables is selected, and the rationale behind the selection of these variables is grounded in both theoretical relevance and practical applicability to the local context.\
+
+The methodological framework for clustering relies on the K-means algorithm, which will be detailed in the *Methods* section. The resulting typology, including the characteristics of each cluster and the reasoning behind their labeling, will be presented in the *Results* section.\
+
+Finally, the *Discussion* section will provide an evaluation of the outcomes from both methods, including an assessment of the methodological robustness and limitations, as well as reflections on the implications of the typology for future urban stream restoration strategies in Poznań.\
 
 ### MCDA
 
@@ -142,19 +150,19 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 3.  **Improve Quality of Life**\
     3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams.\
-    
+
     3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions.\
-    
+
     3-3. **People Attraction Density**: if the area already contains some attractions for people, it has a good base to become a more active space in the future.\
-    
+
     3-4. **Stream Navigability**: this index is calculated based on the density of roads in the area. The areas with denser roads have better accessibility; it also indicates higher degree of urbanization.\
-    
+
     3-5. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
-    
+
     3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
-    
+
     3-7. **Density Indicator (FSI/GSI/OSR)**: those figures indicate urbanization degree of a certain area, the areas with higher urbanization degree are more suitable for community-oriented interventions.\
-    
+
     3-8. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
 
 #### Grid Division: Why Hexagon Grid and What are the Parameters?
