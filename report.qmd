@@ -221,9 +221,12 @@ Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> N
 Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold of 0.2 is based on research from Gandhi, 2015
 
 1-2. Natural Land Use Density\
-![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg)\
+
+::: {.column-screen-inset layout-ncol="2"}
+![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg){width="48%"} ![](report_files/libs/imgs/2-4_GreensLandusemap.png){width="48%"}
+:::
+
 Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
-![](report_files/libs/imgs/2-4_GreensLandusemap.png)\
 Accuracy/Reflection:
 
 1-3. Species Richness\
