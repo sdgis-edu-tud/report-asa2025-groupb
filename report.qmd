@@ -202,8 +202,8 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 #### Analysis and Results
 
-1.  **Enrich Biodiversity**\
-    1-1. Healthy Vegetation Density\
+1.**Enrich Biodiversity**\
+1-1. Healthy Vegetation Density\
 
 ```{r}
 healthy_vegetation <- "files/enrich_biodiversity/vegetation_health_index.gpkg"
@@ -215,9 +215,15 @@ hv_scaled <- hv |>
   mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
 ```
 
-::: {#fig-ndvi layout-ncol="2"}
-![](report_files/libs/imgs/2-1.jpg){width="48%"} ![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-1.jpg){#fig-CIR width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){#fig-index width="100%"}
+:::
+:::::
 
 Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
 Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold of 0.2 is based on research from Gandhi, 2015
@@ -276,6 +282,8 @@ Accuracy/Reflection: roads with maxspeed over 40km/h will be more dangerous for 
     2-1. Risk of Flooding\
 
 ```{r}
+#| echo: false
+
 flood_risk <- "files/promote_climate_adaptation/flood_risk_rp50.gpkg"
 
 fr <- st_read(flood_risk, quiet = TRUE)
