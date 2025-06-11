@@ -100,11 +100,11 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 
 **What is the Context of Stream Restoration in Poznan?**
 
-1.  Streams go through multiple land use/typology: ***need to choose the suitable restoration strategy based on specific context***\
+1.  In Poznan, streams go through multiple land use/typology, which indicates that we need to choose the suitable restoration strategy based on specific context. This also becomes our main idea when formulating the research questions.\
 
 ![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
 
-2.  Streams end up in Warta River Valley: ***River Warta included in the research together with the stream system***\
+2.  The streams end up in Warta River Valley, which suggests that we should also have River Warta included in the research scope together with the stream system. This helps us develop our spatial units of study.\
 
 ![](report_files/libs/imgs/0-2_topography.jpeg)\
 
@@ -215,29 +215,31 @@ hv_scaled <- hv |>
   mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
 ```
 
-![](report_files/libs/imgs/2-1.jpeg)\
+::: {#fig-ndvi layout-ncol="2"}
+![](report_files/libs/imgs/2-1.jpg){width="48%"} ![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){width="48%"}
+:::
+
 Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
-![](report_files/libs/imgs/2-2_vegetation_health_index.jpeg)\
 Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold of 0.2 is based on research from Gandhi, 2015
 
 1-2. Natural Land Use Density\
 
-::: {.column-screen-inset layout-ncol="2"}
-![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg){width="48%"} ![](report_files/libs/imgs/2-4_GreensLandusemap.png){width="48%"}
+::: {#fig-naturallanduse layout-ncol="2"}
+![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg){width="48%"} ![](report_files/libs/imgs/2-4_GreensLandusemap.png){width="48%"} Natual Land Use Density
 :::
 
 Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
-Accuracy/Reflection:
+Accuracy/Reflection:\
 
 1-3. Species Richness\
-![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg)\
+::: {#fig-species_richness layout-ncol="2"} ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg){width="48%"} ![](report_files/libs/imgs/2-6_Species_Richness_index.jpg){width="48%"} :::
+
 Processing: ***Give biodiversity value --\> Join --\> Join (with itself, to add biodiversity values of overlapping shapes together) --\> Erase duplicate geometry --\> use only higher biodiversity value (if(biodivercity \> biodivercity_2, biodivercity, biodivercity_2)) --\> Intersect with greed --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex (array_sum(array_agg("bio_area", group_by:="hex_id"))) --\> Join attributes by field value --\> Normalization***\
-![](report_files/libs/imgs/2-6_Species_Richness_index.jpg)\
-Accuracy/Reflection:
+Accuracy/Reflection:\
 
 1-4. Nuisance from Industries\
 
-::: {.column-screen-inset layout-ncol="2"}
+::: {layout-ncol="2"}
 ![](report_files/libs/imgs/2-7_Industries_basemap.jpg){width="48%"} ![](report_files/libs/imgs/2-8_nuisence_by_industries.png){width="48%"}
 :::
 
@@ -245,22 +247,28 @@ Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by fi
 Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
-![](report_files/libs/imgs/2-9_road_typologies_data.jpg)\
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/2-9_road_typologies_data.jpg){width="48%"} ![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg){width="48%"}
+:::
+
 Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Rasterize (vector to raster) --\> Proximity: max distance 200 --\> Zonal statistics --\> Normalization***\
-![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg)\
 Accuracy/Reflection:
 
 1-6. Nuisance from Urban Barrier\
-![](report_files/libs/imgs/2-11_urban_barrier_data.jpeg)\
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/2-11_urban_barrier_data.jpg){width="48%"} ![](report_files/libs/imgs/2-12_urban_barrier_index.jpg){width="48%"}
+:::
+
 Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization***\
-![](report_files/libs/imgs/2-12_urban_barrier_index.jpeg)\
 Accuracy/Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
 
-Measurements Importance Ranking:\
+**Measurements Importance Ranking:**\
 
 (placeholder 2-15)\
 
-Saaty Matrix:
+**Saaty Matrix:**\
 
 (placeholder 2-16)
 
@@ -277,9 +285,11 @@ fr_scaled <- fr |>
 
 ```
 
-![](report_files/libs/imgs/3-1_flood_data.jpeg)\
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/3-1_flood_data.jpg){width="48%"} ![](report_files/libs/imgs/3-2_flood_risk_index.jpg){width="48%"}
+:::
+
 Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
-![](report_files/libs/imgs/3-2_flood_risk_index.jpeg)\
 Accuracy/Reflection:
 
 2-2. Density of Impermeable Surfaces\
@@ -293,9 +303,11 @@ is_scaled <- is |>
   mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
 ```
 
-![](report_files/libs/imgs/3-3_permeability_data.jpeg)\
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/3-3_permeability_data.jpg){width="48%"} ![](report_files/libs/imgs/3-4_permeability_index.jpg){width="48%"}
+:::
+
 Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
-![](report_files/libs/imgs/3-4_permeability_index.jpeg)\
 Accuracy/Reflection:
 
 2-3. Heat Risk Index\
@@ -433,31 +445,40 @@ print(p7)
 
 ```
 
-Measurements Importance Ranking:\
+**Measurements Importance Ranking:**\
 
 (placeholder 3-13)\
 
-Saaty Matrix:
+**Saaty Matrix:**
 
 (placeholder 3-14)
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
-    ![](report_files/libs/imgs/4-1_population_data.jpeg)\
-    Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
-    ![](report_files/libs/imgs/4-2_population_index.jpeg)\
-    Accuracy/Reflection:
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/4-1_population_data.jpg){width="48%"} ![](report_files/libs/imgs/4-2_population_index.jpg){width="48%"}
+:::
+
+Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
+Accuracy/Reflection:
 
 3-2. Urbanized Land Use Density\
-![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg)\
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="48%"} ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="48%"}
+:::
+
 Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
-![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png)\
 Accuracy/Reflection:
 
 3-3. People Attraction Density\
-![](report_files/libs/imgs/4-5_poi_data.jpeg)\
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/4-5_poi_data.jpg){width="48%"} ![](report_files/libs/imgs/4-6_poi_index.jpg){width="48%"}
+:::
+
 Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
-![](report_files/libs/imgs/4-6_poi_index.jpeg)\
 Accuracy/Reflection:
 
 3-4. Stream Navigability\
@@ -486,15 +507,21 @@ Processing:***100m buffer around waterways --\> intersect buffer with roads --\>
 Accuracy/Reflection:
 
 3-5. Local Centrality\
-![](report_files/libs/imgs/4-9_local_centrality_data.jpeg)\
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/4-9_local_centrality_data.jpg){width="48%"} ![](report_files/libs/imgs/4-10_local_centrality_index.jpg){width="48%"}
+:::
+
 Processing:***Angular Integration (800M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
-![](report_files/libs/imgs/4-10_local_centrality_index.jpeg)\
 Accuracy/Reflection:
 
 3-6. Public Transport Accessibility\
-![](report_files/libs/imgs/4-11_public_transport_data.jpeg)\
+
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/4-11_public_transport_data.jpg){width="48%"} ![](report_files/libs/imgs/4-12_public_transport_index.jpg){width="48%"}
+:::
+
 Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
-![](report_files/libs/imgs/4-12_public_transport_index.jpeg)\
 Accuracy/Reflection:
 
 3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
@@ -575,16 +602,18 @@ ab_scaled <- ab_cleaned |>
      ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
 ```
 
-![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpeg)\
+::: {layout-ncol="2"}
+![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpg){width="48%"} ![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpg){width="48%"}
+:::
+
 Processing:***Attraction Betweeness (800M) destination set as points along streams, distance = 500m --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
-![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpeg)\
 Accuracy/Reflection:
 
-Measurements Importance Ranking:\
+**Measurements Importance Ranking:**\
 
 (placeholder 4-15)\
 
-Saaty Matrix:
+**Saaty Matrix:**
 
 (placeholder 4-16)
 
