@@ -233,9 +233,12 @@ Processing: ***Give biodiversity value --\> Join --\> Join (with itself, to add 
 Accuracy/Reflection:
 
 1-4. Nuisance from Industries\
-![](report_files/libs/imgs/2-7_Industries_basemap.jpg)\
+
+::: {.column-screen-inset layout-ncol="2"}
+![](report_files/libs/imgs/2-7_Industries_basemap.jpg){width="48%"} ![](report_files/libs/imgs/2-8_nuisence_by_industries.png){width="48%"}
+:::
+
 Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
-![](report_files/libs/imgs/2-8_nuisence_by_industries.png)\
 Accuracy/Reflection:
 
 1-5. Nuisance from Traffic\
