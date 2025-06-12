@@ -327,7 +327,7 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 (placeholder 2-16)
 
 2.  **Promote Climate Adaptation**\
-    2-1. Risk of Flooding\
+2-1. Risk of Flooding\
 
 ```{r}
 #| echo: false
@@ -341,12 +341,18 @@ fr_scaled <- fr |>
 
 ```
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/3-1_flood_data.jpg){width="48%"} ![](report_files/libs/imgs/3-2_flood_risk_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/3-1_flood_data.jpg){width="100%"}
 :::
 
+::: g-col-6
+![](report_files/libs/imgs/3-2_flood_risk_index.jpg){width="100%"}
+:::
+:::::
+
 Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
-Accuracy/Reflection:
+Reflection: 
 
 2-2. Density of Impermeable Surfaces\
 
@@ -359,9 +365,15 @@ is_scaled <- is |>
   mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
 ```
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/3-3_permeability_data.jpg){width="48%"} ![](report_files/libs/imgs/3-4_permeability_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/3-3_permeability_data.jpg){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/3-4_permeability_index.jpg){width="100%"}
+:::
+:::::
 
 Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
 Accuracy/Reflection:
@@ -510,29 +522,47 @@ print(p7)
 (placeholder 3-14)
 
 3.  **Improve Quality of Life**\
-    3-1. Residents Number\
+3-1. Residents Number\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-1_population_data.jpg){width="48%"} ![](report_files/libs/imgs/4-2_population_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-1_population_data.jpg){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/4-2_population_index.jpg){width="100%"}
+:::
+:::::
 
 Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
 Accuracy/Reflection:
 
 3-2. Urbanized Land Use Density\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-3_Landusemap_basemap.png){width="48%"} ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-3_Landusemap_basemap.png){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="100%"}
+:::
+:::::
 
 Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
 Accuracy/Reflection:
 
 3-3. People Attraction Density\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-5_poi_data.jpg){width="48%"} ![](report_files/libs/imgs/4-6_poi_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-5_poi_data.jpg){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/4-6_poi_index.jpg){width="100%"}
+:::
+:::::
 
 Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
@@ -564,18 +594,30 @@ Accuracy/Reflection:
 
 3-5. Local Centrality\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-9_local_centrality_data.jpg){width="48%"} ![](report_files/libs/imgs/4-10_local_centrality_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-9_local_centrality_data.jpg){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/4-10_local_centrality_index.jpg){width="100%"}
+:::
+:::::
 
 Processing:***Angular Integration (800M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
 Accuracy/Reflection:
 
 3-6. Public Transport Accessibility\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-11_public_transport_data.jpg){width="48%"} ![](report_files/libs/imgs/4-12_public_transport_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-11_public_transport_data.jpg){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/4-12_public_transport_index.jpg){width="100%"}
+:::
+:::::
 
 Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
@@ -658,9 +700,15 @@ ab_scaled <- ab_cleaned |>
      ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
 ```
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpg){width="48%"} ![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpg){width="100%"}
 :::
+
+::: g-col-6
+![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpg){width="100%"}
+:::
+:::::
 
 Processing:***Attraction Betweeness (800M) destination set as points along streams, distance = 500m --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
 Accuracy/Reflection:
