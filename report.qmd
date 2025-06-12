@@ -127,8 +127,9 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 ## Research Background
 
 **What is Urban Stream Restoration and Why is it necessary?**
+Urban stream restoration refers to the process of returning degraded urban rivers and streams to a more natural, functional, and integrated state within the city’s urban ecosystem and social fabric. Traditionally focused on improving only the hydrological functions and ecological health—such as reducing pollution, restoring habitats, and stabilizing banks—urban stream restoration is increasingly recognized as a means to enhance social connectivity (The Social Connectivity of Urban Rivers, Kondolf and Pinto)
 
-
+Urban rivers are not merely ecological corridors but also social public spaces that allow for urban movement. They host space for interaction of people, ideas, and cultural practices. This shift in perspective makes restoration not only an environmental necessity but also a social and cultural imperative. This asks for an integrated approach which is beyond technocratic engineering solutions. 
 
 **What is the Context of Urban Stream Restoration in Poznan?**
 
