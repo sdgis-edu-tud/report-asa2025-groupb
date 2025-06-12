@@ -63,7 +63,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 
 ### MCDA
 
-<!-- when updating table content please write it as a whole again or there will be some format error -->
+<!-- please don't switch to visual editing mode :) -->
 
 +------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 | Goal                                                                               | Objective                                                                                                                  | Research Question                                                                                                  |
@@ -77,7 +77,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 
 ### Typology Construction
 
-<!-- if switching to when updating table content please write it as a whole again or there will be some format error -->
+<!-- please don't switch to visual editing mode :) -->
 
 +--------------------------------------------------------------------------------------+---------------------------------------------+----------------------------------------------+
 | Goal                                                                                 | Objective                                   | Research Question                            |
