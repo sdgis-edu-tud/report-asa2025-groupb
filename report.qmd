@@ -268,7 +268,7 @@ Reflection:
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg){#fig-CIR width="100%"}
+![](report_files/libs/imgs/2-3_Greenscapes_basemap.png){#fig-CIR width="100%"}
 :::
 
 ::: g-col-6
@@ -296,7 +296,7 @@ Reflection:\
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-7_Industries_basemap.jpg){#fig-CIR width="100%"}
+![](report_files/libs/imgs/2-7_Industries_basemap.png){#fig-CIR width="100%"}
 :::
 
 ::: g-col-6
@@ -540,7 +540,7 @@ Accuracy/Reflection:
 3-2. Urbanized Land Use Density\
 
 ::: {layout-ncol="2"}
-![](report_files/libs/imgs/4-3_Landusemap_basemap.jpg){width="48%"} ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="48%"}
+![](report_files/libs/imgs/4-3_Landusemap_basemap.png){width="48%"} ![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="48%"}
 :::
 
 Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
