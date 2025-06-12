@@ -90,7 +90,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 </table>
 
 ### Typology Construction
-<!-- when updating table content please write it as a whole again or there will be some format error -->
+<!-- if switching to when updating table content please write it as a whole again or there will be some format error -->
 
 <table class="table">
   <thead>
@@ -179,26 +179,14 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 1.  **Enrich Biodiversity**\
 
-| Number | Indicator | Definition | Formula | Source of Data | Reference |
-|--------|-----------|------------|---------|----------------|-----------|
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|------|-----------|---------------------|---------------------|-------|-----------|
 |1-1|Healthy Vegetation Density|the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity|NDVI --> Threshold > 0.2 --> Zonal Statistics --> Mean --> Normalization|Copernicus Sentinel 2|Gandhi, 2015|
-|1-2|Natural Land Use Density|||||
-|1-3|Species Richness|||||
-|1-4|Nuisance from Industries|||||
-|1-5|Nuisance from Traffic|||||
-|1-6|Nuisance from Urban Barriers|||||
-
-
-
-    1-2. **Natural Land Use Density**: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
-
-    1-3. **Species Richness**: different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower.\
-
-    1-4. **Nuisance from Industries**: industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development.\
-
-    1-5. **Nuisance from Traffic**: infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area.\
-
-    1-6. **Nuisance from Urban Barriers**: roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity.\
+|1-2|Natural Land Use Density|the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment|Landuse Map--> Assigning All Green a Single Category > Join Attributes by field value--> Areas per grid assigned to each grid --> Normalization|OSM Data||
+|1-3|Species Richness|different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower|Give biodiversity value --> add biodiversity values of overlapping shapes together --> Erase duplicate geometry --> use only higher biodiversity value --> Multiply max biodiversity value with the area --> Add Biodiversity values from same hex --> Normalization|OSM Data||
+|1-4|Nuisance from Industries|industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development|Landuse Map sorted only the industries --> Join Attributes by field value--> Amount of industries assigned per grid --> Normalization|OSM Data||
+|1-5|Nuisance from Traffic|infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area|road data --> Threshold: maxspeed >= 40km/h --> Rasterize (vector to raster) --> Proximity: max distance 200 --> Zonal statistics --> Normalization|OSM Data||
+|1-6|Nuisance from Urban Barriers|roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity|road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization|OSM Data||
 
 2.  **Promote Climate Adaptation**\
     2-1. **Risk of Flooding**: there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations.\
@@ -274,53 +262,83 @@ hv_scaled <- hv |>
 :::
 :::::
 
-Accuracy/Reflection: the CIR map come from , the threshold of 0.2 is based on research from 
+Reflection: 
 
 1-2. Natural Land Use Density\
 
-::: {#fig-naturallanduse layout-ncol="2"}
-![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg){width="48%"} ![](report_files/libs/imgs/2-4_GreensLandusemap.png){width="48%"} Natual Land Use Density
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-3and5_Greenscapes_base_map.jpg){#fig-CIR width="100%"}
 :::
 
-Processing: ***Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization***\
-Accuracy/Reflection:\
+::: g-col-6
+![](report_files/libs/imgs/2-4_GreensLandusemap.png){#fig-index width="100%"}
+:::
+:::::
+
+Reflection:\
 
 1-3. Species Richness\
-::: {#fig-species_richness layout-ncol="2"} ![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg){width="48%"} ![](report_files/libs/imgs/2-6_Species_Richness_index.jpg){width="48%"} :::
 
-Processing: ***Give biodiversity value --\> Join --\> Join (with itself, to add biodiversity values of overlapping shapes together) --\> Erase duplicate geometry --\> use only higher biodiversity value (if(biodivercity \> biodivercity_2, biodivercity, biodivercity_2)) --\> Intersect with greed --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex (array_sum(array_agg("bio_area", group_by:="hex_id"))) --\> Join attributes by field value --\> Normalization***\
-Accuracy/Reflection:\
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg){#fig-CIR width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/2-6_Species_Richness_index.jpg){#fig-index width="100%"}
+:::
+:::::
+
+Reflection:\
 
 1-4. Nuisance from Industries\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/2-7_Industries_basemap.jpg){width="48%"} ![](report_files/libs/imgs/2-8_nuisence_by_industries.png){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-7_Industries_basemap.jpg){#fig-CIR width="100%"}
 :::
 
-Processing: ***Landuse Map--\> Sort only the industries \> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization***\
-Accuracy/Reflection:
+::: g-col-6
+![](report_files/libs/imgs/2-8_nuisence_by_industries.png){#fig-index width="100%"}
+:::
+:::::
+
+Reflection:
 
 1-5. Nuisance from Traffic\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/2-9_road_typologies_data.jpg){width="48%"} ![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-9_road_typologies_data.jpg){#fig-CIR width="100%"}
 :::
 
-Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Rasterize (vector to raster) --\> Proximity: max distance 200 --\> Zonal statistics --\> Normalization***\
-Accuracy/Reflection:
+::: g-col-6
+![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg){#fig-index width="100%"}
+:::
+:::::
+
+Reflection:\
 
 1-6. Nuisance from Urban Barrier\
 
-::: {layout-ncol="2"}
-![](report_files/libs/imgs/2-11_urban_barrier_data.jpg){width="48%"} ![](report_files/libs/imgs/2-12_urban_barrier_index.jpg){width="48%"}
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-11_urban_barrier_data.jpg){#fig-CIR width="100%"}
 :::
 
-Processing: ***road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization***\
-Accuracy/Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
+::: g-col-6
+![](report_files/libs/imgs/2-12_urban_barrier_index.jpg){#fig-index width="100%"}
+:::
+:::::
+
+Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
 
 **Measurements Importance Ranking:**\
 
-(placeholder 2-15)\
+| most important | ------ | ------ | ------> | least important |
+|----------------|--|--|--|-----------------|
+|Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
 
 **Saaty Matrix:**\
 
