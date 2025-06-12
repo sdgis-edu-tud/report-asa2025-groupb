@@ -63,29 +63,57 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 
 ### MCDA
 
-<!-- please don't switch to visual editing mode :) -->
-
-+------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| Goal                                                                               | Objective                                                                                                                  | Research Question                                                                                                  |
-+====================================================================================+============================================================================================================================+====================================================================================================================+
-| **Urban Stream Restoration: Building a more resilient urban environmental system** | Enrich Biodiversity                                                                                                        | Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity? |
-+------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| Promote Climate Adaptation                                                         | Which areas are most in need of interventions to promote climate adaptation?                                               |                                                                                                                    |
-+------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| Improve Quality of Life                                                            | Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents? |                                                                                                                    |
-+------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Objective</th>
+      <th>Research Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><strong>Urban Stream Restoration: Building a more resilient urban environmental system</strong></td>
+      <td>Enrich Biodiversity</td>
+      <td>Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?</td>
+    </tr>
+    <tr>
+      <td>Promote Climate Adaptation</td>
+      <td>Which areas are most in need of interventions to promote climate adaptation?</td>
+    </tr>
+    <tr>
+      <td>Improve Quality of Life</td>
+      <td>Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?</td>
+    </tr>
+  </tbody>
+</table>
+```
 
 ### Typology Construction
 
-<!-- please don't switch to visual editing mode :) -->
-
-+--------------------------------------------------------------------------------------+---------------------------------------------+----------------------------------------------+
-| Goal                                                                                 | Objective                                   | Research Question                            |
-+======================================================================================+=============================================+==============================================+
-| **Requirements by Priority: Necessity and Possibility for Restoration Intervention** | Necessity for Intervention                  | Which locations are in need of intervention? |
-+--------------------------------------------------------------------------------------+---------------------------------------------+----------------------------------------------+
-| Possibility for Intervention                                                         | Which locations are ready for intervention? |                                              |
-+--------------------------------------------------------------------------------------+---------------------------------------------+----------------------------------------------+
+```{=html}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Objective</th>
+      <th>Research Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><strong>Requirements by Priority: Necessity and Possibility for Restoration Intervention</strong></td>
+      <td>Necessity for Intervention</td>
+      <td>Which locations are in need of intervention?</td>
+    </tr>
+    <tr>
+      <td>Possibility for Intervention</td>
+      <td>Which locations are ready for intervention?</td>
+    </tr>
+  </tbody>
+</table>
+```
 
 ## Team Roles and Explanations
 
@@ -100,7 +128,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 
 ## Research Background
 
-**What is Urban Stream Restoration and Why is it necessary?** \
+**What is Urban Stream Restoration and Why is it necessary?**\
 
 Urban stream restoration refers to the process of returning degraded urban rivers and streams to a more natural, functional, and integrated state within the city’s urban ecosystem and social fabric. Traditionally focused on improving only the hydrological functions and ecological health—such as reducing pollution, restoring habitats, and stabilizing banks—urban stream restoration is increasingly recognized as a means to enhance social connectivity. (Kondolf and Pinto, 2017)
 
@@ -155,21 +183,14 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 1.  **Enrich Biodiversity**\
 
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-| Num. | Indicator                    | Definition                                                                                                                                                                                                                                  | Formula of Calculation                                                                                                                                                                                                                                                     | Data Source           | Reference    |
-+======+==============================+=============================================================================================================================================================================================================================================+============================================================================================================================================================================================================================================================================+=======================+==============+
-| 1-1  | Healthy Vegetation Density   | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity                                                                                                                  | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization                                                                                                                                                                                              | Copernicus Sentinel 2 | Gandhi, 2015 |
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-| 1-2  | Natural Land Use Density     | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment                                                                             | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization                                                                                                                        | OSM Data              |              |
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-| 1-3  | Species Richness             | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data              |              |
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-| 1-4  | Nuisance from Industries     | industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development                                                                                                                                    | Landuse Map sorted only the industries --\> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization                                                                                                                                   | OSM Data              |              |
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-| 1-5  | Nuisance from Traffic        | infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area                                                                                                                     | road data --\> Threshold: maxspeed \>= 40km/h --\> Rasterize (vector to raster) --\> Proximity: max distance 200 --\> Zonal statistics --\> Normalization                                                                                                                  | OSM Data              |              |
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
-| 1-6  | Nuisance from Urban Barriers | roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity                                                                                                            | road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization                                                                                                                                                         | OSM Data              |              |
-+------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|------------|------------|------------|------------|------------|------------|
+| 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
+| 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
+| 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
+| 1-4 | Nuisance from Industries | industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development | Landuse Map sorted only the industries --\> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization | OSM Data |  |
+| 1-5 | Nuisance from Traffic | infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area | road data --\> Threshold: maxspeed \>= 40km/h --\> Rasterize (vector to raster) --\> Proximity: max distance 200 --\> Zonal statistics --\> Normalization | OSM Data |  |
+| 1-6 | Nuisance from Urban Barriers | roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity | road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization | OSM Data |  |
 
 2.  **Promote Climate Adaptation**\
     2-1. **Risk of Flooding**: there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations.\
@@ -316,18 +337,16 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 
 **Measurements Importance Ranking:**\
 
-+----------------------------------------------+--------------------------+------------------------------+--------------------------+-----------------------+
-| most important                               |                          |                              | ------\>                 | least important       |
-+==============================================+==========================+==============================+==========================+=======================+
+| most important |   |   | ------\> | least important |
+|---------------|---------------|---------------|---------------|---------------|
 | Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
-+----------------------------------------------+--------------------------+------------------------------+--------------------------+-----------------------+
 
 **Saaty Matrix:**\
 
 (placeholder 2-16)
 
 2.  **Promote Climate Adaptation**\
-2-1. Risk of Flooding\
+    2-1. Risk of Flooding\
 
 ```{r}
 #| echo: false
@@ -352,7 +371,7 @@ fr_scaled <- fr |>
 :::::
 
 Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
-Reflection: 
+Reflection:
 
 2-2. Density of Impermeable Surfaces\
 
@@ -522,7 +541,7 @@ print(p7)
 (placeholder 3-14)
 
 3.  **Improve Quality of Life**\
-3-1. Residents Number\
+    3-1. Residents Number\
 
 ::::: grid
 ::: g-col-6
