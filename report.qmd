@@ -62,43 +62,75 @@ The methodological framework for clustering relies on the K-means algorithm, whi
 Finally, the *Discussion* section will provide an evaluation of the outcomes from both methods, including an assessment of the methodological robustness and limitations, as well as reflections on the implications of the typology for future urban stream restoration strategies in Poznań.\
 
 ### MCDA
+<!-- when updating table content please write it as a whole again or there will be some format error -->
 
-#### GOAL
-
--   **Urban Stream Restoration**: Building a more resilient urban environmental system
-
-#### OBJECTIVES AND RESEARCH QUESTIONS
-
--   **Enrich Biodiversity**: Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?
-
--   **Promote Climate Adaptation**: Which areas are most in need of interventions to promote climate adaptation?
-
--   **Improve Quality of Life**: Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?
+<table class="table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Objective</th>
+      <th>Research Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><strong>Urban Stream Restoration: Building a more resilient urban environmental system</strong></td>
+      <td>Enrich Biodiversity</td>
+      <td>Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?</td>
+    </tr>
+    <tr>
+      <td>Promote Climate Adaptation</td>
+      <td>Which areas are most in need of interventions to promote climate adaptation?</td>
+    </tr>
+    <tr>
+      <td>Improve Quality of Life</td>
+      <td>Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Typology Construction
+<!-- when updating table content please write it as a whole again or there will be some format error -->
 
-#### GOAL
+<table class="table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Objective</th>
+      <th>Research Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><strong>Requirements by Priority: Necessity and Possibility for Restoration Intervention</strong></td>
+      <td>Necessity for Intervention</td>
+      <td>Which locations are in need of intervention?</td>
+    </tr>
+    <tr>
+      <td>Possibility for Intervention</td>
+      <td>Which locations are ready for intervention?</td>
+    </tr>
+  </tbody>
+</table>
 
--   requirement by priority
-
-#### OBJECTIVES AND RESEARCH QUESTIONS
-
--   *to be updated*
-
-## Roles and Explanations
+## Team Roles and Explanations
 
 -   **Stepan: Data analyst**\
     Data analyst and Presentation lead.
 -   **Roger: Landscape architect**\
     Landscape expert and Mapping
--   **Yaying: Mapping and Design**\
+-   **Yaying: Mapping Lead**\
     Data visualization and Mapping.
 -   **Jaee: Research Lead**\
     Oversees background research
 
 ## Research Background
 
-**What is the Context of Stream Restoration in Poznan?**
+**What is Urban Stream Restoration and Why is it necessary?**
+
+
+
+**What is the Context of Urban Stream Restoration in Poznan?**
 
 1.  In Poznan, streams go through multiple land use/typology, which indicates that we need to choose the suitable restoration strategy based on specific context. This also becomes our main idea when formulating the research questions.\
 
@@ -109,6 +141,25 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 ![](report_files/libs/imgs/0-2_topography.jpeg)\
 
 ## Methods
+
+### Grid Division: Why Hexagon Grid and What are the Parameters?
+
+![](report_files/libs/imgs/1-3_full_grid.jpeg)
+
+**Hexagons**:\
+- Equal distance to neighboring cells\
+- Reduced edge effect\
+
+**Diameter = 500m**:\
+- 5-10min walk distance\
+- Integrate stream restoration intervention into urban life in the vicinity\
+- Reasonable amount of cells in the whole city area\
+
+![](report_files/libs/imgs/1-4_buffer.jpeg)\
+
+**Buffer Zone = 300m**:\
+- Potential area under the influence of the streams for local residents\
+- Suitable for collecting relevant context information
 
 ### MCDA
 
@@ -122,12 +173,22 @@ The evaluation culminates in the development of a synthetic map for each researc
 
 In the context of our study on urban stream restoration in Poznań, the principal objective is to enhance the resilience of the urban environmental system. In this study, resilience is conceptualized through three key dimensions: **Enhancing Biodiversity**, **Promoting Climate Adaptation** and **Improving Quality of Life**. Each of these dimensions is formulated as a distinct research question, for which multiple relevant evaluation criteria are selected to guide the analysis.
 
-#### Indicators and Argumentation
+####  MCDA Indicators and Argumentation
 
 ![](report_files/libs/imgs/1-2.jpg)\
 
 1.  **Enrich Biodiversity**\
-    1-1. **Healthy Vegetation Density**: using NDVI calculation, the areas with the most active photosynthesis process can be identified, which indicates the areas have a better vegetation health condition for enriching biodiversity.\
+
+| Number | Indicator | Definition | Formula | Source of Data | Reference |
+|--------|-----------|------------|---------|----------------|-----------|
+|1-1|Healthy Vegetation Density|the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity|NDVI --> Threshold > 0.2 --> Zonal Statistics --> Mean --> Normalization|Copernicus Sentinel 2|Gandhi, 2015|
+|1-2|Natural Land Use Density|||||
+|1-3|Species Richness|||||
+|1-4|Nuisance from Industries|||||
+|1-5|Nuisance from Traffic|||||
+|1-6|Nuisance from Urban Barriers|||||
+
+
 
     1-2. **Natural Land Use Density**: the natural land use along the streams provide legislative and administrative base for nature-based interventions; indicate a more natural environment.\
 
@@ -165,42 +226,30 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
     3-8. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
 
-#### Grid Division: Why Hexagon Grid and What are the Parameters?
 
-![](report_files/libs/imgs/1-3_full_grid.jpeg)
+### Typology Construction
 
-**Hexagons**:\
-- Equal distance to neighboring cells\
-- Reduced edge effect\
+Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product).\
 
-**Diameter = 500m**:\
-- 5-10min walk distance\
-- Integrate stream restoration intervention into urban life in the vicinity\
-- Reasonable amount of cells in the whole city area\
+We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.\
 
-![](report_files/libs/imgs/1-4_buffer.jpeg)\
+Our typology creation thus follows two narratives: Which locations are in need of intervention, and Which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for **Variables**.\
 
-**Buffer Zone = 300m**:\
-- Potential area under the influence of the streams for local residents\
-- Suitable for collecting relevant context information
-
-### Typology construction
-
-*general description of workflow, each step what is the operation and what is the goal*
+-  **introduce what "intervention" means in your study, and why you want to know the priority.**
+-  **then you can introduce your hypothesis above**
+-  **what are the possible variables, and how are they related to interventions**
 
 #### Chosen Fields
 
-*please move the parts below here* 2-4. Terrain Slope:\
+*please move the parts below to here* 2-4. Terrain Slope:\
 
-#### K-Means Method
 
-#### Constructing Types
 
 ## Results
 
 ### MCDA
 
-#### Analysis and Results
+#### Results of Indicators
 
 1.**Enrich Biodiversity**\
 1-1. Healthy Vegetation Density\
@@ -225,8 +274,7 @@ hv_scaled <- hv |>
 :::
 :::::
 
-Processing: ***NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization***\
-Accuracy/Reflection: the CIR map come from Copernicus Sentinel 2, the threshold of 0.2 is based on research from Gandhi, 2015
+Accuracy/Reflection: the CIR map come from , the threshold of 0.2 is based on research from 
 
 1-2. Natural Land Use Density\
 
@@ -644,13 +692,7 @@ Accuracy/Reflection:
 
 ### Typology Construction
 
-Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product).
-
-We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
-
-Our typology creation thus follows two narratives: Which locations are in need of intervention, and Which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for
-
-**Variables**  Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
+Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
 
 Our variables: RISK ATTRRIBUTES Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
 
@@ -676,17 +718,7 @@ print(p6)
 
 ```
 
-Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list.
-
-We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
-
-Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list.
-
-We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.
-
-Our typology creation thus follows two narratives: Which locations are in need of intervention, and which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for Urban Stream Restoration.
-
-**Variables**  Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
+Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
 
 Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
 
