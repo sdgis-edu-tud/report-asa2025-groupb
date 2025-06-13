@@ -232,6 +232,13 @@ Our typology creation thus follows two narratives: Which locations are in need o
 
 *please move the parts below to here* 2-4. Terrain Slope:\
 
+### Reproducibility Self-Assessment
+
+*please update here*
+
+
+
+
 ## Results
 
 ### MCDA
