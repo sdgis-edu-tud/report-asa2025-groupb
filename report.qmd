@@ -146,7 +146,7 @@ Urban rivers are not merely ecological corridors but also social public spaces t
 
 ## Methods
 
-### Grid Division: Why Hexagon Grid and What are the Parameters?
+### Deciding the Spatial Unit of Analysis: Why Hexagon Grid and What are the Parameters?
 
 ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
