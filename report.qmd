@@ -673,10 +673,10 @@ leaflet(data = lq_index_wgs84) %>%
 
 ***When the area has higher index, it means: (relatively)***\
 -*More people live in this area*\
+-*The stream in/near this area has good public transport and/or pedestrian accessibility*\
 -*The area is close to existing settlement center*\
--*The area has good public transport accessibility*\
--*Landuse in this area allow community-oriented intervention*\
--*Already some attractions for people are in this area*
+-*Already some attractions for people are in this area*\
+-*Land Use in this area allow community-oriented intervention*\
 
 ### Typology Construction
 
