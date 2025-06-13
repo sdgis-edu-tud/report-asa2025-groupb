@@ -208,13 +208,11 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
     3-3. **People Attraction Density**: if the area already contains some attractions for people, it has a good base to become a more active space in the future.\
 
-    3-4. **Stream Navigability**: this index is calculated based on the density of roads in the area. The areas with denser roads have better accessibility; it also indicates higher degree of urbanization.\
+    3-4. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
 
-    3-5. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
+    3-5. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
 
-    3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
-
-    3-7. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
+    3-6. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
 
 ### Typology Construction
 
@@ -588,30 +586,6 @@ Accuracy/Reflection:
 Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
 
-3-4. Stream Navigability\
-
-```{r}
-stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
-
-sn <- st_read(stream_navigability, quiet = TRUE)
-
-sn_scaled <- sn |> 
-  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
-
-#head(sn_scaled)
-
-p8 <- ggplot(sn_scaled) +
-  geom_sf(aes(fill = sn_scaled), color = NA) +
-  scale_fill_gradient2() +
-  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
-  theme_minimal()
-
-print(p8)
-```
-
-Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
-(placeholder 4-8)\
-Accuracy/Reflection:
 
 3-5. Local Centrality\
 
@@ -960,6 +934,32 @@ leaflet(data = cluster_input_wgs84) %>%
 ```
 
 ## Discussion
+
+3-4. Stream Navigability\
+
+```{r}
+stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
+
+sn <- st_read(stream_navigability, quiet = TRUE)
+
+sn_scaled <- sn |> 
+  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
+
+#head(sn_scaled)
+
+p8 <- ggplot(sn_scaled) +
+  geom_sf(aes(fill = sn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
+  theme_minimal()
+
+print(p8)
+```
+
+Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
+(placeholder 4-8)\
+Accuracy/Reflection:
+
 
 3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
 
