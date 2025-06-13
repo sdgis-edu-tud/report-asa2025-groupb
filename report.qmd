@@ -189,8 +189,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
 | 1-4 | Nuisance from Industries | industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development | Landuse Map sorted only the industries --\> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization | OSM Data |  |
-| 1-5 | Nuisance from Traffic | infrastructure such as highways cause nuisance such as noise and pollution, thus hindering the biodiversity in the area | road data --\> Threshold: maxspeed \>= 40km/h --\> Rasterize (vector to raster) --\> Proximity: max distance 200 --\> Zonal statistics --\> Normalization | OSM Data |  |
-| 1-6 | Nuisance from Urban Barriers | roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity | road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization | OSM Data |  |
+| 1-5 | Nuisance from Urban Barriers | roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity | road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization | OSM Data |  |
 
 2.  **Promote Climate Adaptation**\
 
@@ -202,17 +201,16 @@ In the context of our study on urban stream restoration in Poznań, the principa
 | 2-4 | River Sinuosity | the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape |  | OSM Data |  |
 
 3.  **Improve Quality of Life**\
-    3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams.\
 
-    3-2. **Urbanized Land Use Density**: the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions.\
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|------------|------------|------------|------------|------------|------------|
+| 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams |  | hub.worldpop.org |  |
+| 3-2 | Urbanized Land Use Density | the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions |  | OSM Data |  |
+| 3-3 | People Attraction Density | if the area already contains some attractions for people, it has a good base to become a more active space in the future |  | OSM Data |  |
+| 3-4 | Local Centrality Index | this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions |  | OSM Data |  |
+| 3-5 | Public Transport Accessibility | the areas that are more accessible via public transport are more suitable for life-quality-improving interventions |  | OSM Data |  |
+| 3-6 | Pedestrian Accessibility Index | the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions |  | OSM Data |  |
 
-    3-3. **People Attraction Density**: if the area already contains some attractions for people, it has a good base to become a more active space in the future.\
-
-    3-4. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
-
-    3-5. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
-
-    3-6. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
 
 ### Typology Construction
 
@@ -268,6 +266,7 @@ hv_scaled <- hv |>
 
 Reflection:
 
+
 1-2. Natural Land Use Density\
 
 ::::: grid
@@ -281,6 +280,7 @@ Reflection:
 :::::
 
 Reflection:\
+
 
 1-3. Species Richness\
 
@@ -296,6 +296,7 @@ Reflection:\
 
 Reflection:\
 
+
 1-4. Nuisance from Industries\
 
 ::::: grid
@@ -310,21 +311,8 @@ Reflection:\
 
 Reflection:
 
-1-5. Nuisance from Traffic\
 
-::::: grid
-::: g-col-6
-![](report_files/libs/imgs/2-9_road_typologies_data.jpg){width="100%"}
-:::
-
-::: g-col-6
-![](report_files/libs/imgs/2-10_traffic_noise_disturbance_index.jpg){width="100%"}
-:::
-:::::
-
-Reflection:\
-
-1-6. Nuisance from Urban Barrier\
+1-5. Nuisance from Urban Barriers\
 
 ::::: grid
 ::: g-col-6
@@ -338,6 +326,7 @@ Reflection:\
 
 Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
 
+
 **Measurements Importance Ranking:**\
 
 | most important |   |   | ------\> | least important |
@@ -349,7 +338,7 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 (placeholder 2-16)
 
 2.  **Promote Climate Adaptation**\
-    2-1. Risk of Flooding\
+2-1. Risk of Flooding\
 
 ```{r}
 #| echo: false
@@ -544,7 +533,7 @@ print(p7)
 (placeholder 3-14)
 
 3.  **Improve Quality of Life**\
-    3-1. Residents Number\
+3-1. Residents Number\
 
 ::::: grid
 ::: g-col-6
@@ -590,7 +579,7 @@ Processing:***point of interest data --\> Count Points in Polygon --\> Normaliza
 Accuracy/Reflection:
 
 
-3-5. Local Centrality\
+3-4. Local Centrality\
 
 ::::: grid
 ::: g-col-6
@@ -605,7 +594,7 @@ Accuracy/Reflection:
 Processing:***Angular Integration (800M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
 Accuracy/Reflection:
 
-3-6. Public Transport Accessibility\
+3-5. Public Transport Accessibility\
 
 ::::: grid
 ::: g-col-6
@@ -620,7 +609,7 @@ Accuracy/Reflection:
 Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
 
-3-8. Pedestrian Accessibility Index\
+3-6. Pedestrian Accessibility Index\
 
 ```{r}
 attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
