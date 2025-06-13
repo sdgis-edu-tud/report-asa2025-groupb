@@ -580,12 +580,8 @@ Accuracy/Reflection:
 Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
 
-<<<<<<< HEAD
-3-5. Local Centrality\
-=======
 
 3-4. Local Centrality\
->>>>>>> 00d4991f97817e4f5c0278882b3bc20ef5c177f0
 
 ::::: grid
 ::: g-col-6
@@ -665,13 +661,57 @@ Accuracy/Reflection:
     (placeholder image5-2)\
 
 3.  **Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?**\
-    ![](report_files/libs/imgs/5-3_rq3_index.jpeg)\
-    ***When the area has higher index, it means: (relatively)***\
-    -*More people live in this area*\
-    -*The area is close to existing settlement center*\
-    -*The area has good public transport accessibility*\
-    -*Landuse in this area allow community-oriented intervention*\
-    -*Already some attractions for people are in this area*
+
+```{r}
+# Read the combined result
+hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "RdBu", 
+  domain = hr_index_wgs84$heat_risk_index,
+  reverse = TRUE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(hr_index_wgs84)
+
+leaflet(data = hr_index_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(heat_risk_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~heat_risk_index,
+    title = "Heat Risk Index",
+    position = "bottomright"
+  ) 
+
+```
+
+***When the area has higher index, it means: (relatively)***\
+-*More people live in this area*\
+-*The area is close to existing settlement center*\
+-*The area has good public transport accessibility*\
+-*Landuse in this area allow community-oriented intervention*\
+-*Already some attractions for people are in this area*
 
 ### Typology Construction
 
