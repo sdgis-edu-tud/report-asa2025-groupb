@@ -1,0 +1,14 @@
+name of attribute: population_grid_sum
+description of attribute: population of each grid
+data used: pol_ppp_2020
+processing method: sum
+
+name of attribute: people_attraction_density
+description of attribute: number of points of interest in each grid (including kiosks, food stands, benches, etc)
+data used: OSM_POI_points
+processing method: sum
+
+name of attribute: vicinity_to_urban_center_1
+description of attribute: how close is each cell to urban centers calculated by angular integration 500M
+data used: OSM_POI_roads
+processing method: mean

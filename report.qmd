@@ -1,18 +1,18 @@
 ---
-title: "Title of your report"
-subtitle: "Project report of Group #"
+title: "Urban Stream Restoration: building a more resilient urban environmental system- Case of Poznań, Poland."
+subtitle: "Group B"
 author:
-  - name: "Student 1"
+  - name: "Stepan Prikazchikov"
     affiliation: "MSc Geomatics"
-  - name: "Student 2"
+  - name: "Roger Marin de Yzaguirre"
     affiliation: "MSc Landscape Architecture"
-  - name: "Student 3"
+  - name: "Yaying Hao"
     affiliation: "MSc Urbanism"
-  - name: "Student 4"
+  - name: "Jaee A. Naik"
     affiliation: "MSc Urbanism"
-  - name: "Student 5"
-    affiliation: "MSc Landscape Architecture"
 format: html
+lightbox: TRUE
+code-fold: TRUE # collapse code in the HTML output
 ---
 
 ::: callout
@@ -22,44 +22,1066 @@ Quarto enables you to weave together content and executable code into a finished
 
 ## Running Code
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Install necessary packages
 
 ```{r}
-1 + 1
+#install.packages("sf") 
+#install.packages("dplyr")
+#install.packages("leaflet")
+#install.packages("RColorBrewer")
+#system("echo %JAVA_HOME%", intern = TRUE)
+#install.packages("rJava")
+#install.packages("swipeR")
+#install.packages("ggplot2")
 ```
 
-You can add options to executable code like this 
+Load necessary packages
 
 ```{r}
-#| echo: false
-2 * 2
+library(sf) # for processing vector data 
+library(dplyr) # for selecting and transforming data
+library(leaflet)
+library(RColorBrewer)
+library(rJava)
+#library(swipeR) # Could be depreciated, as in I don't want to use it 
+library(ggplot2)
+library(htmltools)
 ```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
-You can delete this entire callout between and including the lines
-```
-::: callout
-```
-and
-
-```
-:::
-```
-and start the report from the Introduction section below.
 :::
 
 ## Introduction
 
-## Methods
+In this course, we explored urban stream restoration in Poznań, Poland, using two primary methodological approaches: Multi-Criteria Decision Analysis (MCDA) and Typology Construction. For each method, we identified relevant objectives and formulated research questions tailored to the respective analytical framework.\
+
+In the case of MCDA, the selection of criteria and the rationale behind their inclusion will be detailed in the *Methods* section, while the corresponding analytical outcomes will be presented in the *Results* section.\
+
+For Typology Construction, we introduce the objective of generating meaningful clusters that categorize spatial units adopted from MCDA based on shared characteristics. In the context of stream restoration in Poznań, a specific research question is formulated to align with this methodological approach. To address this question, a set of variables is selected, and the rationale behind the selection of these variables is grounded in both theoretical relevance and practical applicability to the local context.\
+
+The methodological framework for clustering relies on the K-means algorithm, which will be detailed in the *Methods* section. The resulting typology, including the characteristics of each cluster and the reasoning behind their labeling, will be presented in the *Results* section.\
+
+Finally, the *Discussion* section will provide an evaluation of the outcomes from both methods, including an assessment of the methodological robustness and limitations, as well as reflections on the implications of the typology for future urban stream restoration strategies in Poznań.\
 
 ### MCDA
 
-### Typology construction
+```{=html}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Objective</th>
+      <th>Research Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><strong>Urban Stream Restoration: Building a more resilient urban environmental system</strong></td>
+      <td>Enrich Biodiversity</td>
+      <td>Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?</td>
+    </tr>
+    <tr>
+      <td>Promote Climate Adaptation</td>
+      <td>Which areas are most in need of interventions to promote climate adaptation?</td>
+    </tr>
+    <tr>
+      <td>Improve Quality of Life</td>
+      <td>Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Typology Construction
+
+```{=html}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Objective</th>
+      <th>Research Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><strong>Requirements by Priority: Necessity and Possibility for Restoration Intervention</strong></td>
+      <td>Necessity for Intervention</td>
+      <td>Which locations are in need of intervention?</td>
+    </tr>
+    <tr>
+      <td>Possibility for Intervention</td>
+      <td>Which locations are ready for intervention?</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+## Team Roles and Explanations
+
+-   **Stepan: Data analyst**\
+    Data analyst and Presentation lead.
+-   **Roger: Landscape architect**\
+    Landscape expert and Mapping
+-   **Yaying: Mapping Lead**\
+    Data visualization and Mapping.
+-   **Jaee: Research Lead**\
+    Oversees background research
+
+## Research Background
+
+**What is Urban Stream Restoration and Why is it necessary?**\
+
+Urban stream restoration refers to the process of returning degraded urban rivers and streams to a more natural, functional, and integrated state within the city’s urban ecosystem and social fabric. Traditionally focused on improving only the hydrological functions and ecological health—such as reducing pollution, restoring habitats, and stabilizing banks—urban stream restoration is increasingly recognized as a means to enhance social connectivity. (Kondolf and Pinto, 2017)
+
+Urban rivers are not merely ecological corridors but also social public spaces that allow for urban movement. They host space for interaction of people, ideas, and cultural practices. This shift in perspective makes restoration not only an environmental necessity but also a social and cultural imperative. This asks for an integrated approach which is beyond technocratic engineering solutions.
+
+**What is the Context of Urban Stream Restoration in Poznan?**
+
+1.  In Poznan, streams go through multiple land use/typology, which indicates that we need to choose the suitable restoration strategy based on specific context. This also becomes our main idea when formulating the research questions.\
+
+![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
+
+2.  The streams end up in Warta River Valley, which suggests that we should also have River Warta included in the research scope together with the stream system. This helps us develop our spatial units of study.\
+
+![](report_files/libs/imgs/0-2_topography.jpeg)\
+
+## Methods
+
+### Deciding the Spatial Unit of Analysis: Why Hexagon Grid and What are the Parameters?
+
+![](report_files/libs/imgs/1-3_full_grid.jpeg)
+
+**Hexagons**:\
+For the spatial analysis, the study area was subdivided using a hexagonal grid, which served as the primary unit of analysis. The choice of hexagons was narrowed down by several methodological advantages. 
+
+-Hexagonal cells maintain equal distance to all neighboring cells, which supports reduces directional bias in spatial calculations. 
+-The use of hexagons helps to minimize edge effects that commonly arise in grid-based spatial analysis, thereby ensuring more consistent and accurate representation of spatial phenomena. 
+
+
+**Diameter = 500m**:\
+- 5-10min walk distance\
+- Integrate stream restoration intervention into urban life in the vicinity\
+- Reasonable amount of cells in the whole city area\
+
+![](report_files/libs/imgs/1-4_buffer.jpeg)\
+
+**Buffer Zone = 300m**:\
+- Potential area under the influence of the streams for local residents\
+- Suitable for collecting relevant context information
+
+### MCDA
+
+#### MCDA Structure
+
+![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
+
+**Multi-Criteria Decision Analysis (MCDA)** is a subfield of operations research that systematically evaluates multiple, often conflicting, criteria in the decision-making process. The application of the MCDA methodology begins with the formulation of a primary goal. This overarching goal is then decomposed into specific objectives, each of which is translated into a research question. For each research question, a set of criteria is identified to assess various dimensions relevant to the objective. These criteria are subsequently assigned weights to reflect their relative importance in influencing the overall outcome.\
+
+The evaluation culminates in the development of a synthetic map for each research question, which integrates the weighted criteria into a comprehensive spatial representation. These maps serve as analytical tools that encapsulate the combined perspectives of multiple stakeholders, thereby supporting informed and balanced decision-making.\
+
+In the context of our study on urban stream restoration in Poznań, the principal objective is to enhance the resilience of the urban environmental system. In this study, resilience is conceptualized through three key dimensions: **Enhancing Biodiversity**, **Promoting Climate Adaptation** and **Improving Quality of Life**. Each of these dimensions is formulated as a distinct research question, for which multiple relevant evaluation criteria are selected to guide the analysis.
+
+#### MCDA Indicators and Argumentation
+
+![](report_files/libs/imgs/1-2.jpg)\
+
+1.  **Enrich Biodiversity**\
+
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|----|----|----|----|----|----|
+| 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
+| 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
+| 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
+| 1-4 | Nuisance from Industries | industries in general cause nuisance (noise, pollution, odor, etc) which hinder biodiversity development | Landuse Map sorted only the industries --\> Join Attributes by field value--\> Amount of industries assigned per grid --\> Normalization | OSM Data |  |
+| 1-5 | Nuisance from Urban Barriers | roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity | road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization | OSM Data |  |
+
+2.  **Promote Climate Adaptation**\
+
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|----|----|----|----|----|----|
+| 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
+| 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
+| 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
+| 2-4 | River Sinuosity | the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape |  | OSM Data |  |
+
+3.  **Improve Quality of Life**\
+
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|------------|------------|------------|------------|------------|------------|
+| 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams |  | hub.worldpop.org |  |
+| 3-2 | Urbanized Land Use Density | the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions |  | OSM Data |  |
+| 3-3 | People Attraction Density | if the area already contains some attractions for people, it has a good base to become a more active space in the future |  | OSM Data |  |
+| 3-4 | Local Centrality Index | this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions |  | OSM Data |  |
+| 3-5 | Public Transport Accessibility | the areas that are more accessible via public transport are more suitable for life-quality-improving interventions |  | OSM Data |  |
+| 3-6 | Pedestrian Accessibility Index | the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions |  | OSM Data |  |
+
+
+### Typology Construction
+
+<!-- to be uodated -->
+
+Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product).\
+
+We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.\
+
+Our typology creation thus follows two narratives: Which locations are in need of intervention, and Which locations are ready for intervention. By answering these questions, we will be able to fill in the 'requirements by priority' school of thought and develop a targeted approach for **Variables**.\
+
+-   **introduce what "intervention" means in your study, and why you want to know the priority.**
+-   **then you can introduce your hypothesis above**
+-   **what are the possible variables, and how are they related to interventions**
+
+#### Chosen Fields
+
+*please move the parts below to here* 2-4. Terrain Slope:\
+
+### Reproducibility Self-Assessment
+
+*please update here*
 
 ## Results
 
+### MCDA
+
+#### Results of Indicators
+
+1.**Enrich Biodiversity**\
+1-1. Healthy Vegetation Density\
+
+```{r}
+healthy_vegetation <- "files/enrich_biodiversity/vegetation_health_index.gpkg"
+
+hv <- st_read(healthy_vegetation, quiet = TRUE)
+
+# Standardize (scale) values
+hv_scaled <- hv |> 
+  mutate(hv_scaled = as.numeric(scale(hv$vegetation_health_index_small_grid_ndvi_mean)))
+```
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-1.jpg){#fig-CIR width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){#fig-index width="100%"}
+:::
+:::::
+
+Reflection:
+
+
+1-2. Natural Land Use Density\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-3_Greenscapes_basemap.png){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/2-4_GreensLandusemap.png){width="100%"}
+:::
+:::::
+
+Reflection:\
+
+
+1-3. Species Richness\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/2-6_Species_Richness_index.jpg){width="100%"}
+:::
+:::::
+
+Reflection:\
+
+
+1-4. Nuisance from Industries\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-7_Industries_basemap.png){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/2-8_nuisence_by_industries.png){width="100%"}
+:::
+:::::
+
+Reflection:
+
+
+1-5. Nuisance from Urban Barriers\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/2-11_urban_barrier_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/2-12_urban_barrier_index.jpg){width="100%"}
+:::
+:::::
+
+Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
+
+
+**Measurements Importance Ranking:**\
+
+| most important |   |   | ------\> | least important |
+|----|----|----|----|----|
+| Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
+
+**Saaty Matrix:**\
+
+(placeholder 2-16)
+
+2.  **Promote Climate Adaptation**\
+2-1. Risk of Flooding\
+
+```{r}
+#| echo: false
+
+flood_risk <- "files/promote_climate_adaptation/flood_risk_rp50.gpkg"
+
+fr <- st_read(flood_risk, quiet = TRUE)
+
+fr_scaled <- fr |> 
+  mutate(fr_scaled = as.numeric(scale(fr$flood_sum)))
+
+```
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/3-1_flood_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/3-2_flood_risk_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:\*\*\*\*\*\*\
+Reflection:
+
+2-2. Density of Impermeable Surfaces\
+
+```{r}
+impermeable_surface <- "files/promote_climate_adaptation/surface_impermeability.gpkg"
+
+is <- st_read(impermeable_surface, quiet = TRUE)
+
+is_scaled <- is |> 
+  mutate(is_scaled = as.numeric(scale(is$inperm_sum)))
+```
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/3-3_permeability_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/3-4_permeability_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:\*\*\*\*\*\*\
+Accuracy/Reflection:
+
+2-3. Heat Risk Index\
+
+Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+
+```{r}
+hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
+UHI_max <- "files/promote_climate_adaptation/UHI_max.gpkg"
+
+hn <- st_read(hot_nights, quiet = TRUE)
+uhi <- st_read(UHI_max, quiet = TRUE)
+
+# Standardize (scale) values
+hn_scaled <- hn |> 
+  mutate(hn_scaled = as.numeric(scale(hn$X10y_hotnights)))
+
+uhi_scaled <- uhi |> 
+  mutate(uhi_scaled = as.numeric(scale(uhi$UHI_max_norm)))
+
+#head(hn_scaled)
+
+# Combine by dropping geometry from one
+hr_index <- hn_scaled |> 
+  select(geom, hn_scaled) |> 
+  bind_cols(uhi_scaled |> st_drop_geometry() |> select(uhi_scaled)) |> 
+  mutate(heat_risk_index = hn_scaled + uhi_scaled)
+
+hr_scaled <- hr_index |>
+  mutate(hr_scaled = as.numeric(scale(hr_index$heat_risk_index)))
+
+### Map plotting
+p1 <- ggplot(hn) +
+  geom_sf(aes(fill = X10y_hotnights), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
+  theme_minimal()
+
+p2 <- ggplot(uhi) +
+  geom_sf(aes(fill = UHI_max_norm), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "UHI max", fill = "UHI") +
+  theme_minimal()
+
+p3 <- ggplot(hn_scaled) +
+  geom_sf(aes(fill = hn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized Hot Nights", fill = "Z-score") +
+  theme_minimal()
+
+p4 <- ggplot(uhi_scaled) +
+  geom_sf(aes(fill = uhi_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized UHI max", fill = "Z-score") +
+  theme_minimal()
+
+p5 <- ggplot(hr_index) +
+  geom_sf(aes(fill = heat_risk_index), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
+  theme_minimal()
+
+print(p1)
+print(p2)
+print(p3)
+print(p4)
+print(p5)
+
+# Write the combined file (Comment out if it has been done once)
+#st_write(hr_index, "files/promote_climate_adaptation/heat_risk.gpkg")
+
+```
+
+
+2-4. River sinuosity\
+
+```{r}
+river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
+
+rs <- st_read(river_sinuosity, quiet = TRUE)
+
+rs_scaled <- rs |> 
+  mutate(rs_scaled = as.numeric(scale(rs$wm_sinuosity)))
+
+p7 <- ggplot(rs_scaled) +
+  geom_sf(aes(fill = rs_scaled), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "River sinuosity", fill = "Sinuosity") +
+  theme_minimal()
+
+print(p7)
+
+```
+
+**Measurements Importance Ranking:**\
+
+(placeholder 3-13)\
+
+**Saaty Matrix:**
+
+(placeholder 3-14)
+
+3.  **Improve Quality of Life**\
+3-1. Residents Number\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-1_population_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/4-2_population_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
+Accuracy/Reflection:
+
+3-2. Urbanized Land Use Density\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-3_Landusemap_basemap.png){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="100%"}
+:::
+:::::
+
+Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
+Accuracy/Reflection:
+
+3-3. People Attraction Density\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-5_poi_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/4-6_poi_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
+Accuracy/Reflection:
+
+
+3-4. Local Centrality\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-9_local_centrality_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/4-10_local_centrality_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:***Angular Integration (800M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
+Accuracy/Reflection:
+
+3-5. Public Transport Accessibility\
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-11_public_transport_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/4-12_public_transport_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
+Accuracy/Reflection:
+
+3-6. Pedestrian Accessibility Index\
+
+```{r}
+attraction_betweenness <- "files/improve_quality_of_life/attraction_betweeness.gpkg"
+
+ab <- st_read(attraction_betweenness, quiet = TRUE)
+
+# Replace NA with 0 before scaling
+ab_cleaned <- ab |> 
+  mutate(abt_cell_data_mean = ifelse(is.na(abt_cell_data_mean), 0, abt_cell_data_mean))
+
+# Standardize and ensure result is numeric with no NAs
+ab_scaled <- ab_cleaned |> 
+  mutate(ab_scaled = as.numeric(scale(abt_cell_data_mean)),
+     ab_scaled = ifelse(is.na(ab_scaled), 0, ab_scaled))
+```
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpg){width="100%"}
+:::
+:::::
+
+Processing:***Attraction Betweeness (800M) destination set as points along streams, distance = 500m --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
+Accuracy/Reflection:
+
+**Measurements Importance Ranking:**\
+
+| most important | ------\> | ------\> | ------\> | least important |
+|----|----|----|----|----|
+| Residents Number | Attraction Betweeness, Public Transport Accessibility | Local Centrality Index | People Attraction Density | Urbanized Land Use Density |
+
+**Saaty Matrix:**\
+
+![](report_files/libs/imgs/LQ_saaty_matrix.jpg)
+![](report_files/libs/imgs/LQ_weighting_result.jpg)
+
+#### Aggregated Results for Research Questions
+
+1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
+    (please update leaflet code here)\
+
+2.  **Which areas are most in need of interventions to promote climate adaptation?**\
+    (please update leaflet code here)\
+
+3.  **Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?**\
+
+```{r}
+# Read the combined result
+lq_index <- st_read("files/improve_quality_of_life/RQ3_aggregated.gpkg", quiet = TRUE)
+stream <- st_read("files/waterway.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+lq_index_wgs84 <- st_transform(lq_index, crs = 4326)
+stream_wgs84 <- st_transform(stream, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "Reds", 
+  domain = lq_index_wgs84$LQ_aggregated_index,
+  reverse = FALSE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(lq_index_wgs84)
+
+leaflet(data = lq_index_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(LQ_aggregated_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Research Question 3: Aggregated Index:", round(LQ_aggregated_index, 2))
+  ) %>%
+  addPolylines(
+    data = stream_wgs84,
+    color = "black",
+    weight = 1.5,
+    opacity = 1
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~LQ_aggregated_index,
+    title = "Research Question 3: Aggregated Index",
+    position = "bottomright"
+  ) 
+
+```
+
+***When the area has higher index, it means: (relatively)***\
+-*More people live in this area*\
+-*The stream in/near this area has good public transport and/or pedestrian accessibility*\
+-*The area is close to existing settlement center*\
+-*Already some attractions for people are in this area*\
+-*Land Use in this area allow community-oriented intervention*\
+
+### Typology Construction
+
+Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
+
+Our variables: RISK ATTRRIBUTES Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
+
+BENEFIT ATTRIBUTES: terrain_slope density_indicators (any can be used, OSR as most logical?) attraction_betweenness navigability_indicator
+
+2-4. Terrain slope\
+
+```{r}
+terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
+
+ts <- st_read(terrain_slope, quiet = TRUE)
+
+ts_scaled <- ts |> 
+  mutate(ts_scaled = as.numeric(scale(ts$slope_mean)))
+
+p6 <- ggplot(ts_scaled) +
+  geom_sf(aes(fill = ts_scaled), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Mean slope angle", fill = "Std slope") +
+  theme_minimal()
+
+print(p6)
+
+```
+
+Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
+
+Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
+
+BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
+
+```{r}
+stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
+
+sn <- st_read(stream_navigability, quiet = TRUE)
+
+sn_scaled <- sn |> 
+  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
+
+#head(sn_scaled)
+
+p8 <- ggplot(sn_scaled) +
+  geom_sf(aes(fill = sn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
+  theme_minimal()
+
+# print(p8)
+```
+
+```{r}
+# Create Clustering input from previous datasets. 
+geometry <- st_geometry(hr_scaled)
+
+# Combine all scaled variables into one data frame
+#cluster_attributes <- data.frame(
+  #hr_scaled = hr_scaled$hr_scaled,
+  #fr_scaled = fr_scaled$fr_scaled,
+  #is_scaled = is_scaled$is_scaled,
+  #hv_scaled = hv_scaled$hv_scaled,
+  #ts_scaled = ts_scaled$ts_scaled,
+  #osr_scaled = osr_scaled$osr_scaled,
+  #ab_scaled = ab_scaled$ab_scaled,
+  #sn_scaled = sn_scaled$sn_scaled
+#)
+
+# Better to combine NON-SCALED variables since we want to revert back to normal values later
+cluster_attributes <- data.frame(
+  hr = hr_index$heat_risk_index,
+  fr = fr$flood_sum,
+  is = is$inperm_sum,
+  hv = hv$vegetation_health_index_small_grid_ndvi_mean,
+  ts = ts$slope_mean,
+  #osr = di_result$OSR, #osr gives bad results, thus omission  
+  ab = ab_cleaned$abt_cell_data_mean,
+  sn = sn$navigability_indicator
+)
+
+# Scale attributes together
+cluster_scaled <- scale(cluster_attributes)
+
+# Combine geometry and attributes into one sf object
+cluster_input <- st_sf(cluster_scaled, geometry = geometry)
+#head(cluster_input)
+#st_write(cluster_input, "files/cluster_analysis/clusters_raw.gpkg")  
+
+inertia <- numeric()
+
+# Try k values from 2 to 9
+k_values <- 2:9
+
+# Loop through each k value
+for (k in k_values) {
+  km <- kmeans(cluster_scaled, centers = k, nstart = 100) 
+  
+   #tot.withinss is Total within-cluster sum of squares
+   #This measures how compact the clusters are: lower is better.
+  inertia <- c(inertia, km$tot.withinss)
+}
+
+# Combine the results into a data frame for plotting
+elbow_df <- data.frame(k = k_values, inertia = inertia)
+
+print(elbow_df)
+
+# Make the elbow plot
+plot(k_values, inertia,
+     type = "b",                  # shown both points + lines 
+     col = "darkblue",
+     main = "Elbow Method")
+
+# `set.seed()` sets the random number generator to a fixed state
+# Set the seed so the clustering result is always the same when re-run
+set.seed(0)  # The number 0 is just a fixed choice. You can also use 10, 345, etc.
+
+# Choose the number of clusters based on the elbow plot
+k <- 5
+
+# Run K-means clustering on the standardized data
+kmeans_result <- kmeans(cluster_scaled, centers = k, nstart = 100)
+
+# Add the cluster labels to the spatial data
+cluster_input$cluster <- as.factor(kmeans_result$cluster) # The result kmeans_result$cluster is a list of cluster labels (1 to 4), in the same order as the original rows in X_scaled and grids
+
+head(cluster_input)
+#st_write(cluster_input, "files/cluster_analysis/clusters_1.gpkg")
+
+# Show how many grids fall into each cluster
+print(table(cluster_input$cluster))
+
+# Plot clusters with base R
+#plot(cluster_input["cluster"], 
+     #main = "Spatial Pattern of Urban Stream Clusters", 
+     #border = NA)
+
+```
+
+```{r}
+# Get the cluster centers (in standardized form)
+scaled_centers <- kmeans_result$centers
+
+# Print them
+print("Cluster centers (standardized):")
+print(scaled_centers)
+
+# Convert the centers back to original scale: x * SD + mean
+original_centers <- t(apply(
+  scaled_centers, 1, 
+  function(x) x * attr(cluster_scaled, "scaled:scale") + attr(cluster_scaled, "scaled:center")
+))
+
+# Print the real-world values
+print("Cluster centers (original):")
+print(original_centers)
+```
+
+Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability.
+
+Cluster description: 1 - (45 features) Cluster situated predominantly around the river, high fr (since this is generally the only area that has potential for flooding), and otherwise generally strong positive results (hr, is, hv, ab). Due to the high ts, the sn is also on the lower end. 2 - (335 features) Cluster represents strongly vegetated areas, with a high hv and low hr, is is also strongly correlated here. Relatively high ts results in both low ab and sn. 3 - (271 features) HIGHEST hr, LOWEST hv. Broadly urban areas with low fr and sn since not very close to water bodies. High is and low ab, meaning that while it is a high risk area, the impact of interventions would be low. 4 - (24 features) Generally quite median scores across the board. With a high ab and relatively high sn, the impact of interventions would be felt quite highly, and there is generally a large amount of 'promenade' area. 5 - (61 features) Highly scoring in all RISK attributes (hr, fr, is, inverse(hv)). Relatively high ab, and very high sn suggest high impact of interventions which would greatly impact the streams themselves.
+
+```{r}
+cluster_map <- st_read("files/cluster_analysis/clusters_1.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+cluster_input_wgs84 <- st_transform(cluster_map, crs = 4326)
+
+# Create a color factor palette for discrete clusters
+pal <- colorFactor(
+  palette = "Set1",
+  domain = as.character(cluster_input_wgs84$cluster),  # ensure domain is treated as character
+  na.color = "transparent"
+)
+
+# Get bounding box to zoom
+#bbox <- st_bbox(cluster_input_wgs84)
+
+leaflet(data = cluster_input_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(as.character(cluster)),  # force character here too
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.6,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Spatial Cluster:", cluster)
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~as.character(cluster),
+    title = "Cluster",
+    position = "bottomright"
+  ) %>%
+  fitBounds(st_bbox(cluster_input_wgs84)[["xmin"]],
+            st_bbox(cluster_input_wgs84)[["ymin"]],
+            st_bbox(cluster_input_wgs84)[["xmax"]],
+            st_bbox(cluster_input_wgs84)[["ymax"]])
+```
+
+```{r}
+# Get the cluster centers (in standardized form)
+scaled_centers <- kmeans_result$centers
+
+# Print them
+print("Cluster centers (standardized):")
+print(scaled_centers)
+
+# Convert the centers back to original scale: x * SD + mean
+original_centers <- t(apply(
+  scaled_centers, 1, 
+  function(x) x * attr(cluster_scaled, "scaled:scale") + attr(cluster_scaled, "scaled:center")
+))
+
+# Print the real-world values
+print("Cluster centers (original):")
+print(original_centers)
+```
+
+Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability.
+
+Cluster description: 1 - (45 features) Cluster situated predominantly around the river, high fr (since this is generally the only area that has potential for flooding), and otherwise generally strong positive results (hr, is, hv, ab). Due to the high ts, the sn is also on the lower end. 2 - (335 features) Cluster represents strongly vegetated areas, with a high hv and low hr, is is also strongly correlated here. Relatively high ts results in both low ab and sn. 3 - (271 features) HIGHEST hr, LOWEST hv. Broadly urban areas with low fr and sn since not very close to water bodies. High is and low ab, meaning that while it is a high risk area, the impact of interventions would be low. 4 - (24 features) Generally quite median scores across the board. With a high ab and relatively high sn, the impact of interventions would be felt quite highly, and there is generally a large amount of 'promenade' area. 5 - (61 features) Highly scoring in all RISK attributes (hr, fr, is, inverse(hv)). Relatively high ab, and very high sn suggest high impact of interventions which would greatly impact the streams themselves.
+
+```{r}
+cluster_map <- st_read("files/cluster_analysis/clusters_1.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+cluster_input_wgs84 <- st_transform(cluster_map, crs = 4326)
+
+# Create a color factor palette for discrete clusters
+pal <- colorFactor(
+  palette = "Set1",
+  domain = as.character(cluster_input_wgs84$cluster),  # ensure domain is treated as character
+  na.color = "transparent"
+)
+
+# Get bounding box to zoom
+#bbox <- st_bbox(cluster_input_wgs84)
+
+leaflet(data = cluster_input_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(as.character(cluster)),  # force character here too
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.6,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Spatial Cluster:", cluster)
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~as.character(cluster),
+    title = "Cluster",
+    position = "bottomright"
+  ) %>%
+  fitBounds(st_bbox(cluster_input_wgs84)[["xmin"]],
+            st_bbox(cluster_input_wgs84)[["ymin"]],
+            st_bbox(cluster_input_wgs84)[["xmax"]],
+            st_bbox(cluster_input_wgs84)[["ymax"]])
+```
+
 ## Discussion
 
-## Conclusion
+leaflet map for heat risk index
 
+
+```{r}
+# Read the combined result
+hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "RdBu", 
+  domain = hr_index_wgs84$heat_risk_index,
+  reverse = TRUE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(hr_index_wgs84)
+
+leaflet(data = hr_index_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(heat_risk_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~heat_risk_index,
+    title = "Heat Risk Index",
+    position = "bottomright"
+  ) 
+
+```
+
+
+
+
+
+
+
+
+
+3-4. Stream Navigability\
+
+<!-- code moved upwards before Kmeans clustering code -->
+
+Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
+(placeholder 4-8)\
+Accuracy/Reflection:
+
+3-7. Density Indicators (FSI/GSI/OSR) Developed from N-DSM. To create N-DSM, DSM - DEM, verify results filter out inconsistent height values. Calculate floorspace sum: calculate assumed number of floors by performing height / 3 (assumed that each floor is 3m), floorspace = area of polygon \* number of floors. Calculate footpring by calculating the area of the polygon. Perform spatial join, calculating the sum of both floorspace and footprint. Perform FSI, GSI, and OSR post processing in R as follows:
+
+```{r}
+density_indicator <- "files/improve_quality_of_life/DensityIndicators_raw.gpkg"
+
+di <- st_read(density_indicator, quiet = TRUE)
+
+di_result <- di |>
+  mutate(
+    FSI = ifelse(is.finite(floorspace_sum / area), floorspace_sum / area, 0),
+    GSI = ifelse(is.finite(footprint_sum / area), footprint_sum / area, 0),
+    OSR = ifelse(FSI != 0 & !is.na(FSI), (1 - GSI) / FSI, 0)
+  )
+
+osr_scaled <- di_result |> 
+  mutate(osr_scaled = as.numeric(scale(di_result$OSR)))
+
+#Write Density Indicator results to file KEEP COMMENTED OUTx
+#st_write(di_result, "files/improve_quality_of_life/density_indicators.gpkg")
+
+p9 <- ggplot(di_result) +
+  geom_sf(aes(fill = OSR), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Open Space Ratio", fill = "OSR") +
+  theme_minimal()
+
+print(p9)
+
+# Add quantile bins (3x3 grid = 9 color categories)
+di_bivar <- di_result |>
+  mutate(
+    FSI_q = ntile(FSI, 3),
+    GSI_q = ntile(GSI, 3),
+    bivar_class = paste0(FSI_q, "-", GSI_q)
+  )
+
+bivar_palette <- c(
+  "1-1" = "#e8e8e8",  
+  "1-2" = "#b5c0da",
+  "1-3" = "#6c83b5",
+  "2-1" = "#b8d6be",
+  "2-2" = "#90b2b3",
+  "2-3" = "#567994",
+  "3-1" = "#73ae80",
+  "3-2" = "#5a9178",
+  "3-3" = "#2a5a5b"   
+)
+
+### Experimental BIVARIATE CHOROPLETH MAP 
+p10 <- ggplot(di_bivar) +
+    geom_sf(aes(fill = bivar_class), color = NA) +
+    scale_fill_manual(values = bivar_palette) +
+    labs(
+      title = "Bivariate Choropleth: FSI vs GSI",
+      fill = "FSI (x) / GSI (y)"
+    ) +
+    theme_minimal()
+
+print(p10)
+```
+
+## Conclusion
