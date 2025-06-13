@@ -1,5 +1,5 @@
 ---
-title: "Urban Stream Restoration: building a more resilient urban environmental system"
+title: "Urban Stream Restoration: building a more resilient urban environmental system- Case of Poznań, Poland."
 subtitle: "Group B"
 author:
   - name: "Stepan Prikazchikov"
@@ -368,7 +368,7 @@ fr_scaled <- fr |>
 :::
 :::::
 
-Processing:******\
+Processing:\*\*\*\*\*\*\
 Reflection:
 
 2-2. Density of Impermeable Surfaces\
@@ -392,7 +392,7 @@ is_scaled <- is |>
 :::
 :::::
 
-Processing:******\
+Processing:\*\*\*\*\*\*\
 Accuracy/Reflection:
 
 2-3. Heat Risk Index\
@@ -638,7 +638,6 @@ Accuracy/Reflection:
 
 Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
-
 
 3-8. Pedestrian Accessibility Index\
 
@@ -1018,9 +1017,5 @@ p10 <- ggplot(di_bivar) +
 
 print(p10)
 ```
-
-
-
-
 
 ## Conclusion
