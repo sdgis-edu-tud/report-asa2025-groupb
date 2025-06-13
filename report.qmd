@@ -640,11 +640,14 @@ Accuracy/Reflection:
 
 **Measurements Importance Ranking:**\
 
-(placeholder 4-15)\
+| most important | ------\> | ------\> | ------\> | least important |
+|----|----|----|----|----|
+| Residents Number | Attraction Betweeness, Public Transport Accessibility | Local Centrality Index | People Attraction Density | Urbanized Land Use Density |
 
-**Saaty Matrix:**
+**Saaty Matrix:**\
 
-(placeholder 4-16)
+![](report_files/libs/imgs/LQ_saaty_matrix.jpg)
+![](report_files/libs/imgs/LQ_weighting_result.jpg)
 
 #### Aggregated Results for Research Questions
 
