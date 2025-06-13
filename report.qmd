@@ -655,36 +655,37 @@ Accuracy/Reflection:
 #### Aggregated Results for Research Questions
 
 1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
-    (placeholder image5-1)\
+    (please update leaflet code here)\
 
 2.  **Which areas are most in need of interventions to promote climate adaptation?**\
-    (placeholder image5-2)\
+    (please update leaflet code here)\
 
 3.  **Which areas are most suitable for neighborhood-oriented interventions that improve the quality of life of local residents?**\
 
 ```{r}
 # Read the combined result
-hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+lq_index <- st_read("files/improve_quality_of_life/RQ3_aggregated.gpkg", quiet = TRUE)
+stream <- st_read()
 
 # Reproject to WGS 84 for leaflet
-hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
+lq_index_wgs84 <- st_transform(lq_index, crs = 4326)
 
 pal <- colorNumeric(
-  palette = "RdBu", 
-  domain = hr_index_wgs84$heat_risk_index,
-  reverse = TRUE,
+  palette = "Reds", 
+  domain = lq_index_wgs84$LQ_aggregated_index,
+  reverse = FALSE,
   na.color = "transparent"
 )
 
-bbox <- st_bbox(hr_index_wgs84)
+bbox <- st_bbox(lq_index_wgs84)
 
-leaflet(data = hr_index_wgs84) %>%
+leaflet(data = lq_index_wgs84) %>%
   addProviderTiles(
     providers$Esri.WorldImagery,
     options = providerTileOptions(opacity = 0.5)
   ) %>%
   addPolygons(
-    fillColor = ~pal(heat_risk_index),
+    fillColor = ~pal(LQ_aggregated_index),
     color = "#444444",
     weight = 0.5,
     opacity = 1,
@@ -695,12 +696,12 @@ leaflet(data = hr_index_wgs84) %>%
       fillOpacity = 0.9,
       bringToFront = TRUE
     ),
-    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+    label = ~paste("Research Question 3: Aggregated Index:", round(LQ_aggregated_index, 2))
   ) %>%
   addLegend(
     pal = pal,
-    values = ~heat_risk_index,
-    title = "Heat Risk Index",
+    values = ~LQ_aggregated_index,
+    title = "Research Question 3: Aggregated Index",
     position = "bottomright"
   ) 
 
