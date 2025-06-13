@@ -462,49 +462,6 @@ print(p5)
 
 ```
 
-```{r}
-# Read the combined result
-hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
-
-# Reproject to WGS 84 for leaflet
-hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
-
-pal <- colorNumeric(
-  palette = "RdBu", 
-  domain = hr_index_wgs84$heat_risk_index,
-  reverse = TRUE,
-  na.color = "transparent"
-)
-
-bbox <- st_bbox(hr_index_wgs84)
-
-leaflet(data = hr_index_wgs84) %>%
-  addProviderTiles(
-    providers$Esri.WorldImagery,
-    options = providerTileOptions(opacity = 0.5)
-  ) %>%
-  addPolygons(
-    fillColor = ~pal(heat_risk_index),
-    color = "#444444",
-    weight = 0.5,
-    opacity = 1,
-    fillOpacity = 0.3,
-    highlightOptions = highlightOptions(
-      weight = 2,
-      color = "#666",
-      fillOpacity = 0.9,
-      bringToFront = TRUE
-    ),
-    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
-  ) %>%
-  addLegend(
-    pal = pal,
-    values = ~heat_risk_index,
-    title = "Heat Risk Index",
-    position = "bottomright"
-  ) 
-
-```
 
 2-4. River sinuosity\
 
@@ -1002,6 +959,61 @@ leaflet(data = cluster_input_wgs84) %>%
 ```
 
 ## Discussion
+
+leaflet map for heat risk index
+
+
+```{r}
+# Read the combined result
+hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "RdBu", 
+  domain = hr_index_wgs84$heat_risk_index,
+  reverse = TRUE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(hr_index_wgs84)
+
+leaflet(data = hr_index_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(heat_risk_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~heat_risk_index,
+    title = "Heat Risk Index",
+    position = "bottomright"
+  ) 
+
+```
+
+
+
+
+
+
+
+
 
 3-4. Stream Navigability\
 
