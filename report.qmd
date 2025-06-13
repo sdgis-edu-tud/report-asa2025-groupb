@@ -151,8 +151,11 @@ Urban rivers are not merely ecological corridors but also social public spaces t
 ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
 **Hexagons**:\
-- Equal distance to neighboring cells\
-- Reduced edge effect\
+For the spatial analysis, the study area was subdivided using a hexagonal grid, which served as the primary unit of analysis. The choice of hexagons was narrowed down by several methodological advantages. 
+
+-Hexagonal cells maintain equal distance to all neighboring cells, which supports reduces directional bias in spatial calculations. 
+-The use of hexagons helps to minimize edge effects that commonly arise in grid-based spatial analysis, thereby ensuring more consistent and accurate representation of spatial phenomena. 
+
 
 **Diameter = 500m**:\
 - 5-10min walk distance\
