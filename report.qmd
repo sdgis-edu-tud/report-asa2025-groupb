@@ -193,13 +193,13 @@ In the context of our study on urban stream restoration in Poznań, the principa
 | 1-6 | Nuisance from Urban Barriers | roads with a high maxspeed become dangerous urban barriers preventing animals from migrating and thus hindering the biodiversity | road data --\> Threshold: maxspeed \>= 40km/h --\> Intersection --\> Sum of length in each cell --\> Normalization | OSM Data |  |
 
 2.  **Promote Climate Adaptation**\
-    2-1. **Risk of Flooding**: there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations.\
 
-    2-2. **Density of Impermeable Surfaces**: the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls.\
-
-    2-3. **Heat Risk Index**: the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation.\
-
-    2-4. **River Sinuosity**: the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape.\
+| Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
+|------------|------------|------------|------------|------------|------------|
+| 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
+| 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
+| 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
+| 2-4 | River Sinuosity | the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape |  | OSM Data |  |
 
 3.  **Improve Quality of Life**\
     3-1. **Residents Number**: the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams.\
@@ -370,7 +370,7 @@ fr_scaled <- fr |>
 :::
 :::::
 
-Processing:***flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization***\
+Processing:******\
 Reflection:
 
 2-2. Density of Impermeable Surfaces\
@@ -394,7 +394,7 @@ is_scaled <- is |>
 :::
 :::::
 
-Processing:***Landcover --\> Zonal Statistics --\> Sum --\> Normalization***\
+Processing:******\
 Accuracy/Reflection:
 
 2-3. Heat Risk Index\
