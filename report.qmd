@@ -184,7 +184,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|------------|------------|------------|------------|------------|------------|
+|----|----|----|----|----|----|
 | 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
@@ -195,7 +195,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 2.  **Promote Climate Adaptation**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|------------|------------|------------|------------|------------|------------|
+|----|----|----|----|----|----|
 | 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
 | 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
 | 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
@@ -235,9 +235,6 @@ Our typology creation thus follows two narratives: Which locations are in need o
 ### Reproducibility Self-Assessment
 
 *please update here*
-
-
-
 
 ## Results
 
@@ -343,7 +340,7 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 **Measurements Importance Ranking:**\
 
 | most important |   |   | ------\> | least important |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
 
 **Saaty Matrix:**\
