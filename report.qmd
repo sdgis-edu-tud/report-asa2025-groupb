@@ -701,6 +701,25 @@ Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated ho
 BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
 
 ```{r}
+stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
+
+sn <- st_read(stream_navigability, quiet = TRUE)
+
+sn_scaled <- sn |> 
+  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
+
+#head(sn_scaled)
+
+p8 <- ggplot(sn_scaled) +
+  geom_sf(aes(fill = sn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
+  theme_minimal()
+
+# print(p8)
+```
+
+```{r}
 # Create Clustering input from previous datasets. 
 geometry <- st_geometry(hr_scaled)
 
@@ -931,24 +950,7 @@ leaflet(data = cluster_input_wgs84) %>%
 
 3-4. Stream Navigability\
 
-```{r}
-stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
-
-sn <- st_read(stream_navigability, quiet = TRUE)
-
-sn_scaled <- sn |> 
-  mutate(sn_scaled = as.numeric(scale(sn$navigability_indicator)))
-
-#head(sn_scaled)
-
-p8 <- ggplot(sn_scaled) +
-  geom_sf(aes(fill = sn_scaled), color = NA) +
-  scale_fill_gradient2() +
-  labs(title = "Navigability of streams", fill = "Standard devation of roads within 100m") +
-  theme_minimal()
-
-print(p8)
-```
+<!-- code moved upwards before Kmeans clustering code -->
 
 Processing:***100m buffer around waterways --\> intersect buffer with roads --\> split roads every 10m --\> count road segments in Polygon --\> Normalization***\
 (placeholder 4-8)\
