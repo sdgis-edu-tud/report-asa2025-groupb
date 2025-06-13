@@ -214,6 +214,8 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 ### Typology Construction
 
+<!-- to be uodated -->
+
 Typology construction based on an 'Requirements by Priority': Must-have, Should-have, Could-have, and wish list (Necessary for the product to perform its basic functions, Expand the software's functionality, but aren't integral to its operation, Less important, but can serve as nice additions to the app's feature list, Potentially innovative additions that are usually unrelated to the core objective of the product).\
 
 We can assume that the typology creation will create at least 3 - 5 different clusters. We can assume that one cluster must meet all of our (positive) criteria, as some areas within a cities boundaries will have to anyway be taken as an ideal to work towards. A second cluster would show an area in dire need of change, with a high possibility thereof. A third would similarly need change, but would be less likely a contender.\
