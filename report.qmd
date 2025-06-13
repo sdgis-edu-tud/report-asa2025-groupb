@@ -208,13 +208,11 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
     3-3. **People Attraction Density**: if the area already contains some attractions for people, it has a good base to become a more active space in the future.\
 
-    3-4. **Stream Navigability**: this index is calculated based on the density of roads in the area. The areas with denser roads have better accessibility; it also indicates higher degree of urbanization.\
+    3-4. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
 
-    3-5. **Local Centrality Index**: this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions.\
+    3-5. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
 
-    3-6. **Public Transport Accessibility**: the areas that are more accessible via public transport are more suitable for life-quality-improving interventions.\
-
-    3-7. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
+    3-6. **Pedestrian Accessibility Index**: the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions.\
 
 ### Typology Construction
 
