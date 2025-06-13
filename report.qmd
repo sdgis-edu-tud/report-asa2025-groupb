@@ -665,10 +665,11 @@ Accuracy/Reflection:
 ```{r}
 # Read the combined result
 lq_index <- st_read("files/improve_quality_of_life/RQ3_aggregated.gpkg", quiet = TRUE)
-stream <- st_read()
+stream <- st_read("files/waterway.gpkg", quiet = TRUE)
 
 # Reproject to WGS 84 for leaflet
 lq_index_wgs84 <- st_transform(lq_index, crs = 4326)
+stream_wgs84 <- st_transform(stream, crs = 4326)
 
 pal <- colorNumeric(
   palette = "Reds", 
@@ -697,6 +698,12 @@ leaflet(data = lq_index_wgs84) %>%
       bringToFront = TRUE
     ),
     label = ~paste("Research Question 3: Aggregated Index:", round(LQ_aggregated_index, 2))
+  ) %>%
+  addPolylines(
+    data = stream_wgs84,
+    color = "black",
+    weight = 1.5,
+    opacity = 1
   ) %>%
   addLegend(
     pal = pal,
