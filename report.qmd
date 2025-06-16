@@ -331,7 +331,7 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 
 **Saaty Matrix:**\
 
-(placeholder 2-16)
+![](report_files/libs/imgs/EB_saaty_matrix.JPG) ![](report_files/libs/imgs/EB_weighting_result.JPG)
 
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding\
@@ -482,7 +482,7 @@ print(p7)
 
 **Saaty Matrix:**
 
-(placeholder 3-14)
+Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_files/libs/imgs/CA_weighting_result.JPG)
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
@@ -598,11 +598,7 @@ Accuracy/Reflection:
 
 **Saaty Matrix:**\
 
-Enrich biodiversity: ![](report_files/libs/imgs/EB_saaty_matrix.JPG) ![](report_files/libs/imgs/EB_weighting_result.JPG)
-
-Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_files/libs/imgs/CA_weighting_result.JPG)
-
-Quality of life: ![](report_files/libs/imgs/LQ_saaty_matrix.jpg) ![](report_files/libs/imgs/LQ_weighting_result.jpg)
+![](report_files/libs/imgs/LQ_saaty_matrix.jpg) ![](report_files/libs/imgs/LQ_weighting_result.jpg)
 
 #### Aggregated Results for Research Questions
 
