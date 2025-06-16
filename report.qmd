@@ -288,7 +288,7 @@ Reflection:\
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-5_DATA_Species_Richness.jpg){width="100%"}
+![](report_files/libs/imgs/2-5_Species_Richness_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
