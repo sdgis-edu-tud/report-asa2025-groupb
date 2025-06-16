@@ -617,23 +617,23 @@ Quality of life: ![](report_files/libs/imgs/LQ_saaty_matrix.jpg) ![](report_file
 1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
 ```{r}
 # Read the combined result
-lq_index <- st_read("files/enrich_biodiversity/EB_aggregated.gpkg", quiet = TRUE)
+eb_index <- st_read("files/enrich_biodiversity/EB_aggregated.gpkg", quiet = TRUE)
 stream <- st_read("files/waterway.gpkg", quiet = TRUE)
 
 # Reproject to WGS 84 for leaflet
-lq_index_wgs84 <- st_transform(lq_index, crs = 4326)
+eb_index_wgs84 <- st_transform(eb_index, crs = 4326)
 stream_wgs84 <- st_transform(stream, crs = 4326)
 
 pal <- colorNumeric(
-  palette = "Reds", 
-  domain = lq_index_wgs84$LQ_aggregated_index,
+  palette = "Greens", 
+  domain = eb_index_wgs84$LQ_aggregated_index,
   reverse = FALSE,
   na.color = "transparent"
 )
 
-bbox <- st_bbox(lq_index_wgs84)
+bbox <- st_bbox(eb_index_wgs84)
 
-leaflet(data = lq_index_wgs84) %>%
+leaflet(data = eb_index_wgs84) %>%
   addProviderTiles(
     providers$Esri.WorldImagery,
     options = providerTileOptions(opacity = 0.5)
