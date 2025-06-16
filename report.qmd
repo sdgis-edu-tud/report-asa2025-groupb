@@ -606,12 +606,11 @@ Accuracy/Reflection:
 
 **Saaty Matrix:**\
 
-![](report_files/libs/imgs/EB_saaty_matrix.JPG) ![](report_files/libs/imgs/EB_weighting_result.JPG)
+Enrich biodiversity: ![](report_files/libs/imgs/EB_saaty_matrix.JPG) ![](report_files/libs/imgs/EB_weighting_result.JPG)
 
-![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_files/libs/imgs/CA_weighting_result.JPG)
+Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_files/libs/imgs/CA_weighting_result.JPG)
 
-![](report_files/libs/imgs/LQ_saaty_matrix.jpg)
-![](report_files/libs/imgs/LQ_weighting_result.jpg)
+Quality of life: ![](report_files/libs/imgs/LQ_saaty_matrix.jpg) ![](report_files/libs/imgs/LQ_weighting_result.jpg)
 
 #### Aggregated Results for Research Questions
 
