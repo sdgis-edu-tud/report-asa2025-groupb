@@ -151,11 +151,11 @@ Urban rivers are not merely ecological corridors but also social public spaces t
 ![](report_files/libs/imgs/1-3_full_grid.jpeg)
 
 **Hexagons**:\
-For the spatial analysis, the study area was subdivided using a hexagonal grid, which served as the primary unit of analysis. The choice of hexagons was narrowed down by several methodological advantages. 
+For the spatial analysis, the study area was subdivided using a hexagonal grid, which served as the primary unit of analysis. The choice of hexagons was narrowed down by several methodological advantages.
 
--Hexagonal cells maintain equal distance to all neighboring cells, which supports reduces directional bias in spatial calculations. 
--The use of hexagons helps to minimize edge effects that commonly arise in grid-based spatial analysis, thereby ensuring more consistent and accurate representation of spatial phenomena. 
+- Hexagonal cells maintain equal distance to all neighboring cells, which supports reduces directional bias in spatial calculations.\
 
+- The use of hexagons helps to minimize edge effects that commonly arise in grid-based spatial analysis, thereby ensuring more consistent and accurate representation of spatial phenomena.
 
 **Diameter = 500m**:\
 - 5-10min walk distance\
@@ -187,7 +187,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
@@ -197,7 +197,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 2.  **Promote Climate Adaptation**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
 | 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
 | 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
@@ -213,7 +213,6 @@ In the context of our study on urban stream restoration in Poznań, the principa
 | 3-4 | Local Centrality Index | this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions |  | OSM Data |  |
 | 3-5 | Public Transport Accessibility | the areas that are more accessible via public transport are more suitable for life-quality-improving interventions |  | OSM Data |  |
 | 3-6 | Pedestrian Accessibility Index | the attraction betweenness analysis shows which roads are more frequently chosen leading to certain attractions (in this case streams), and the high value in this analysis indicates that the stream in those areas are more accessible for pedestrians, thus more suitable for community-oriented solutions |  | OSM Data |  |
-
 
 ### Typology Construction
 
@@ -268,7 +267,6 @@ hv_scaled <- hv |>
 
 Reflection:
 
-
 1-2. Natural Land Use Density\
 
 ::::: grid
@@ -282,7 +280,6 @@ Reflection:
 :::::
 
 Reflection:\
-
 
 1-3. Species Richness\
 
@@ -298,7 +295,6 @@ Reflection:\
 
 Reflection:\
 
-
 1-4. Nuisance from Industries\
 
 ::::: grid
@@ -312,7 +308,6 @@ Reflection:\
 :::::
 
 Reflection:
-
 
 1-5. Nuisance from Urban Barriers\
 
@@ -328,11 +323,10 @@ Reflection:
 
 Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
 
-
 **Measurements Importance Ranking:**\
 
 | most important |   |   | ------\> | least important |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
 
 **Saaty Matrix:**\
@@ -340,7 +334,7 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 (placeholder 2-16)
 
 2.  **Promote Climate Adaptation**\
-2-1. Risk of Flooding\
+    2-1. Risk of Flooding\
 
 ```{r}
 #| echo: false
@@ -462,7 +456,6 @@ print(p5)
 
 ```
 
-
 2-4. River sinuosity\
 
 ```{r}
@@ -492,7 +485,7 @@ print(p7)
 (placeholder 3-14)
 
 3.  **Improve Quality of Life**\
-3-1. Residents Number\
+    3-1. Residents Number\
 
 ::::: grid
 ::: g-col-6
@@ -536,7 +529,6 @@ Accuracy/Reflection:
 
 Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
 Accuracy/Reflection:
-
 
 3-4. Local Centrality\
 
@@ -601,7 +593,7 @@ Accuracy/Reflection:
 **Measurements Importance Ranking:**\
 
 | most important | ------\> | ------\> | ------\> | least important |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Residents Number | Attraction Betweeness, Public Transport Accessibility | Local Centrality Index | People Attraction Density | Urbanized Land Use Density |
 
 **Saaty Matrix:**\
@@ -615,6 +607,7 @@ Quality of life: ![](report_files/libs/imgs/LQ_saaty_matrix.jpg) ![](report_file
 #### Aggregated Results for Research Questions
 
 1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
+
 ```{r}
 # Read the combined result
 eb_index <- st_read("files/enrich_biodiversity/EB_aggregated.gpkg", quiet = TRUE)
@@ -626,7 +619,7 @@ stream_wgs84 <- st_transform(stream, crs = 4326)
 
 pal <- colorNumeric(
   palette = "Greens", 
-  domain = eb_index_wgs84$LQ_aggregated_index,
+  domain = eb_index_wgs84$EB_aggregated,
   reverse = FALSE,
   na.color = "transparent"
 )
@@ -639,7 +632,7 @@ leaflet(data = eb_index_wgs84) %>%
     options = providerTileOptions(opacity = 0.5)
   ) %>%
   addPolygons(
-    fillColor = ~pal(LQ_aggregated_index),
+    fillColor = ~pal(EB_aggregated),
     color = "#444444",
     weight = 0.5,
     opacity = 1,
@@ -650,7 +643,7 @@ leaflet(data = eb_index_wgs84) %>%
       fillOpacity = 0.9,
       bringToFront = TRUE
     ),
-    label = ~paste("Research Question 1: Aggregated Index:", round(LQ_aggregated_index, 2))
+    label = ~paste("Research Question 1: Aggregated Index:", round(EB_aggregated, 2))
   ) %>%
   addPolylines(
     data = stream_wgs84,
@@ -668,31 +661,32 @@ leaflet(data = eb_index_wgs84) %>%
 ```
 
 2.  **Which areas are most in need of interventions to promote climate adaptation?**\
+
 ```{r}
 # Read the combined result
-lq_index <- st_read("files/promote_climate_adaptation/CA_aggregated.gpkg", quiet = TRUE)
+ca_index <- st_read("files/promote_climate_adaptation/CA_aggregated.gpkg", quiet = TRUE)
 stream <- st_read("files/waterway.gpkg", quiet = TRUE)
 
 # Reproject to WGS 84 for leaflet
-lq_index_wgs84 <- st_transform(lq_index, crs = 4326)
+ca_index_wgs84 <- st_transform(ca_index, crs = 4326)
 stream_wgs84 <- st_transform(stream, crs = 4326)
 
 pal <- colorNumeric(
-  palette = "Reds", 
-  domain = lq_index_wgs84$LQ_aggregated_index,
+  palette = "Blues", 
+  domain = ca_index_wgs84$CA_aggregated,
   reverse = FALSE,
   na.color = "transparent"
 )
 
-bbox <- st_bbox(lq_index_wgs84)
+bbox <- st_bbox(ca_index_wgs84)
 
-leaflet(data = lq_index_wgs84) %>%
+leaflet(data = ca_index_wgs84) %>%
   addProviderTiles(
     providers$Esri.WorldImagery,
     options = providerTileOptions(opacity = 0.5)
   ) %>%
   addPolygons(
-    fillColor = ~pal(LQ_aggregated_index),
+    fillColor = ~pal(CA_aggregated),
     color = "#444444",
     weight = 0.5,
     opacity = 1,
@@ -703,7 +697,7 @@ leaflet(data = lq_index_wgs84) %>%
       fillOpacity = 0.9,
       bringToFront = TRUE
     ),
-    label = ~paste("Research Question 2: Aggregated Index:", round(LQ_aggregated_index, 2))
+    label = ~paste("Research Question 2: Aggregated Index:", round(CA_aggregated, 2))
   ) %>%
   addPolylines(
     data = stream_wgs84,
@@ -713,7 +707,7 @@ leaflet(data = lq_index_wgs84) %>%
   ) %>%
   addLegend(
     pal = pal,
-    values = ~LQ_aggregated_index,
+    values = ~CA_aggregated,
     title = "Research Question 2: Aggregated Index",
     position = "bottomright"
   ) 
@@ -1065,7 +1059,6 @@ leaflet(data = cluster_input_wgs84) %>%
 
 leaflet map for heat risk index
 
-
 ```{r}
 # Read the combined result
 hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
@@ -1109,14 +1102,6 @@ leaflet(data = hr_index_wgs84) %>%
   ) 
 
 ```
-
-
-
-
-
-
-
-
 
 3-4. Stream Navigability\
 
