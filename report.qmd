@@ -653,7 +653,7 @@ leaflet(data = eb_index_wgs84) %>%
   ) %>%
   addLegend(
     pal = pal,
-    values = ~LQ_aggregated_index,
+    values = ~EB_aggregated,
     title = "Research Question 1: Aggregated Index",
     position = "bottomright"
   ) 
