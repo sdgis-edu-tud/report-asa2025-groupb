@@ -612,7 +612,57 @@ Accuracy/Reflection:
 #### Aggregated Results for Research Questions
 
 1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
-    (please update leaflet code here)\
+```{r}
+# Read the combined result
+lq_index <- st_read("files/enrich_biodivercity/EB_aggregated.gpkg", quiet = TRUE)
+stream <- st_read("files/waterway.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+lq_index_wgs84 <- st_transform(lq_index, crs = 4326)
+stream_wgs84 <- st_transform(stream, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "Reds", 
+  domain = lq_index_wgs84$LQ_aggregated_index,
+  reverse = FALSE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(lq_index_wgs84)
+
+leaflet(data = lq_index_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(LQ_aggregated_index),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Research Question 1: Aggregated Index:", round(LQ_aggregated_index, 2))
+  ) %>%
+  addPolylines(
+    data = stream_wgs84,
+    color = "black",
+    weight = 1.5,
+    opacity = 1
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~LQ_aggregated_index,
+    title = "Research Question 1: Aggregated Index",
+    position = "bottomright"
+  ) 
+
+```
 
 2.  **Which areas are most in need of interventions to promote climate adaptation?**\
     (please update leaflet code here)\
