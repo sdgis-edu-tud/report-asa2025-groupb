@@ -614,7 +614,7 @@ Accuracy/Reflection:
 1.  **Which areas have a good base for implementing nature-based restoration solutions that nurture better biodiversity?**\
 ```{r}
 # Read the combined result
-lq_index <- st_read("files/enrich_biodivercity/EB_aggregated.gpkg", quiet = TRUE)
+lq_index <- st_read("files/enrich_biodiversity/EB_aggregated.gpkg", quiet = TRUE)
 stream <- st_read("files/waterway.gpkg", quiet = TRUE)
 
 # Reproject to WGS 84 for leaflet
