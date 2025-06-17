@@ -466,6 +466,16 @@ hr_scaled <- hr_index |>
 
 2-4. River sinuosity\
 
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/3-7_river_sinuosity_data.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](report_files/libs/imgs/3-8_river_sinuosity_index.jpg){width="100%"}
+:::
+:::::
+
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
 
