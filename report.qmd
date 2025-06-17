@@ -90,9 +90,9 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 </table>
 ```
 
-Having an integrated research question allows for a holistic approach addressing interconnected challenges of biodiversity loss, climate change, and social wellbeing simultaneously.
+Having an integrated research question allows for a holistic approach addressing interconnected challenges of biodiversity loss, climate change, and social well-being simultaneously.
 
-***Research Question-***\
+***Research Question***\
 Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?
 
 ### Typology Construction
@@ -120,8 +120,8 @@ Which areas which are most in need of intervention through integrated interventi
 </table>
 ```
 
-***Research Question-***\
-Which locations both need and are ready for restoration interventions to maximize impact and feasibility?
+***Research Question***\
+What aspect of intervention does each area need?
 
 ## Team Roles and Explanations
 
