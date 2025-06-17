@@ -772,7 +772,8 @@ leaflet(data = lq_index_wgs84) %>%
 
 ```
 
-**hhjkkkkkk**
+4. **Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?**\
+
 ```{r}
 # Read the combined result
 sm_index <- st_read("files/synthetic_map.gpkg", quiet = TRUE)
@@ -783,7 +784,7 @@ sm_index_wgs84 <- st_transform(sm_index, crs = 4326)
 stream_wgs84 <- st_transform(stream, crs = 4326)
 
 pal <- colorNumeric(
-  palette = "Cividis", 
+  palette = "viridis", 
   domain = sm_index_wgs84$synthetic_map,
   reverse = FALSE,
   na.color = "transparent"
