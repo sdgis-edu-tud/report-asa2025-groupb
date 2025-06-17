@@ -772,6 +772,59 @@ leaflet(data = lq_index_wgs84) %>%
 
 ```
 
+**hhjkkkkkk**
+```{r}
+# Read the combined result
+sm_index <- st_read("files/synthetic_map.gpkg", quiet = TRUE)
+stream <- st_read("files/waterway.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+sm_index_wgs84 <- st_transform(sm_index, crs = 4326)
+stream_wgs84 <- st_transform(stream, crs = 4326)
+
+pal <- colorNumeric(
+  palette = "Cividis", 
+  domain = sm_index_wgs84$synthetic_map,
+  reverse = FALSE,
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(sm_index_wgs84)
+
+leaflet(data = sm_index_wgs84) %>%
+  addProviderTiles(
+    providers$Esri.WorldImagery,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolygons(
+    fillColor = ~pal(synthetic_map),
+    color = "#444444",
+    weight = 0.5,
+    opacity = 1,
+    fillOpacity = 0.3,
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Areas in most need of intervention:", round(synthetic_map, 2))
+  ) %>%
+  addPolylines(
+    data = stream_wgs84,
+    color = "white",
+    weight = 1.5,
+    opacity = 1
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~synthetic_map,
+    title = "Areas in most need of intervention:",
+    position = "bottomright"
+  ) 
+
+```
+
 ***When the area has higher index, it means: (relatively)***\
 -*More people live in this area*\
 -*The stream in/near this area has good public transport and/or pedestrian accessibility*\
