@@ -769,7 +769,7 @@ leaflet(data = lq_index_wgs84) %>%
 
 ```
 
-**hhjhhj**
+**hhjkkkkkk**
 ```{r}
 # Read the combined result
 sm_index <- st_read("files/synthetic_map.gpkg", quiet = TRUE)
