@@ -422,42 +422,42 @@ hr_index <- hn_scaled |>
 hr_scaled <- hr_index |>
   mutate(hr_scaled = as.numeric(scale(hr_index$heat_risk_index)))
 
-### Map plotting
-p1 <- ggplot(hn) +
-  geom_sf(aes(fill = X10y_hotnights), color = NA) +
-  scale_fill_viridis_c() +
-  labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
-  theme_minimal()
-
-p2 <- ggplot(uhi) +
-  geom_sf(aes(fill = UHI_max_norm), color = NA) +
-  scale_fill_viridis_c() +
-  labs(title = "UHI max", fill = "UHI") +
-  theme_minimal()
-
-p3 <- ggplot(hn_scaled) +
-  geom_sf(aes(fill = hn_scaled), color = NA) +
-  scale_fill_gradient2() +
-  labs(title = "Standardized Hot Nights", fill = "Z-score") +
-  theme_minimal()
-
-p4 <- ggplot(uhi_scaled) +
-  geom_sf(aes(fill = uhi_scaled), color = NA) +
-  scale_fill_gradient2() +
-  labs(title = "Standardized UHI max", fill = "Z-score") +
-  theme_minimal()
-
-p5 <- ggplot(hr_index) +
-  geom_sf(aes(fill = heat_risk_index), color = NA) +
-  scale_fill_gradient2() +
-  labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
-  theme_minimal()
-
-print(p1)
-print(p2)
-print(p3)
-print(p4)
-print(p5)
+# ### Map plotting
+# p1 <- ggplot(hn) +
+#   geom_sf(aes(fill = X10y_hotnights), color = NA) +
+#   scale_fill_viridis_c() +
+#   labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
+#   theme_minimal()
+# 
+# p2 <- ggplot(uhi) +
+#   geom_sf(aes(fill = UHI_max_norm), color = NA) +
+#   scale_fill_viridis_c() +
+#   labs(title = "UHI max", fill = "UHI") +
+#   theme_minimal()
+# 
+# p3 <- ggplot(hn_scaled) +
+#   geom_sf(aes(fill = hn_scaled), color = NA) +
+#   scale_fill_gradient2() +
+#   labs(title = "Standardized Hot Nights", fill = "Z-score") +
+#   theme_minimal()
+# 
+# p4 <- ggplot(uhi_scaled) +
+#   geom_sf(aes(fill = uhi_scaled), color = NA) +
+#   scale_fill_gradient2() +
+#   labs(title = "Standardized UHI max", fill = "Z-score") +
+#   theme_minimal()
+# 
+# p5 <- ggplot(hr_index) +
+#   geom_sf(aes(fill = heat_risk_index), color = NA) +
+#   scale_fill_gradient2() +
+#   labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
+#   theme_minimal()
+# 
+# print(p1)
+# print(p2)
+# print(p3)
+# print(p4)
+# print(p5)
 
 # Write the combined file (Comment out if it has been done once)
 #st_write(hr_index, "files/promote_climate_adaptation/heat_risk.gpkg")
@@ -474,13 +474,13 @@ rs <- st_read(river_sinuosity, quiet = TRUE)
 rs_scaled <- rs |> 
   mutate(rs_scaled = as.numeric(scale(rs$wm_sinuosity)))
 
-p7 <- ggplot(rs_scaled) +
-  geom_sf(aes(fill = rs_scaled), color = NA) +
-  scale_fill_viridis_c() +
-  labs(title = "River sinuosity", fill = "Sinuosity") +
-  theme_minimal()
-
-print(p7)
+# p7 <- ggplot(rs_scaled) +
+#   geom_sf(aes(fill = rs_scaled), color = NA) +
+#   scale_fill_viridis_c() +
+#   labs(title = "River sinuosity", fill = "Sinuosity") +
+#   theme_minimal()
+# 
+# print(p7)
 
 ```
 
@@ -1115,6 +1115,11 @@ leaflet(data = cluster_input_wgs84) %>%
 
 ## Discussion
 
+## Conclusion
+
+## Appendix
+
+
 leaflet map for heat risk index
 
 ```{r}
@@ -1230,4 +1235,3 @@ p10 <- ggplot(di_bivar) +
 print(p10)
 ```
 
-## Conclusion
