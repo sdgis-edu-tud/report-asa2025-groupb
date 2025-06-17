@@ -476,6 +476,8 @@ hr_scaled <- hr_index |>
 :::
 :::::
 
+Reflection:
+
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
 
