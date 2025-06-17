@@ -108,20 +108,13 @@ Which areas which are most in need of intervention through integrated interventi
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2"><strong>Requirements by Priority: Necessity and Possibility for Restoration Intervention</strong></td>
-      <td>Necessity for Intervention</td>
-      <td>Which locations are in need of intervention?</td>
-    </tr>
-    <tr>
-      <td>Possibility for Intervention</td>
-      <td>Which locations are ready for intervention?</td>
+      <td><strong>Finding the most suitable solution based on site condition</strong></td>
+      <td>Type of Intervention</td>
+      <td>What aspect of intervention does each area need?</td>
     </tr>
   </tbody>
 </table>
 ```
-
-***Research Question***\
-What aspect of intervention does each area need?
 
 ## Team Roles and Explanations
 
