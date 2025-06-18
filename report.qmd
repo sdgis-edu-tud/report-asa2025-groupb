@@ -10,7 +10,11 @@ author:
     affiliation: "MSc Urbanism"
   - name: "Jaee A. Naik"
     affiliation: "MSc Urbanism"
-format: html
+format: 
+  html: 
+    toc: true
+    toc-depth: 4
+    toc-title: "Contents"
 lightbox: TRUE
 code-fold: TRUE # collapse code in the HTML output
 ---
