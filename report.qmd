@@ -252,7 +252,7 @@ Discussed variables: Channel morphology, Sinuosity, Floodplain width, Open water
       <td>the activeness of photosynthesis in the unit</td>
     </tr>
     <tr>
-      <td rowspan="4"><strong>Benefit Attributes: Ready for Intervention</strong></td>
+      <td rowspan="5"><strong>Benefit Attributes: Ready for Intervention</strong></td>
       <td>Terrain Slope(ts)</td>
       <td>average degree of slope in the unit</td>
     </tr>
