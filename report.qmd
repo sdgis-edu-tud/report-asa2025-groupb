@@ -222,13 +222,59 @@ Two key components must be defined for this method. The first is the spatial uni
 
 #### Chosen Fields
 
-Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
+Discussed variables: Channel morphology, Sinuosity, Floodplain width, Open water surface, Land use cover, Impervious surfaces, Vegetation, Green space connectivity, Mobility, Slow mobility accessibility, Building morphology, Floor area ratio
 
-Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
-
-BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
-
-Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability, lc = Local Centrality Index, rn = Resident Number. 
+```{=html}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Attribute</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4"><strong>Risk Attributes: Requiring Intervention</strong></td>
+      <td>Heat Risk index(hr)</td>
+      <td>aggregated hot nights and UHI max in the unit</td>
+    </tr>
+    <tr>
+      <td>Flood Risk Index(fr)</td>
+      <td>average flood depth when return period is 50 years in the unit</td>
+    </tr>
+    <tr>
+      <td>Impermeable Surface Density(is)</td>
+      <td>percentage of impermeable surfaces in the unit</td>
+    </tr>
+    <tr>
+      <td>Healthy Vegetation Density(hv)</td>
+      <td>the activeness of photosynthesis in the unit</td>
+    </tr>
+    <tr>
+      <td rowspan="4"><strong>Benefit Attributes: Ready for Intervention</strong></td>
+      <td>Terrain Slope(ts)</td>
+      <td>average degree of slope in the unit</td>
+    </tr>
+    <tr>
+      <td>Pedestrian Accessibility Index(ab)</td>
+      <td>the accessibility of the streams by slow mobility calculated by attraction betweeness(800M)</td>
+    </tr>
+    <tr>
+      <td>Stream Navigability Index(sn)</td>
+      <td>the density of roads in the unit</td>
+    </tr>
+    <tr>
+      <td>Local Centrality Index(lc)</td>
+      <td>the centrality of settlements in the unit calculated by angular integration(800M)</td>
+    </tr>
+    <tr>
+      <td>Residents Number Index(rn)</td>
+      <td>the number of residents living in the unit</td>
+    </tr>
+  </tbody>
+</table>
+```
 
 Hydrological conditions: Impervious surface ratio, stream enclosure, streamflow variability, flood risk, infiltration capacity, baseflow contribution
 
