@@ -17,16 +17,10 @@ format:
     toc-title: "Contents"
 lightbox: TRUE
 code-fold: TRUE # collapse code in the HTML output
+execute: 
+  echo: FALSE
 ---
 
-::: callout
-## This is a computational notebook
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-Install necessary packages
 
 ```{r}
 #install.packages("sf") 
@@ -37,9 +31,8 @@ Install necessary packages
 #install.packages("rJava")
 #install.packages("swipeR")
 #install.packages("ggplot2")
+#install.packages("fmsb")
 ```
-
-Load necessary packages
 
 ```{r}
 library(sf) # for processing vector data 
@@ -50,8 +43,8 @@ library(rJava)
 #library(swipeR) # Could be depreciated, as in I don't want to use it 
 library(ggplot2)
 library(htmltools)
+library(fmsb)
 ```
-:::
 
 ## Introduction
 
@@ -503,6 +496,14 @@ Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_f
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
+```{r}
+residents_number <- "files/improve_quality_of_life/residents_number.gpkg"
+
+rn <- st_read(residents_number, quiet = TRUE)
+
+rn_scaled <- rn |> 
+  mutate(rn_scaled = as.numeric(scale(rn$pop_sum)))
+```
 
 ::::: grid
 ::: g-col-6
@@ -548,6 +549,16 @@ Processing:***point of interest data --\> Count Points in Polygon --\> Normaliza
 Accuracy/Reflection:
 
 3-4. Local Centrality\
+
+```{r}
+local_centrality <- "files/improve_quality_of_life/local_centrality.gpkg"
+
+lc <- st_read(local_centrality, quiet = TRUE)
+
+lc_scaled <- lc |> 
+  mutate(lc_scaled = as.numeric(scale(lc$cell_data_mean_value)))
+```
+
 
 ::::: grid
 ::: g-col-6
@@ -846,11 +857,19 @@ leaflet(data = sm_index_wgs84) %>%
 
 Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
 
-Our variables: RISK ATTRRIBUTES Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
+Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
 
-BENEFIT ATTRIBUTES: terrain_slope density_indicators (any can be used, OSR as most logical?) attraction_betweenness navigability_indicator
+BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
 
-2-4. Terrain slope\
+Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability, lc = Local Centrality Index, rn = Resident Number. 
+
+Hydrological conditions: Impervious surface ratio, stream enclosure, streamflow variability, flood risk, infiltration capacity, baseflow contribution
+
+Ecological integrity: Riparian vegetation cover (NDVI), streambank modification index, habitat fragmentation, connectivity score, biodiversity proxy.
+
+Urban morphology and Infrastructure: Population density, land use mix, stream network density, sewer system type, built infrastructure pressure.
+
+Social and Planning context: Public access/walkability index, social vulnerability index, recreation potential, planning policy zone, restoration feasability score.
 
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
@@ -866,15 +885,9 @@ p6 <- ggplot(ts_scaled) +
   labs(title = "Mean slope angle", fill = "Std slope") +
   theme_minimal()
 
-print(p6)
+#print(p6)
 
 ```
-
-Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
-
-Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
-
-BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
 
 ```{r}
 stream_navigability <- "files/improve_quality_of_life/navigability_indicator.gpkg"
@@ -896,31 +909,32 @@ p8 <- ggplot(sn_scaled) +
 ```
 
 ```{r}
+streetnetwork_density <- "files/cluster_analysis/streetnetwork_density.gpkg"
+
+snd <- st_read(streetnetwork_density, quiet = TRUE)
+```
+
+
+```{r}
+### Geometry creation from the input files for clustering
+
 # Create Clustering input from previous datasets. 
 geometry <- st_geometry(hr_scaled)
 
-# Combine all scaled variables into one data frame
-#cluster_attributes <- data.frame(
-  #hr_scaled = hr_scaled$hr_scaled,
-  #fr_scaled = fr_scaled$fr_scaled,
-  #is_scaled = is_scaled$is_scaled,
-  #hv_scaled = hv_scaled$hv_scaled,
-  #ts_scaled = ts_scaled$ts_scaled,
-  #osr_scaled = osr_scaled$osr_scaled,
-  #ab_scaled = ab_scaled$ab_scaled,
-  #sn_scaled = sn_scaled$sn_scaled
-#)
+#Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability, lc = Local Centrality Index, snd = Street Network Density, rn = Resident Number.  
 
 # Better to combine NON-SCALED variables since we want to revert back to normal values later
 cluster_attributes <- data.frame(
   hr = hr_index$heat_risk_index,
-  fr = fr$flood_sum,
+  #fr = fr$flood_sum,
   is = is$inperm_sum,
   hv = hv$vegetation_health_index_small_grid_ndvi_mean,
-  ts = ts$slope_mean,
-  #osr = di_result$OSR, #osr gives bad results, thus omission  
-  ab = ab_cleaned$abt_cell_data_mean,
-  sn = sn$navigability_indicator
+  #ts = ts$slope_mean,
+  #ab = ab_cleaned$abt_cell_data_mean,
+  #sn = sn$navigability_indicator,
+  #lc = lc$cell_data_mean_value,
+  snd = snd$length_sum,
+  rn = rn$pop_sum
 )
 
 # Scale attributes together
@@ -929,197 +943,127 @@ cluster_scaled <- scale(cluster_attributes)
 # Combine geometry and attributes into one sf object
 cluster_input <- st_sf(cluster_scaled, geometry = geometry)
 #head(cluster_input)
-#st_write(cluster_input, "files/cluster_analysis/clusters_raw.gpkg")  
+#st_write(cluster_input, "files/cluster_analysis/clusters_raw2.gpkg")  
+```
 
-inertia <- numeric()
+```{r}
+process_clustering <- function(input_gpkg_path, output_gpkg_path, k = 5, plot_title = "Cluster Radar Charts") {
+  # Read input
+  input_sf <- st_read(input_gpkg_path, quiet = TRUE)
+  geometry <- st_geometry(input_sf)
 
-# Try k values from 2 to 9
-k_values <- 2:9
+  # Extract numeric columns for clustering (exclude geometry)
+  cluster_attributes <- input_sf %>%
+    st_drop_geometry() %>%
+    select(where(is.numeric))
 
-# Loop through each k value
-for (k in k_values) {
-  km <- kmeans(cluster_scaled, centers = k, nstart = 100) 
+  # Scale attributes
+  cluster_scaled <- scale(cluster_attributes)
+
+  # Recreate sf with scaled data
+  cluster_input <- st_sf(as.data.frame(cluster_scaled), geometry = geometry)
+
+  # Elbow method
+  inertia <- sapply(2:9, function(k) {
+    kmeans(cluster_scaled, centers = k, nstart = 100)$tot.withinss
+  })
+  #plot(2:9, inertia, type = "b", col = "darkblue", main = "Elbow Method")
+
+  # K-means
+  set.seed(0)
+  kmeans_result <- kmeans(cluster_scaled, centers = k, nstart = 100)
+  cluster_input$cluster <- as.factor(kmeans_result$cluster)
+
+  # Save output
+  #st_write(cluster_input, output_gpkg_path, delete_dsn = TRUE, quiet = TRUE)
+
+  # Radar charts
+  scaled_centers <- kmeans_result$centers
+  centers_df <- as.data.frame(scaled_centers)
+  rownames(centers_df) <- paste("Cluster", 1:nrow(centers_df))
+
+  radar_data <- rbind(rep(3, ncol(centers_df)), rep(-1, ncol(centers_df)), centers_df)
+  par(mfrow = c(2, ceiling(nrow(centers_df) / 2)), mar = c(1, 2, 2, 1))
+  for (i in 3:nrow(radar_data)) {
+    radarchart(radar_data[c(1, 2, i), ],
+               axistype = 1,
+               pcol = rgb(0.2, 0.5, 0.5, 0.9),
+               pfcol = rgb(0.2, 0.5, 0.5, 0.4),
+               plwd = 2,
+               cglcol = "grey", cglty = 1, axislabcol = "grey",
+               caxislabels = round(seq(-1, 5, length.out = 5), 1),
+               cglwd = 0.8,
+               vlcex = 0.8,
+               title = rownames(radar_data)[i])
+  }
+
+  # Distance to cluster centers
+  distances <- sapply(1:nrow(cluster_scaled), function(i) {
+    sqrt(sum((cluster_scaled[i, ] - scaled_centers[kmeans_result$cluster[i], ])^2))
+  })
+
+  mean_distance <- data.frame(cluster = kmeans_result$cluster, distance = distances) %>%
+    group_by(cluster) %>%
+    summarise(mean_distance = mean(distance))
+  print(mean_distance)
+
+  find_closest_cells <- function(cluster_scaled, kmeans_result) {
+  labels <- kmeans_result$cluster
+  centers <- kmeans_result$centers
+  closest_indices <- integer(nrow(centers))
+
+  for (i in seq_len(nrow(centers))) {
+    cluster_points <- cluster_scaled[labels == i, , drop = FALSE]
+    cluster_rows <- which(labels == i)
+    
+    distances <- apply(cluster_points, 1, function(row) {
+      sqrt(sum((row - centers[i, ])^2))
+    })
+    
+    closest_in_cluster <- which.min(distances)
+    closest_indices[i] <- cluster_rows[closest_in_cluster]
+  }
   
-   #tot.withinss is Total within-cluster sum of squares
-   #This measures how compact the clusters are: lower is better.
-  inertia <- c(inertia, km$tot.withinss)
+  return(closest_indices)
+  }
+  
+  closest_cells <- find_closest_cells(cluster_scaled, kmeans_result)
+
+# Extract the corresponding rows from your spatial data
+closest_sf <- cluster_input[closest_cells, ]
+
+# Optional: print to verify
+print(closest_sf)
+
+# Define export path
+output_path <- "files/cluster_analysis/closest_cells_to_centers4.gpkg"
+
+# Write to GeoPackage
+#st_write(closest_sf, output_path, delete_dsn = TRUE)
+  
+  # Leaflet map
+  cluster_input_wgs84 <- st_transform(cluster_input, crs = 4326)
+  pal <- colorFactor(palette = "Set1", domain = as.character(cluster_input_wgs84$cluster))
+  leaflet(data = cluster_input_wgs84) %>%
+    addProviderTiles(providers$Esri.WorldImagery, options = providerTileOptions(opacity = 0.5)) %>%
+    addPolygons(
+      fillColor = ~pal(as.character(cluster)),
+      color = "#444444", weight = 0.5, opacity = 1, fillOpacity = 0.6,
+      highlightOptions = highlightOptions(weight = 2, color = "#666", fillOpacity = 0.9, bringToFront = TRUE),
+      label = ~paste("Spatial Cluster:", cluster)) %>%
+    addLegend(pal = pal, values = ~as.character(cluster), title = "Cluster", position = "bottomright") %>%
+    fitBounds(st_bbox(cluster_input_wgs84)[["xmin"]],
+              st_bbox(cluster_input_wgs84)[["ymin"]],
+              st_bbox(cluster_input_wgs84)[["xmax"]],
+              st_bbox(cluster_input_wgs84)[["ymax"]])
 }
-
-# Combine the results into a data frame for plotting
-elbow_df <- data.frame(k = k_values, inertia = inertia)
-
-print(elbow_df)
-
-# Make the elbow plot
-plot(k_values, inertia,
-     type = "b",                  # shown both points + lines 
-     col = "darkblue",
-     main = "Elbow Method")
-
-# `set.seed()` sets the random number generator to a fixed state
-# Set the seed so the clustering result is always the same when re-run
-set.seed(0)  # The number 0 is just a fixed choice. You can also use 10, 345, etc.
-
-# Choose the number of clusters based on the elbow plot
-k <- 5
-
-# Run K-means clustering on the standardized data
-kmeans_result <- kmeans(cluster_scaled, centers = k, nstart = 100)
-
-# Add the cluster labels to the spatial data
-cluster_input$cluster <- as.factor(kmeans_result$cluster) # The result kmeans_result$cluster is a list of cluster labels (1 to 4), in the same order as the original rows in X_scaled and grids
-
-head(cluster_input)
-#st_write(cluster_input, "files/cluster_analysis/clusters_1.gpkg")
-
-# Show how many grids fall into each cluster
-print(table(cluster_input$cluster))
-
-# Plot clusters with base R
-#plot(cluster_input["cluster"], 
-     #main = "Spatial Pattern of Urban Stream Clusters", 
-     #border = NA)
-
 ```
 
 ```{r}
-# Get the cluster centers (in standardized form)
-scaled_centers <- kmeans_result$centers
-
-# Print them
-print("Cluster centers (standardized):")
-print(scaled_centers)
-
-# Convert the centers back to original scale: x * SD + mean
-original_centers <- t(apply(
-  scaled_centers, 1, 
-  function(x) x * attr(cluster_scaled, "scaled:scale") + attr(cluster_scaled, "scaled:center")
-))
-
-# Print the real-world values
-print("Cluster centers (original):")
-print(original_centers)
-```
-
-Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability.
-
-Cluster description: 1 - (45 features) Cluster situated predominantly around the river, high fr (since this is generally the only area that has potential for flooding), and otherwise generally strong positive results (hr, is, hv, ab). Due to the high ts, the sn is also on the lower end. 2 - (335 features) Cluster represents strongly vegetated areas, with a high hv and low hr, is is also strongly correlated here. Relatively high ts results in both low ab and sn. 3 - (271 features) HIGHEST hr, LOWEST hv. Broadly urban areas with low fr and sn since not very close to water bodies. High is and low ab, meaning that while it is a high risk area, the impact of interventions would be low. 4 - (24 features) Generally quite median scores across the board. With a high ab and relatively high sn, the impact of interventions would be felt quite highly, and there is generally a large amount of 'promenade' area. 5 - (61 features) Highly scoring in all RISK attributes (hr, fr, is, inverse(hv)). Relatively high ab, and very high sn suggest high impact of interventions which would greatly impact the streams themselves.
-
-```{r}
-cluster_map <- st_read("files/cluster_analysis/clusters_1.gpkg", quiet = TRUE)
-
-# Reproject to WGS 84 for leaflet
-cluster_input_wgs84 <- st_transform(cluster_map, crs = 4326)
-
-# Create a color factor palette for discrete clusters
-pal <- colorFactor(
-  palette = "Set1",
-  domain = as.character(cluster_input_wgs84$cluster),  # ensure domain is treated as character
-  na.color = "transparent"
-)
-
-# Get bounding box to zoom
-#bbox <- st_bbox(cluster_input_wgs84)
-
-leaflet(data = cluster_input_wgs84) %>%
-  addProviderTiles(
-    providers$Esri.WorldImagery,
-    options = providerTileOptions(opacity = 0.5)
-  ) %>%
-  addPolygons(
-    fillColor = ~pal(as.character(cluster)),  # force character here too
-    color = "#444444",
-    weight = 0.5,
-    opacity = 1,
-    fillOpacity = 0.6,
-    highlightOptions = highlightOptions(
-      weight = 2,
-      color = "#666",
-      fillOpacity = 0.9,
-      bringToFront = TRUE
-    ),
-    label = ~paste("Spatial Cluster:", cluster)
-  ) %>%
-  addLegend(
-    pal = pal,
-    values = ~as.character(cluster),
-    title = "Cluster",
-    position = "bottomright"
-  ) %>%
-  fitBounds(st_bbox(cluster_input_wgs84)[["xmin"]],
-            st_bbox(cluster_input_wgs84)[["ymin"]],
-            st_bbox(cluster_input_wgs84)[["xmax"]],
-            st_bbox(cluster_input_wgs84)[["ymax"]])
-```
-
-```{r}
-# Get the cluster centers (in standardized form)
-scaled_centers <- kmeans_result$centers
-
-# Print them
-print("Cluster centers (standardized):")
-print(scaled_centers)
-
-# Convert the centers back to original scale: x * SD + mean
-original_centers <- t(apply(
-  scaled_centers, 1, 
-  function(x) x * attr(cluster_scaled, "scaled:scale") + attr(cluster_scaled, "scaled:center")
-))
-
-# Print the real-world values
-print("Cluster centers (original):")
-print(original_centers)
-```
-
-Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability.
-
-Cluster description: 1 - (45 features) Cluster situated predominantly around the river, high fr (since this is generally the only area that has potential for flooding), and otherwise generally strong positive results (hr, is, hv, ab). Due to the high ts, the sn is also on the lower end. 2 - (335 features) Cluster represents strongly vegetated areas, with a high hv and low hr, is is also strongly correlated here. Relatively high ts results in both low ab and sn. 3 - (271 features) HIGHEST hr, LOWEST hv. Broadly urban areas with low fr and sn since not very close to water bodies. High is and low ab, meaning that while it is a high risk area, the impact of interventions would be low. 4 - (24 features) Generally quite median scores across the board. With a high ab and relatively high sn, the impact of interventions would be felt quite highly, and there is generally a large amount of 'promenade' area. 5 - (61 features) Highly scoring in all RISK attributes (hr, fr, is, inverse(hv)). Relatively high ab, and very high sn suggest high impact of interventions which would greatly impact the streams themselves.
-
-```{r}
-cluster_map <- st_read("files/cluster_analysis/clusters_1.gpkg", quiet = TRUE)
-
-# Reproject to WGS 84 for leaflet
-cluster_input_wgs84 <- st_transform(cluster_map, crs = 4326)
-
-# Create a color factor palette for discrete clusters
-pal <- colorFactor(
-  palette = "Set1",
-  domain = as.character(cluster_input_wgs84$cluster),  # ensure domain is treated as character
-  na.color = "transparent"
-)
-
-# Get bounding box to zoom
-#bbox <- st_bbox(cluster_input_wgs84)
-
-leaflet(data = cluster_input_wgs84) %>%
-  addProviderTiles(
-    providers$Esri.WorldImagery,
-    options = providerTileOptions(opacity = 0.5)
-  ) %>%
-  addPolygons(
-    fillColor = ~pal(as.character(cluster)),  # force character here too
-    color = "#444444",
-    weight = 0.5,
-    opacity = 1,
-    fillOpacity = 0.6,
-    highlightOptions = highlightOptions(
-      weight = 2,
-      color = "#666",
-      fillOpacity = 0.9,
-      bringToFront = TRUE
-    ),
-    label = ~paste("Spatial Cluster:", cluster)
-  ) %>%
-  addLegend(
-    pal = pal,
-    values = ~as.character(cluster),
-    title = "Cluster",
-    position = "bottomright"
-  ) %>%
-  fitBounds(st_bbox(cluster_input_wgs84)[["xmin"]],
-            st_bbox(cluster_input_wgs84)[["ymin"]],
-            st_bbox(cluster_input_wgs84)[["xmax"]],
-            st_bbox(cluster_input_wgs84)[["ymax"]])
+#process_clustering("files/cluster_analysis/clusters_raw.gpkg", "files/output1.gpkg", k = 5)
+#process_clustering("files/cluster_analysis/clusters_raw-intersecting.gpkg", "files/output1.gpkg", k = 5)
+#process_clustering("files/cluster_analysis/clusters_raw-non_intersecting.gpkg", "files/output2.gpkg", k = 4)
+process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_analysis/output4.gpkg", k = 6)
 ```
 
 ## Discussion
