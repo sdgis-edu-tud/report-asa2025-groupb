@@ -21,7 +21,6 @@ execute:
   echo: FALSE
 ---
 
-
 ```{r}
 #install.packages("sf") 
 #install.packages("dplyr")
@@ -550,6 +549,7 @@ Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_f
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
+
 ```{r}
 residents_number <- "files/improve_quality_of_life/residents_number.gpkg"
 
@@ -612,7 +612,6 @@ lc <- st_read(local_centrality, quiet = TRUE)
 lc_scaled <- lc |> 
   mutate(lc_scaled = as.numeric(scale(lc$cell_data_mean_value)))
 ```
-
 
 ::::: grid
 ::: g-col-6
@@ -846,7 +845,7 @@ leaflet(data = lq_index_wgs84) %>%
 
 ```
 
-4. **Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?**\
+4.  **Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?**\
 
 ```{r}
 # Read the combined result
@@ -953,7 +952,6 @@ streetnetwork_density <- "files/cluster_analysis/streetnetwork_density.gpkg"
 
 snd <- st_read(streetnetwork_density, quiet = TRUE)
 ```
-
 
 ```{r}
 ### Geometry creation from the input files for clustering
@@ -1112,7 +1110,6 @@ process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_a
 
 ## Appendix
 
-
 leaflet map for heat risk index
 
 ```{r}
@@ -1227,4 +1224,3 @@ p10 <- ggplot(di_bivar) +
 
 print(p10)
 ```
-
