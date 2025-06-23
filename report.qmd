@@ -300,7 +300,7 @@ hv_scaled <- hv |>
 :::
 :::::
 
-Reflection:
+Reflection: The healthy index of vegetation shows the areas where there is more photosynthetic activity and therefore more healthy vegetation. It's based on the NDVI index.\
 
 1-2. Natural Land Use Density\
 
@@ -328,7 +328,7 @@ Reflection:\
 :::
 :::::
 
-Reflection:\
+Reflection: Species richness shows the places where based on an uderstanding of the green areas the reachness of species is higher\
 
 1-4. Nuisance from Industries\
 
