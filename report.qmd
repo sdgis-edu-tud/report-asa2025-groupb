@@ -21,7 +21,6 @@ execute:
   echo: FALSE
 ---
 
-
 ```{r}
 #install.packages("sf") 
 #install.packages("dplyr")
@@ -187,7 +186,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
@@ -197,7 +196,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 2.  **Promote Climate Adaptation**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
 | 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
 | 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
@@ -206,7 +205,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 3.  **Improve Quality of Life**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams |  | hub.worldpop.org |  |
 | 3-2 | Urbanized Land Use Density | the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions |  | OSM Data |  |
 | 3-3 | People Attraction Density | if the area already contains some attractions for people, it has a good base to become a more active space in the future |  | OSM Data |  |
@@ -235,13 +234,9 @@ Discussed variables: Channel morphology, Sinuosity, Floodplain width, Open water
   </thead>
   <tbody>
     <tr>
-      <td rowspan="4"><strong>Risk Attributes: Requiring Intervention</strong></td>
+      <td rowspan="3"><strong>Risk Attributes: Requiring Intervention</strong></td>
       <td>Heat Risk index(hr)</td>
       <td>aggregated hot nights and UHI max in the unit</td>
-    </tr>
-    <tr>
-      <td>Flood Risk Index(fr)</td>
-      <td>average flood depth when return period is 50 years in the unit</td>
     </tr>
     <tr>
       <td>Impermeable Surface Density(is)</td>
@@ -252,21 +247,9 @@ Discussed variables: Channel morphology, Sinuosity, Floodplain width, Open water
       <td>the activeness of photosynthesis in the unit</td>
     </tr>
     <tr>
-      <td rowspan="5"><strong>Benefit Attributes: Ready for Intervention</strong></td>
-      <td>Terrain Slope(ts)</td>
-      <td>average degree of slope in the unit</td>
-    </tr>
-    <tr>
-      <td>Pedestrian Accessibility Index(ab)</td>
-      <td>the accessibility of the streams by slow mobility calculated by attraction betweeness(800M)</td>
-    </tr>
-    <tr>
-      <td>Stream Navigability Index(sn)</td>
+      <td rowspan="2"><strong>Benefit Attributes: Ready for Intervention</strong></td>
+      <td>Stream Navigability Index(ts)</td>
       <td>the density of roads in the unit</td>
-    </tr>
-    <tr>
-      <td>Local Centrality Index(lc)</td>
-      <td>the centrality of settlements in the unit calculated by angular integration(800M)</td>
     </tr>
     <tr>
       <td>Residents Number Index(rn)</td>
@@ -378,7 +361,7 @@ Reflection: roads with maxspeed over 40km/h will be more dangerous for animals t
 **Measurements Importance Ranking:**\
 
 | most important |   |   | ------\> | least important |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
 
 **Saaty Matrix:**\
@@ -550,6 +533,7 @@ Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_f
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
+
 ```{r}
 residents_number <- "files/improve_quality_of_life/residents_number.gpkg"
 
@@ -613,7 +597,6 @@ lc_scaled <- lc |>
   mutate(lc_scaled = as.numeric(scale(lc$cell_data_mean_value)))
 ```
 
-
 ::::: grid
 ::: g-col-6
 ![](report_files/libs/imgs/4-9_local_centrality_data.jpg){width="100%"}
@@ -675,7 +658,7 @@ Accuracy/Reflection:
 **Measurements Importance Ranking:**\
 
 | most important | ------\> | ------\> | ------\> | least important |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Residents Number | Attraction Betweeness, Public Transport Accessibility | Local Centrality Index | People Attraction Density | Urbanized Land Use Density |
 
 **Saaty Matrix:**\
@@ -846,7 +829,7 @@ leaflet(data = lq_index_wgs84) %>%
 
 ```
 
-4. **Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?**\
+4.  **Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?**\
 
 ```{r}
 # Read the combined result
@@ -911,6 +894,22 @@ leaflet(data = sm_index_wgs84) %>%
 
 <!-- the texts here are moved to methods section -->
 
+Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
+
+Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
+
+BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
+
+Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability, lc = Local Centrality Index, rn = Resident Number.
+
+Hydrological conditions: Impervious surface ratio, stream enclosure, streamflow variability, flood risk, infiltration capacity, baseflow contribution
+
+Ecological integrity: Riparian vegetation cover (NDVI), streambank modification index, habitat fragmentation, connectivity score, biodiversity proxy.
+
+Urban morphology and Infrastructure: Population density, land use mix, stream network density, sewer system type, built infrastructure pressure.
+
+Social and Planning context: Public access/walkability index, social vulnerability index, recreation potential, planning policy zone, restoration feasability score.
+
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
 
@@ -953,7 +952,6 @@ streetnetwork_density <- "files/cluster_analysis/streetnetwork_density.gpkg"
 
 snd <- st_read(streetnetwork_density, quiet = TRUE)
 ```
-
 
 ```{r}
 ### Geometry creation from the input files for clustering
@@ -1017,35 +1015,46 @@ process_clustering <- function(input_gpkg_path, output_gpkg_path, k = 5, plot_ti
   # Save output
   #st_write(cluster_input, output_gpkg_path, delete_dsn = TRUE, quiet = TRUE)
 
-  # Radar charts
-  scaled_centers <- kmeans_result$centers
-  centers_df <- as.data.frame(scaled_centers)
-  rownames(centers_df) <- paste("Cluster", 1:nrow(centers_df))
-
-  radar_data <- rbind(rep(3, ncol(centers_df)), rep(-1, ncol(centers_df)), centers_df)
-  par(mfrow = c(2, ceiling(nrow(centers_df) / 2)), mar = c(1, 2, 2, 1))
-  for (i in 3:nrow(radar_data)) {
-    radarchart(radar_data[c(1, 2, i), ],
-               axistype = 1,
-               pcol = rgb(0.2, 0.5, 0.5, 0.9),
-               pfcol = rgb(0.2, 0.5, 0.5, 0.4),
-               plwd = 2,
-               cglcol = "grey", cglty = 1, axislabcol = "grey",
-               caxislabels = round(seq(-1, 5, length.out = 5), 1),
-               cglwd = 0.8,
-               vlcex = 0.8,
-               title = rownames(radar_data)[i])
-  }
-
-  # Distance to cluster centers
-  distances <- sapply(1:nrow(cluster_scaled), function(i) {
-    sqrt(sum((cluster_scaled[i, ] - scaled_centers[kmeans_result$cluster[i], ])^2))
-  })
+  # Radar charts as output, keep commented out 
+  # scaled_centers <- kmeans_result$centers
+  # centers_df <- as.data.frame(scaled_centers)
+  # rownames(centers_df) <- paste("Cluster", 1:nrow(centers_df))
+  # 
+  # # Add named template with matching column names
+  # col_names <- colnames(centers_df)
+  # radar_data_template <- rbind(rep(3, length(col_names)), rep(-1, length(col_names)))
+  # colnames(radar_data_template) <- col_names
+  # 
+  # # Create output directory
+  # output_dir <- "files/cluster_analysis"
+  # dir.create(output_dir, showWarnings = FALSE)
+  # 
+  # for (i in 1:nrow(centers_df)) {
+  #   chart_data <- rbind(radar_data_template, centers_df[i, ])
+  #   rownames(chart_data)[3] <- rownames(centers_df)[i]
+  #   
+  #   png_path <- file.path(output_dir, paste0("cluster_", i, "_radar.png"))
+  #   png(png_path, width = 2000, height = 2000, res = 300)
+  #   
+  #   par(mar = c(1, 2, 2, 1))
+  #   radarchart(chart_data,
+  #              axistype = 1,
+  #              pcol = rgb(0.2, 0.5, 0.5, 0.9),
+  #              pfcol = rgb(0.2, 0.5, 0.5, 0.4),
+  #              plwd = 2,
+  #              cglcol = "grey", cglty = 1, axislabcol = "grey",
+  #              caxislabels = round(seq(-1, 3, length.out = 5), 1),
+  #              cglwd = 0.8,
+  #              vlcex = 0.8,
+  #              title = rownames(chart_data)[3])
+  #   
+  #   dev.off()
+  # }
 
   mean_distance <- data.frame(cluster = kmeans_result$cluster, distance = distances) %>%
     group_by(cluster) %>%
     summarise(mean_distance = mean(distance))
-  print(mean_distance)
+  #print(mean_distance)
 
   find_closest_cells <- function(cluster_scaled, kmeans_result) {
   labels <- kmeans_result$cluster
@@ -1073,7 +1082,7 @@ process_clustering <- function(input_gpkg_path, output_gpkg_path, k = 5, plot_ti
 closest_sf <- cluster_input[closest_cells, ]
 
 # Optional: print to verify
-print(closest_sf)
+#print(closest_sf)
 
 # Define export path
 output_path <- "files/cluster_analysis/closest_cells_to_centers4.gpkg"
@@ -1106,12 +1115,121 @@ output_path <- "files/cluster_analysis/closest_cells_to_centers4.gpkg"
 process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_analysis/output4.gpkg", k = 6)
 ```
 
+
+#### Cluster Centers - Scaled value
+| Cluster | hr     | is     | hv     | sn     | rn     |
+|---------|--------|--------|--------|--------|--------|
+| 1       | -1.030 | -0.837 | 0.947  | -0.700 | -1.020 |
+| 2       | 0.769  | 1.095  | -0.663 | 2.023  | 1.287  |
+| 3       | 0.494  | 0.579  | -0.367 | 0.020  | 0.705  |
+| 4       | 1.446  | 1.988  | -1.451 | 0.937  | 1.248  |
+| 5       | -0.308 | -0.400 | 0.580  | 0.069  | 0.143  |
+| 6       | 0.310  | -0.686 | -0.738 | -0.808 | -0.818 |
+
+
+#### Cluster value descriptors  
+| Cluster | Heat Risk (hr) | Impermeability (is) | Vegetation Health (hv) | Stream Navigability (sn) | Resident Number (rn) |
+|------------|------------|------------|------------|------------|------------|
+| 1 | **Very Low** | Low | **High** | **Low** | **Very Low** |
+| 2 | **High** | **High** | Low | **Very High** | **High** |
+| 3 | Moderate | Moderate | Moderate | Neutral | Moderate |
+| 4 | **Very High** | **Very High** | **Very Low** | High | **High** |
+| 5 | Slightly Low | Slightly Low | Slightly High | Neutral | Neutral |
+| 6 | Slightly High | Low | Low | **Low** | Low |
+
+#### Cluster Descriptions
+
+**Cluster 1:** Green Low-Density Residential Description: Low urban stress, high vegetation, low impermeability, low population.
+
+Needs: Likely not a priority for restoration but valuable for conservation.
+
+Mean distance from cluster center: 0.990
+
+Actions:
+
+  Preserve existing vegetation buffers.
+
+  Maintain low-impact development.
+
+  Use as reference site for restoration benchmarking.
+
+**Cluster 2:** Dense Urban Hotspot Description: High heat, impermeability, and population; poor vegetation; but highly navigable stream.
+
+Needs: Urgent cooling and greening interventions.
+
+Mean distance from cluster center: 1.07
+
+Actions:
+
+  Implement green roofs, urban forestry, and reflective materials.
+
+  Restore vegetated riparian zones.
+
+  Improve stormwater management with permeable surfaces.
+
+  Use stream navigability as a recreational anchor for engagement.
+
+**Cluster 3:** Transitional Urban Zone Description: Balanced profile across indicators.
+
+Needs: Moderate intervention to maintain equilibrium.
+
+Mean distance from cluster center: 1.03
+
+Actions:
+
+  Promote nature-based solutions before conditions degrade.
+
+  Targeted vegetation improvements and stormwater retrofits.
+
+**Cluster 4:** High-Risk Urban Core Description: Severe environmental stress—highest heat, impermeability, lowest vegetation; dense population.
+
+Needs: Comprehensive transformation.
+
+Mean distance from cluster center: 1.12
+
+Actions:
+
+  Major greening (parks, bioswales, green corridors).
+
+  Riparian daylighting or stream restoration projects.
+
+  Community outreach to reduce impermeability (e.g., green driveways).
+
+  Resilience planning with local stakeholders.
+
+**Cluster 5:** Stable Suburban Description: Slight stress, relatively healthy.
+
+Needs: Low-intensity maintenance.
+
+Mean distance from cluster center: 0.997
+
+Actions:
+
+  Encourage private vegetation upkeep.
+
+  Light interventions to enhance stormwater infiltration.
+
+  Monitor for encroaching stressors (urban sprawl).
+
+**Cluster 6:** Degraded Low-Density Fringe Description: Sparse population, low vegetation, moderate heat.
+
+Needs: Ecological repair more than social infrastructure.
+
+Mean distance from cluster center: 1.18
+
+Actions:
+
+  Passive reforestation or rewilding.
+
+  Target invasive species removal.
+
+  Use as buffer or ecological corridor zone.
+
 ## Discussion
 
 ## Conclusion
 
 ## Appendix
-
 
 leaflet map for heat risk index
 
@@ -1227,4 +1345,3 @@ p10 <- ggplot(di_bivar) +
 
 print(p10)
 ```
-
