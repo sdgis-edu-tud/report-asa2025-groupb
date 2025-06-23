@@ -70,7 +70,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3"><strong>Urban Stream Restoration: Building a more resilient urban environmental system</strong></td>
+      <td rowspan="3"><strong>Finding out where to prioritize actions that improve biodiversity, climate adaptation and quality of life</strong></td>
       <td>Enrich Biodiversity</td>
       <td>Which areas have a low ecological value and are in need of restoration to enrich the biodiversity?</td>
     </tr>
@@ -86,11 +86,6 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 </table>
 ```
 
-Having an integrated research question allows for a holistic approach addressing interconnected challenges of biodiversity loss, climate change, and social well-being simultaneously.
-
-***Research Question***\
-Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?
-
 ### Typology Construction
 
 ```{=html}
@@ -104,9 +99,9 @@ Which areas which are most in need of intervention through integrated interventi
   </thead>
   <tbody>
     <tr>
-      <td><strong>Finding the most suitable solution based on site condition</strong></td>
-      <td>Type of Intervention</td>
-      <td>What aspect of intervention does each area need?</td>
+      <td><strong>Finding out patterns of research areas in order to come up with tailored solutions</strong></td>
+      <td>Patterns and Typology</td>
+      <td>What patterns can be identified from the spatial units based on selected relevant characteristics?</td>
     </tr>
   </tbody>
 </table>
