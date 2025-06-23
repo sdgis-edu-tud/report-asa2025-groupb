@@ -328,7 +328,7 @@ Reflection:\
 :::
 :::::
 
-Reflection: Species richness shows the places where based on an uderstanding of the green areas the reachness of species is higher\
+Reflection: Species richness shows the places where based on an understanding of the type of green space, the richness of species is higher\
 
 1-4. Nuisance from Industries\
 
@@ -342,7 +342,7 @@ Reflection: Species richness shows the places where based on an uderstanding of 
 :::
 :::::
 
-Reflection:
+Reflection: Tyles with more presence of industries are considered places more exposed to the different contaminants resulting from the industrial activity, creating dangerous spaces for the ecosystem in these spaces.\
 
 1-5. Nuisance from Urban Barriers\
 
@@ -356,7 +356,7 @@ Reflection:
 :::
 :::::
 
-Reflection: roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
+Reflection: Roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area
 
 **Measurements Importance Ranking:**\
 
