@@ -130,6 +130,27 @@ Urban rivers are not merely ecological corridors but also social public spaces t
 
 1.  In Poznan, streams go through multiple land use/typology, which indicates that we need to choose the suitable restoration strategy based on specific context. This also becomes our main idea when formulating the research questions.\
 
+```{r}
+# Read the combined result
+stream <- st_read("files/waterway.gpkg", quiet = TRUE)
+
+# Reproject to WGS 84 for leaflet
+stream_wgs84 <- st_transform(stream, crs = 4326)
+
+
+leaflet() %>%
+  addProviderTiles(
+    providers$Esri.WorldStreetMap,
+    options = providerTileOptions(opacity = 0.5)
+  ) %>%
+  addPolylines(
+    data = stream_wgs84,
+    color = "black",
+    weight = 1.5,
+    opacity = 1
+  )
+```
+
 ![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
 
 2.  The streams end up in Warta River Valley, which suggests that we should also have River Warta included in the research scope together with the stream system. This helps us develop our spatial units of study.\
