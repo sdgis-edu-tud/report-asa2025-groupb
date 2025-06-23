@@ -133,20 +133,35 @@ Urban rivers are not merely ecological corridors but also social public spaces t
 ```{r}
 # Read the combined result
 stream <- st_read("files/waterway.gpkg", quiet = TRUE)
+boundary <- st_read("files/Poznan_city_boundary.gpkg", quiet = TRUE)
 
 # Reproject to WGS 84 for leaflet
 stream_wgs84 <- st_transform(stream, crs = 4326)
-
+boundary_wgs84 <- st_transform(boundary, crs = 4326)
 
 leaflet() %>%
   addProviderTiles(
-    providers$Esri.WorldStreetMap,
+    providers$Esri.WorldImagery,
     options = providerTileOptions(opacity = 0.5)
   ) %>%
   addPolylines(
     data = stream_wgs84,
     color = "black",
     weight = 1.5,
+    opacity = 1
+  ) %>%
+  addPolylines(
+    data = boundary_wgs84,
+    color = "darkred",
+    weight = 1.5,
+    opacity = 1,
+    dashArray = "4,4"
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    colors = c("black", "darkred"),
+    labels = c("Stream", "Boundary of City"),
+    title = "Legend",
     opacity = 1
   )
 ```
