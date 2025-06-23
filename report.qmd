@@ -301,7 +301,7 @@ Reflection: The healthy index of vegetation shows the areas where there is more 
 :::
 :::::
 
-Reflection:\
+Reflection: The natural land use density shows the difference between urban and natural land use, visualizing the tiles with the higher area of green space.\
 
 1-3. Species Richness\
 
