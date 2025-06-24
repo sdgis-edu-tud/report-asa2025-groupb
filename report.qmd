@@ -915,24 +915,6 @@ leaflet(data = sm_index_wgs84) %>%
 
 ### Typology Construction
 
-<!-- the texts here are moved to methods section -->
-
-Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
-
-Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
-
-BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
-
-Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability, lc = Local Centrality Index, rn = Resident Number.
-
-Hydrological conditions: Impervious surface ratio, stream enclosure, streamflow variability, flood risk, infiltration capacity, baseflow contribution
-
-Ecological integrity: Riparian vegetation cover (NDVI), streambank modification index, habitat fragmentation, connectivity score, biodiversity proxy.
-
-Urban morphology and Infrastructure: Population density, land use mix, stream network density, sewer system type, built infrastructure pressure.
-
-Social and Planning context: Public access/walkability index, social vulnerability index, recreation potential, planning policy zone, restoration feasability score.
-
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
 
@@ -1074,10 +1056,10 @@ process_clustering <- function(input_gpkg_path, output_gpkg_path, k = 5, plot_ti
   #   dev.off()
   # }
 
-  mean_distance <- data.frame(cluster = kmeans_result$cluster, distance = distances) %>%
-    group_by(cluster) %>%
-    summarise(mean_distance = mean(distance))
-  #print(mean_distance)
+  # mean_distance <- data.frame(cluster = kmeans_result$cluster, distance = distances) %>%
+  #   group_by(cluster) %>%
+  #   summarise(mean_distance = mean(distance))
+  # #print(mean_distance)
 
   find_closest_cells <- function(cluster_scaled, kmeans_result) {
   labels <- kmeans_result$cluster
@@ -1253,52 +1235,6 @@ Use as buffer or ecological corridor zone.
 ## Conclusion
 
 ## Appendix
-
-leaflet map for heat risk index
-
-```{r}
-# Read the combined result
-hr_index <- st_read("files/promote_climate_adaptation/heat_risk.gpkg", quiet = TRUE)
-
-# Reproject to WGS 84 for leaflet
-hr_index_wgs84 <- st_transform(hr_index, crs = 4326)
-
-pal <- colorNumeric(
-  palette = "RdBu", 
-  domain = hr_index_wgs84$heat_risk_index,
-  reverse = TRUE,
-  na.color = "transparent"
-)
-
-bbox <- st_bbox(hr_index_wgs84)
-
-leaflet(data = hr_index_wgs84) %>%
-  addProviderTiles(
-    providers$Esri.WorldImagery,
-    options = providerTileOptions(opacity = 0.5)
-  ) %>%
-  addPolygons(
-    fillColor = ~pal(heat_risk_index),
-    color = "#444444",
-    weight = 0.5,
-    opacity = 1,
-    fillOpacity = 0.3,
-    highlightOptions = highlightOptions(
-      weight = 2,
-      color = "#666",
-      fillOpacity = 0.9,
-      bringToFront = TRUE
-    ),
-    label = ~paste("Heat Risk Index:", round(heat_risk_index, 2))
-  ) %>%
-  addLegend(
-    pal = pal,
-    values = ~heat_risk_index,
-    title = "Heat Risk Index",
-    position = "bottomright"
-  ) 
-
-```
 
 3-4. Stream Navigability\
 
