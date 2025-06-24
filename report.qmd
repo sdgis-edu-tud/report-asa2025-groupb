@@ -333,10 +333,9 @@ hv_scaled <- hv |>
 :::
 :::::
 
-**Reflection:** \
+**Reflection:**\
 The healthy index of vegetation shows the areas where there is more photosynthetic activity and therefore more healthy vegetation. It's based on the NDVI index.\
-**Limitation:**
-While NDVI is a widely used for vegetation health, it primarily measures photosynthetic activity. This can lead to misleading results in certain cases. For example, certain invasive can show high NDVI values but harm native biodiversity. Similarly, monoculture plantations (e.g., palm oil or eucalyptus) may register as "healthy" vegetation despite offering limited ecological value. Additionally, vegetation under stress from pollutants, pests, or soil degradation may still photosynthesize temporarily and reflect high NDVI values, masking underlying problems.
+**Limitation:** While NDVI is a widely used for vegetation health, it primarily measures photosynthetic activity. This can lead to misleading results in certain cases. For example, certain invasive can show high NDVI values but harm native biodiversity. Similarly, monoculture plantations (e.g., palm oil or eucalyptus) may register as "healthy" vegetation despite offering limited ecological value. Additionally, vegetation under stress from pollutants, pests, or soil degradation may still photosynthesize temporarily and reflect high NDVI values, masking underlying problems.
 
 1-2. Natural Land Use Density\
 
@@ -350,7 +349,7 @@ While NDVI is a widely used for vegetation health, it primarily measures photosy
 :::
 :::::
 
-**Reflection:** \
+**Reflection:**\
 The natural land use density shows the difference between urban and natural land use, visualizing the tiles with the higher area of green space.\
 **Limitation:\
 **Although this metric provides a useful approximation of green cover and potential surface permeability, a higher green value does not necessarily correspond to higher ecological quality or biodiversity. Furthermore, the reliance on OpenStreetMap (OSM) data introduces additional uncertainty, as it tends to generalize land use categories and may lack detail or accuracy in certain areas, which can distort the results especially in transitional zones or informal landscapes.\
@@ -367,10 +366,10 @@ The natural land use density shows the difference between urban and natural land
 :::
 :::::
 
-**Reflection:** \
+**Reflection:**\
 Species richness shows the places where based on an understanding of the type of green space, the richness of species is higher\
 **Limitation:\
-**Although this method is more detailed and knowldege and literature informed, uncertainties can still arise due to gaps in data or outdated ecological classifications. Additionally, local variations or undocumented species may not be captured, affecting the accuracy of the richness estimates.\
+**Although this method is more detailed and knowledge and literature informed, uncertainties can still arise due to gaps in data or outdated ecological classifications. Additionally, local variations or undocumented species may not be captured, affecting the accuracy of the richness estimates.\
 
 1-4. Nuisance from Industries\
 
@@ -384,7 +383,7 @@ Species richness shows the places where based on an understanding of the type of
 :::
 :::::
 
-**Reflection:** \
+**Reflection:**\
 Grids with more presence of industries are considered places more exposed to the different contaminants resulting from the industrial activity, creating dangerous spaces for the ecosystem in these spaces.\
 **Limitation:**\
 The analysis considers proximity to industrial areas but does not account for actual emission levels or types of pollutants. This may misrepresent the impact, as some industries might be low-emission or environmentally regulated, while others may cause significant air, water, or soil pollution.\
@@ -401,8 +400,8 @@ The analysis considers proximity to industrial areas but does not account for ac
 :::
 :::::
 
-**Reflection:** \
-Roads with maxspeed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area\
+**Reflection:**\
+Roads with max-speed over 40km/h will be more dangerous for animals to cross, thus becoming barriers hindering biodiversity in the area\
 **Limitation:\
 **The assessment is based solely on speed limits, without considering road width, traffic volume, or mitigation infrastructure like wildlife crossings. These factors can significantly influence how much a road actually disrupts animal movement and habitat connectivity.
 
@@ -442,7 +441,10 @@ fr_scaled <- fr |>
 :::::
 
 Processing:\*\*\*\*\*\*\
-Reflection:
+**Reflection:**\
+From the flooding depth map (return period = 50 years) we can calculate the areas most likely to be flooded during extreme climate. Our hypothesis is that areas with higher flood risk require targeted interventions.\
+**Limitation:\
+**The flood map is model based and may not reflect local drainage conditions or recent infrastructure upgrades. Temporal variations and smaller flood events are not considered.
 
 2-2. Density of Impermeable Surfaces\
 
@@ -466,7 +468,10 @@ is_scaled <- is |>
 :::::
 
 Processing:\*\*\*\*\*\*\
-Accuracy/Reflection:
+**Reflection:**\
+Surface permeability is critical for climate adaptation as it supports flood mitigation, groundwater recharge, and urban cooling. Our hypothesis is that permeability can be estimated from landcover maps.\
+**Limitation:\
+**Land-cover maps may not capture small scaled permeability features like green roofs or permeable pavements. The classification may also generalize surface types. This generalization also is limited by lack of consideration groundwater or soil conditions.
 
 2-3. Heat Risk Index\
 
@@ -539,6 +544,11 @@ hr_scaled <- hr_index |>
 
 ```
 
+**Reflection:**\
+Combining UHI max (as defined by Tygron) with the number of hot nights (\>22°C) between 2015–2024 during summer months.\
+**Limitation:\
+**The analysis may not account for local microclimates or tree canopy effects. Temporal averaging may also mask extreme short-term events.
+
 2-4. River sinuosity\
 
 ::::: grid
@@ -551,7 +561,11 @@ hr_scaled <- hr_index |>
 :::
 :::::
 
-Reflection:
+**Reflection:**\
+Higher sinuosity indicates a more natural river form that supports diverse flows and habitats, while straighter channels may need ecological restoration.\
+**Limitation:**
+Channelization history and hydrological data are not considered.\
+\
 
 ```{r}
 river_sinuosity <- "files/promote_climate_adaptation/river_sinuosity.gpkg"
@@ -602,7 +616,10 @@ rn_scaled <- rn |>
 :::::
 
 Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
-Accuracy/Reflection:
+**Reflection:**\
+Areas with higher residential populations present greater potential for vibrant urban life and community-focused interventions along the streams.\
+**Limitation:**
+Population density does not reflect demographic diversity or actual engagement levels.
 
 3-2. Urbanized Land Use Density\
 
@@ -617,7 +634,10 @@ Accuracy/Reflection:
 :::::
 
 Processing: ***Landuse Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization***\
-Accuracy/Reflection:
+**Reflection:**\
+Urban land use along streams provides a legal and administrative framework that can support community-focused developments.\
+**Limitation:**
+Urban land use doesn’t always translate to accessible or usable public space. It may also include industrial or military or private zones that limit intervention feasibility.
 
 3-3. People Attraction Density\
 
@@ -632,7 +652,10 @@ Accuracy/Reflection:
 :::::
 
 Processing:***point of interest data --\> Count Points in Polygon --\> Normalization***\
-Accuracy/Reflection:
+**Reflection:**\
+Areas with existing attractions offer a strong foundation for developing more active and engaging public spaces in the future.\
+**Limitation:**
+Attraction data may overlook informal or seasonal activities.
 
 3-4. Local Centrality\
 
@@ -656,7 +679,10 @@ lc_scaled <- lc |>
 :::::
 
 Processing:***Angular Integration (800M) --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
-Accuracy/Reflection:
+**Reflection:**\
+Local integration analysis identifies the most vital centers, where higher centrality indicates better suitability for neighborhood-oriented interventions.\
+**Limitation:**
+Centrality metrics are purely spatial and may not reflect actual land use or social dynamics.
 
 3-5. Public Transport Accessibility\
 
@@ -671,7 +697,10 @@ Accuracy/Reflection:
 :::::
 
 Processing:***public transport station data --\> Count Points in Polygon --\> Normalization***\
-Accuracy/Reflection:
+**Reflection:**\
+Locations with better access to public transport are more suitable for interventions aimed at enhancing quality of life and public space use.\
+**Limitation:**
+Accessibility may vary significantly at different times of day and the index may not account for frequency, affordability, or last-mile connectivity.
 
 3-6. Pedestrian Accessibility Index\
 
@@ -701,7 +730,10 @@ ab_scaled <- ab_cleaned |>
 :::::
 
 Processing:***Attraction Betweeness (800M) destination set as points along streams, distance = 500m --\> Intersection --\> join value by location (Group stats) --\> Mean --\> Normalization***\
-Accuracy/Reflection:
+**Reflection:**\
+Betweenness analysis highlights routes commonly used by pedestrians to reach key destinations like streams, identifying areas where walkability supports public interventions.\
+**Limitation:**
+The analysis assumes rational route choices and may not reflect barriers like poor sidewalks or unsafe crossings. Informal paths or desire lines may be missed.
 
 **Measurements Importance Ranking:**\
 
