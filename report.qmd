@@ -141,7 +141,7 @@ boundary_wgs84 <- st_transform(boundary, crs = 4326)
 
 leaflet() %>%
   addProviderTiles(
-    providers$Esri.WorldImagery,
+    providers$OpenStreetMap.Mapnik,
     options = providerTileOptions(opacity = 0.5)
   ) %>%
   addPolylines(
