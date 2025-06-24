@@ -448,15 +448,11 @@ fr_scaled <- fr |>
 :::
 :::::
 
-<<<<<<< HEAD
-Processing:\*\*\*\*\*\*\
+
 **Reflection:**\
 From the flooding depth map (return period = 50 years) we can calculate the areas most likely to be flooded during extreme climate. Our hypothesis is that areas with higher flood risk require targeted interventions.\
 **Limitation:\
 **The flood map is model-based and may not reflect local drainage conditions or recent infrastructure upgrades. Temporal variations and smaller flood events are not considered.
-=======
-Reflection:
->>>>>>> 84aec21ce5119d05448a160455dd4d0f1ef06b2a
 
 2-2. Density of Impermeable Surfaces\
 
@@ -479,15 +475,10 @@ is_scaled <- is |>
 :::
 :::::
 
-<<<<<<< HEAD
-Processing:\*\*\*\*\*\*\
 **Reflection:**\
 Surface permeability is critical for climate adaptation as it supports flood mitigation, groundwater recharge, and urban cooling. Our hypothesis is that permeability can be estimated from landcover maps.\
 **Limitation:\
 **Landcover maps may not capture small-scale permeability features like green roofs or permeable pavements. The classification may also generalize surface types.
-=======
-Accuracy/Reflection:
->>>>>>> 84aec21ce5119d05448a160455dd4d0f1ef06b2a
 
 2-3. Heat Risk Index\
 
