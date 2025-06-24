@@ -1056,10 +1056,10 @@ process_clustering <- function(input_gpkg_path, output_gpkg_path, k = 5, plot_ti
   #   dev.off()
   # }
 
-  mean_distance <- data.frame(cluster = kmeans_result$cluster, distance = distances) %>%
-    group_by(cluster) %>%
-    summarise(mean_distance = mean(distance))
-  #print(mean_distance)
+  # mean_distance <- data.frame(cluster = kmeans_result$cluster, distance = distances) %>%
+  #   group_by(cluster) %>%
+  #   summarise(mean_distance = mean(distance))
+  # #print(mean_distance)
 
   find_closest_cells <- function(cluster_scaled, kmeans_result) {
   labels <- kmeans_result$cluster
