@@ -252,7 +252,7 @@ Two key components must be defined for this method. The first is the spatial uni
 
 #### Chosen Fields
 
-From , 
+From ,
 
 ```{=html}
 <table class="table">
@@ -389,7 +389,7 @@ Reflection: Roads with maxspeed over 40km/h will be more dangerous for animals t
 
 **Saaty Matrix:**\
 
-![](report_files/libs/imgs/EB_saaty_matrix.JPG) ![](report_files/libs/imgs/EB_weighting_result.JPG)
+![](report_files/libs/imgs/EB_weight.jpg)
 
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding\
@@ -552,7 +552,7 @@ rs_scaled <- rs |>
 
 **Saaty Matrix:**
 
-Climate adaptation: ![](report_files/libs/imgs/CA_saaty_matrix.JPG) ![](report_files/libs/imgs/CA_weighting_result.JPG)
+![](report_files/libs/imgs/CA_weight.jpg)
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
@@ -686,7 +686,7 @@ Accuracy/Reflection:
 
 **Saaty Matrix:**\
 
-![](report_files/libs/imgs/LQ_saaty_matrix.jpg) ![](report_files/libs/imgs/LQ_weighting_result.jpg)
+![](report_files/libs/imgs/LQ_weight.jpg)
 
 #### Aggregated Results for Research Questions
 
@@ -1138,8 +1138,8 @@ output_path <- "files/cluster_analysis/closest_cells_to_centers4.gpkg"
 process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_analysis/output4.gpkg", k = 6)
 ```
 
-
 #### Cluster Centers - Scaled value
+
 | Cluster | hr     | is     | hv     | sn     | rn     |
 |---------|--------|--------|--------|--------|--------|
 | 1       | -1.030 | -0.837 | 0.947  | -0.700 | -1.020 |
@@ -1149,8 +1149,8 @@ process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_a
 | 5       | -0.308 | -0.400 | 0.580  | 0.069  | 0.143  |
 | 6       | 0.310  | -0.686 | -0.738 | -0.808 | -0.818 |
 
+#### Cluster value descriptors
 
-#### Cluster value descriptors  
 | Cluster | Heat Risk (hr) | Impermeability (is) | Vegetation Health (hv) | Stream Navigability (sn) | Resident Number (rn) |
 |------------|------------|------------|------------|------------|------------|
 | 1 | **Very Low** | Low | **High** | **Low** | **Very Low** |
@@ -1170,11 +1170,11 @@ Mean distance from cluster center: 0.990
 
 Actions:
 
-  Preserve existing vegetation buffers.
+Preserve existing vegetation buffers.
 
-  Maintain low-impact development.
+Maintain low-impact development.
 
-  Use as reference site for restoration benchmarking.
+Use as reference site for restoration benchmarking.
 
 **Cluster 2:** Dense Urban Hotspot Description: High heat, impermeability, and population; poor vegetation; but highly navigable stream.
 
@@ -1184,13 +1184,13 @@ Mean distance from cluster center: 1.07
 
 Actions:
 
-  Implement green roofs, urban forestry, and reflective materials.
+Implement green roofs, urban forestry, and reflective materials.
 
-  Restore vegetated riparian zones.
+Restore vegetated riparian zones.
 
-  Improve stormwater management with permeable surfaces.
+Improve stormwater management with permeable surfaces.
 
-  Use stream navigability as a recreational anchor for engagement.
+Use stream navigability as a recreational anchor for engagement.
 
 **Cluster 3:** Transitional Urban Zone Description: Balanced profile across indicators.
 
@@ -1200,9 +1200,9 @@ Mean distance from cluster center: 1.03
 
 Actions:
 
-  Promote nature-based solutions before conditions degrade.
+Promote nature-based solutions before conditions degrade.
 
-  Targeted vegetation improvements and stormwater retrofits.
+Targeted vegetation improvements and stormwater retrofits.
 
 **Cluster 4:** High-Risk Urban Core Description: Severe environmental stress—highest heat, impermeability, lowest vegetation; dense population.
 
@@ -1212,13 +1212,13 @@ Mean distance from cluster center: 1.12
 
 Actions:
 
-  Major greening (parks, bioswales, green corridors).
+Major greening (parks, bioswales, green corridors).
 
-  Riparian daylighting or stream restoration projects.
+Riparian daylighting or stream restoration projects.
 
-  Community outreach to reduce impermeability (e.g., green driveways).
+Community outreach to reduce impermeability (e.g., green driveways).
 
-  Resilience planning with local stakeholders.
+Resilience planning with local stakeholders.
 
 **Cluster 5:** Stable Suburban Description: Slight stress, relatively healthy.
 
@@ -1228,11 +1228,11 @@ Mean distance from cluster center: 0.997
 
 Actions:
 
-  Encourage private vegetation upkeep.
+Encourage private vegetation upkeep.
 
-  Light interventions to enhance stormwater infiltration.
+Light interventions to enhance stormwater infiltration.
 
-  Monitor for encroaching stressors (urban sprawl).
+Monitor for encroaching stressors (urban sprawl).
 
 **Cluster 6:** Degraded Low-Density Fringe Description: Sparse population, low vegetation, moderate heat.
 
@@ -1242,11 +1242,11 @@ Mean distance from cluster center: 1.18
 
 Actions:
 
-  Passive reforestation or rewilding.
+Passive reforestation or rewilding.
 
-  Target invasive species removal.
+Target invasive species removal.
 
-  Use as buffer or ecological corridor zone.
+Use as buffer or ecological corridor zone.
 
 ## Discussion
 
