@@ -128,7 +128,7 @@ Urban rivers are not merely ecological corridors but also social public spaces t
 
 **What is the Context of Urban Stream Restoration in Poznan?**
 
-1.  In Poznan, streams go through multiple land use/typology, which indicates that we need to choose the suitable restoration strategy based on specific context. This also becomes our main idea when formulating the research questions.\
+1.  In Poznan, streams are interwoven into different types of urban fabrics, which indicates that we need to choose the suitable restoration strategy based on specific context. This also becomes our main idea when formulating the research questions.\
 
 ```{r}
 # Read the combined result
@@ -231,7 +231,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|------------|------------|------------|------------|------------|------------|
+|-----|------------|------------------------|----------------|------------|--------|
 | 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
@@ -245,13 +245,13 @@ In the context of our study on urban stream restoration in Poznań, the principa
 | 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
 | 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
 | 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
-| 2-4 | River Sinuosity | the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape |  | OSM Data |  |
+| 2-4 | River Sinuosity | the higher sinuosity of a stream indicate that it is in a more natural form and helps to diverse flows and habitats, while the straighter streams need interventions that restore it into a more natural shape | stream waterway data --\> intersect with grid --\> calculate the length of line that falls into each grid --\> divide the length by the distance between the start and end intersection point of the line with the grid --\> Normalization | OSM Data |  |
 
 3.  **Improve Quality of Life**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
 |------------|------------|------------|------------|------------|------------|
-| 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams |  | hub.worldpop.org |  |
+| 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams | population data --\> Zonal Statistics --\> Sum --\> Normalization | hub.worldpop.org |  |
 | 3-2 | Urbanized Land Use Density | the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions |  | OSM Data |  |
 | 3-3 | People Attraction Density | if the area already contains some attractions for people, it has a good base to become a more active space in the future |  | OSM Data |  |
 | 3-4 | Local Centrality Index | this index is calculated through local integration analysis, which shows where the most vital local centers are and the areas with higher local centrality will be more suitable for community-oriented interventions |  | OSM Data |  |
@@ -448,11 +448,15 @@ fr_scaled <- fr |>
 :::
 :::::
 
+<<<<<<< HEAD
 Processing:\*\*\*\*\*\*\
 **Reflection:**\
 From the flooding depth map (return period = 50 years) we can calculate the areas most likely to be flooded during extreme climate. Our hypothesis is that areas with higher flood risk require targeted interventions.\
 **Limitation:\
 **The flood map is model-based and may not reflect local drainage conditions or recent infrastructure upgrades. Temporal variations and smaller flood events are not considered.
+=======
+Reflection:
+>>>>>>> 84aec21ce5119d05448a160455dd4d0f1ef06b2a
 
 2-2. Density of Impermeable Surfaces\
 
@@ -475,11 +479,15 @@ is_scaled <- is |>
 :::
 :::::
 
+<<<<<<< HEAD
 Processing:\*\*\*\*\*\*\
 **Reflection:**\
 Surface permeability is critical for climate adaptation as it supports flood mitigation, groundwater recharge, and urban cooling. Our hypothesis is that permeability can be estimated from landcover maps.\
 **Limitation:\
 **Landcover maps may not capture small-scale permeability features like green roofs or permeable pavements. The classification may also generalize surface types.
+=======
+Accuracy/Reflection:
+>>>>>>> 84aec21ce5119d05448a160455dd4d0f1ef06b2a
 
 2-3. Heat Risk Index\
 
@@ -617,11 +625,15 @@ rn_scaled <- rn |>
 :::
 :::::
 
+<<<<<<< HEAD
 Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
 **Reflection:**\
 Areas with higher residential populations present greater potential for vibrant urban life and community-focused interventions along the streams.\
 **Limitation:\
 **Population density does not reflect actual engagement levels always. High density may also indicate limited public space availability.
+=======
+Accuracy/Reflection:
+>>>>>>> 84aec21ce5119d05448a160455dd4d0f1ef06b2a
 
 3-2. Urbanized Land Use Density\
 
