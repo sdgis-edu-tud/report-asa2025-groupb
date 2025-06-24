@@ -217,7 +217,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
@@ -227,7 +227,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 2.  **Promote Climate Adaptation**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
 | 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
 | 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
@@ -236,7 +236,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 3.  **Improve Quality of Life**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams |  | hub.worldpop.org |  |
 | 3-2 | Urbanized Land Use Density | the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions |  | OSM Data |  |
 | 3-3 | People Attraction Density | if the area already contains some attractions for people, it has a good base to become a more active space in the future |  | OSM Data |  |
@@ -292,7 +292,10 @@ From ,
 
 ### Reproducibility Self-Assessment
 
-*please update here*
+While the project aimed to follow a structured and re-aplicable approach, several limitations affect the reproducibility of the analysis. 
+- One key concern is the reliance on OpenStreetMap (OSM) data, which, while being openly accessible and widespread, varies in quality and completeness across different regions. Especially in regions like Poznan which doesn't have extensive documentation. As a result, data inputs may not be consistent or verifiable, potentially affecting the reliability of the output if replicated.
+- Furthermore, the grid-being a 500-meter grid resolution—served as a practical framework aligning with walkability considerations. However, this leads to the loss of granularity and information. The generalization of spatial characteristics at this level may lead to variations. A finer resolution or a multi-scalar approach could help mitigate this issue and improve reproducibility across context.
+
 
 ## Results
 
@@ -384,7 +387,7 @@ Reflection: Roads with maxspeed over 40km/h will be more dangerous for animals t
 **Measurements Importance Ranking:**\
 
 | most important |   |   | ------\> | least important |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Healthy Vegetation Density, Species Richness | Natural Land Use Density | Nuisance from Urban Barriers | Nuisance from Industries | Nuisance from Traffic |
 
 **Saaty Matrix:**\
@@ -681,7 +684,7 @@ Accuracy/Reflection:
 **Measurements Importance Ranking:**\
 
 | most important | ------\> | ------\> | ------\> | least important |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Residents Number | Attraction Betweeness, Public Transport Accessibility | Local Centrality Index | People Attraction Density | Urbanized Land Use Density |
 
 **Saaty Matrix:**\
@@ -1134,7 +1137,7 @@ process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_a
 #### Cluster value descriptors
 
 | Cluster | Heat Risk (hr) | Impermeability (is) | Vegetation Health (hv) | Stream Navigability (sn) | Resident Number (rn) |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 1 | **Very Low** | Low | **High** | **Low** | **Very Low** |
 | 2 | **High** | **High** | Low | **Very High** | **High** |
 | 3 | Moderate | Moderate | Moderate | Neutral | Moderate |
