@@ -184,6 +184,8 @@ The two methods adopted in this research each has different focus but at the sam
 
 ![](report_files/libs/imgs/methodology_framework.jpg)\
 
+![](report_files/libs/imgs/shared_pool_criteria.jpg)\
+
 ### Spatial Unit of Analysis
 
 **Why Hexagon Grid and What are the Parameters?**\
