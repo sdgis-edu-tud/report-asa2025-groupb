@@ -915,24 +915,6 @@ leaflet(data = sm_index_wgs84) %>%
 
 ### Typology Construction
 
-<!-- the texts here are moved to methods section -->
-
-Discussed variables: Channel morphology Sinuosity Floodplain width Open water surface Land use cover Impervious Vegetation Landscape Green space connectivity Mobility Slow mobility accessibility Building morphology Floor area ratio
-
-Our variables: RISK ATTRRIBUTES (require intervention): Heat_risk (aggregated hot nights and UHI max) flood_risk_rp50 surface_impermeability vegetation_health_index
-
-BENEFIT ATTRIBUTES (ready for intervention): terrain_slope density_indicators (any can be used, OSR as most logical?) \# THIS DOES NOT PROVIDE GOOD RESULTS attraction_betweenness navigability_indicator
-
-Attributes: hr = Heat Risk index, fr = Flood Risk, is = Impermeable surfaces, hv = healthy vegetation, ts = Terrain slope, ab = Attraction betweeness, sn = Stream Navigability, lc = Local Centrality Index, rn = Resident Number.
-
-Hydrological conditions: Impervious surface ratio, stream enclosure, streamflow variability, flood risk, infiltration capacity, baseflow contribution
-
-Ecological integrity: Riparian vegetation cover (NDVI), streambank modification index, habitat fragmentation, connectivity score, biodiversity proxy.
-
-Urban morphology and Infrastructure: Population density, land use mix, stream network density, sewer system type, built infrastructure pressure.
-
-Social and Planning context: Public access/walkability index, social vulnerability index, recreation potential, planning policy zone, restoration feasability score.
-
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
 
