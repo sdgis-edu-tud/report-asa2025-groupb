@@ -1295,9 +1295,13 @@ Use as buffer or ecological corridor zone.
 
 ## Bibliography
 
+- Copernicus Sentinel 2. (n.d.). Normalized Difference Vegetation Index (NDVI) [Geotif]. https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2
 - Kondolf, G. M., & Pinto, P. J. (2017). The social connectivity of urban rivers. Geomorphology, 277, 182–196. https://doi.org/10.1016/j.geomorph.2016.09.028
 - Open Street Map. (n.d.-a). OSM City Bounderies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Map. (n.d.-b). OSM Water Bodies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Map. (n.d.-b). OSM Roads [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Map. (n.d.-c). OSM Water Bodies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Map. (n.d.-d). OSM Waterways [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+
 
 
 
