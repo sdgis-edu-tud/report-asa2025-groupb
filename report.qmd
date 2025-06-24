@@ -625,15 +625,11 @@ rn_scaled <- rn |>
 :::
 :::::
 
-<<<<<<< HEAD
 Processing:***population data --\> Zonal Statistics --\> Sum --\> Normalization***\
 **Reflection:**\
 Areas with higher residential populations present greater potential for vibrant urban life and community-focused interventions along the streams.\
 **Limitation:\
 **Population density does not reflect actual engagement levels always. High density may also indicate limited public space availability.
-=======
-Accuracy/Reflection:
->>>>>>> 84aec21ce5119d05448a160455dd4d0f1ef06b2a
 
 3-2. Urbanized Land Use Density\
 
