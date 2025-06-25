@@ -333,11 +333,11 @@ hv_scaled <- hv |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-1.jpg){#fig-CIR width="100%"}
+![](report_files/libs/imgs/2-1.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){#fig-index width="100%"}
+![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){width="100%"}
 :::
 :::::
 
