@@ -1396,6 +1396,6 @@ print(p10)
 
 Degree or Urbanization
 
-*Initial Exploration- Degree of urbanization Computed through ratio or green:urbanized land*
+*Initial Exploration- Degree of urbanization Computed through ratio of 'green:urbanized' land*
 
-![](report_files/libs/imgs/appendix_Urbanisation.png)
+![](report_files/libs/imgs/appendix_Urbanisation.png){width="468"}
