@@ -1296,11 +1296,19 @@ Use as buffer or ecological corridor zone.
 ## Bibliography
 
 - Copernicus Sentinel 2. (n.d.). Normalized Difference Vegetation Index (NDVI) [Geotif]. https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2
+- ESA-Worldcover. (n.d.). Landcover [Geotif]. https://esa-worldcover.org/en/data-access
+- European Flood Awareness System. (n.d.). Flooding Depth Map EFAS [Geotif]. https://european-flood.emergency.copernicus.eu/efas_frontend/#/home
 - Kondolf, G. M., & Pinto, P. J. (2017). The social connectivity of urban rivers. Geomorphology, 277, 182–196. https://doi.org/10.1016/j.geomorph.2016.09.028
-- Open Street Map. (n.d.-a). OSM City Bounderies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Map. (n.d.-b). OSM Roads [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Map. (n.d.-c). OSM Water Bodies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Map. (n.d.-d). OSM Waterways [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-a). OSM City Bounderies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-b). OSM Green Spaces [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-c). OSM Land Use [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-d). OSM Points of Interest (points) [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-e). OSM Railways [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-f). OSM Roads [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-g). OSM Water Bodies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- Open Street Maps. (n.d.-h). OSM Waterways [ESRI Shapefile]. https://download.geofabrik.de/europe.html
+- WorldPop. (n.d.). Population count 100m Poland in the year 2020 [Geotif]. https://hub.worldpop.org/geodata/summary?id=50049
+
 
 
 
