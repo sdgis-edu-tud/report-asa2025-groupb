@@ -116,7 +116,7 @@ Finally, the *Discussion* section will provide an evaluation of the outcomes fro
 -   **Yaying: Mapping Lead**\
     Data visualization and Mapping.
 -   **Jaee: Research Lead**\
-    Oversees background research
+    Oversees background research and Mapping.
 
 ## Research Background
 
@@ -231,7 +231,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 1.  **Enrich Biodiversity**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|-----|------------|------------------------|----------------|------------|--------|
+|------------|------------|----------------|------------|------------|------------|
 | 1-1 | Healthy Vegetation Density | the areas with the most active photosynthesis process have a better vegetation health condition for enriching biodiversity | NDVI --\> Threshold \> 0.2 --\> Zonal Statistics --\> Mean --\> Normalization | Copernicus Sentinel 2 | Gandhi, 2015 |
 | 1-2 | Natural Land Use Density | the natural land use along the streams provide legislative and administrative base for nature-based interventions and also indicates a more natural environment | Landuse Map--\> Assigning All Green a Single Category \> Join Attributes by field value--\> Areas per grid assigned to each grid --\> Normalization | OSM Data |  |
 | 1-3 | Species Richness | different types of natural land use indicate different degree of species richness which provides different condition for interventions aiming for enriching biodiversity, for example forests imply higher biodiversity and farmlands lower | Give biodiversity value --\> add biodiversity values of overlapping shapes together --\> Erase duplicate geometry --\> use only higher biodiversity value --\> Multiply max biodiversity value with the area --\> Add Biodiversity values from same hex --\> Normalization | OSM Data |  |
@@ -241,7 +241,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 2.  **Promote Climate Adaptation**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|-----|------------|------------------------|----------------|------------|--------|
+|------------|------------|----------------|------------|------------|------------|
 | 2-1 | Risk of Flooding | there have been major floodings in Poznan during the last few years, and the areas with higher flooding risk are more in need of interventions that promote climate adaptations | flooding depth map --\> subtract permenant waterbody --\> Zonal Statistics --\> Sum --\> Normalization | EFAS |  |
 | 2-2 | Density of Impermeable Surfaces | the areas with more amounts of impermeable surfaces are more vulnerable against flooding during future extreme rainfalls | Landcover --\> Zonal Statistics --\> Sum --\> Normalization | ESA-Worldcover |  |
 | 2-3 | Heat Risk Index | the areas with more hot nights and more severe urban heat island effect (UHI) are more vulnerable towards future extreme climate, thus more in need of interventions promoting climate adaptation |  |  |  |
@@ -250,7 +250,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 3.  **Improve Quality of Life**\
 
 | Num. | Indicator | Definition | Formula of Calculation | Data Source | Reference |
-|-----|------------|------------------------|----------------|------------|--------|
+|------------|------------|----------------|------------|------------|------------|
 | 3-1 | Residents Number | the areas with larger numbers of residents see bigger possibility of an active urban life with community-oriented interventions carried out along the streams | population data --\> Zonal Statistics --\> Sum --\> Normalization | hub.worldpop.org |  |
 | 3-2 | Urbanized Land Use Density | the urbanized land use along the streams provide legislative and administrative base for community-oriented interventions | Land use Map--\> Assigning Broader Categories ('residential', 'commercial', 'industrial', 'greens') \> Join Attributes by field value--\> Sum of Areas per Landuse assigned to each grid--\> Normalization | OSM Data |  |
 | 3-3 | People Attraction Density | if the area already contains some attractions for people, it has a good base to become a more active space in the future | point of interest data --\> Count Points in Polygon --\> Normalization | OSM Data |  |
@@ -442,7 +442,6 @@ fr_scaled <- fr |>
 ![](report_files/libs/imgs/3-2_flood_risk_index.jpg){width="100%"}
 :::
 :::::
-
 
 **Reflection:**\
 From the flooding depth map (return period = 50 years) we can calculate the areas most likely to be flooded during extreme climate. Our hypothesis is that areas with higher flood risk require targeted interventions.\
@@ -910,7 +909,6 @@ leaflet(data = lq_index_wgs84) %>%
 -*Already some attractions for people are in this area*\
 -*Land Use in this area allow community-oriented intervention*\
 
-
 4.  **Which areas which are most in need of intervention through integrated interventions that enhance biodiversity, support climate adaptation, and improve neighborhood quality of life?**\
 
 ```{r}
@@ -1289,30 +1287,41 @@ Target invasive species removal.
 
 Use as buffer or ecological corridor zone.
 
+## Conclusion
+
 ## Discussion
 
-## Conclusion
+The method of scientific, data driven analysis and design used in this project offers a structured, transparent, and reproducible way to understand complex urban and ecological systems. Using these tools allow for systematic evaluation and helps to ground design interventions in measurable evidence rather than purely subjective factors.
+
+However, while the strengths of this data centric process are clear, the analysis must be approached with a critical eye. Much of the spatial data used, particularly in the case of Poznan is from OSM and is naturally crowd-sourced which varies in levels of completeness and sometimes accuracy. \
+For example, initially while running angular integration and angular betweenness analyses to calculate street centrality, we encountered some questionable results. This was primarily due to inaccuracies and errors in the road network data, which was not perfectly drawn or updated. These data oversights led to outputs that deviated noticeably from what would be expected based on the obvious intuition, showing how the quality of input data can significantly affect computational results.\
+Alongside computational analysis, incorporating intuition, reasoning, and contextual understanding is important to create a well grounded project. \
+\
+Besides that, now reflecting back, the scale of the grid we chooses although being optimal walking distance and allowed for manageable data handling and clear comparison across areas. However, it also inevitably generalized a lot of data, leading to a loss of finer spatial detail and information that smaller scales might reveal if run the same processing differently.
+
+During typology construction particularly, by the buffer to select the most suitable grid around streams- While effective for spatial structuring, this method does not always coincide with the exact stream cells. An alternative approach could be intersecting grids directly with the stream. Which might yield different and potentially more relevant results for restoration.
+
+The river Warta was included alongside smaller streams, recognizing that they form an interconnected ecological and social network influencing the wider landscape. A key limitation is that recommended 'actions' proposed were based solely on typology construction, missing the opportunity to integrate MCDA findings, which could have strengthened and nuanced the conclusions.
+
+Lastly, when reflecting on this method, we wondered that if this process included involving stakeholders and their perspectives in rating MCDA criteria and typology categories, they could significantly affect outcomes. Alternatively this could have biases from vested interests and be unscientific in terms of transparency and legitimacy.
+
+In conclusion, while data driven analysis is a full-proof and logical, it must be complemented with critical reflection and inclusive processes for any urban interventions.
 
 ## Bibliography
 
-- Copernicus Sentinel 2. (n.d.). Normalized Difference Vegetation Index (NDVI) [Geotif]. https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2
-- ESA-Worldcover. (n.d.). Landcover [Geotif]. https://esa-worldcover.org/en/data-access
-- European Flood Awareness System. (n.d.). Flooding Depth Map EFAS [Geotif]. https://european-flood.emergency.copernicus.eu/efas_frontend/#/home
-- Kondolf, G. M., & Pinto, P. J. (2017). The social connectivity of urban rivers. Geomorphology, 277, 182–196. https://doi.org/10.1016/j.geomorph.2016.09.028
-- Open Street Maps. (n.d.-a). OSM City Bounderies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-b). OSM Green Spaces [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-c). OSM Land Use [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-d). OSM Points of Interest (points) [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-e). OSM Railways [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-f). OSM Roads [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-g). OSM Water Bodies [Dataset; ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- Open Street Maps. (n.d.-h). OSM Waterways [ESRI Shapefile]. https://download.geofabrik.de/europe.html
-- WorldPop. (n.d.). Population count 100m Poland in the year 2020 [Geotif]. https://hub.worldpop.org/geodata/summary?id=50049
-
-
-
-
-
+-   Copernicus Sentinel 2. (n.d.). Normalized Difference Vegetation Index (NDVI) \[Geotif\]. https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2
+-   ESA-Worldcover. (n.d.). Landcover \[Geotif\]. https://esa-worldcover.org/en/data-access
+-   European Flood Awareness System. (n.d.). Flooding Depth Map EFAS \[Geotif\]. https://european-flood.emergency.copernicus.eu/efas_frontend/#/home
+-   Kondolf, G. M., & Pinto, P. J. (2017). The social connectivity of urban rivers. Geomorphology, 277, 182–196. https://doi.org/10.1016/j.geomorph.2016.09.028
+-   Open Street Maps. (n.d.-a). OSM City Bounderies \[Dataset; ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-b). OSM Green Spaces \[ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-c). OSM Land Use \[ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-d). OSM Points of Interest (points) \[ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-e). OSM Railways \[ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-f). OSM Roads \[ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-g). OSM Water Bodies \[Dataset; ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   Open Street Maps. (n.d.-h). OSM Waterways \[ESRI Shapefile\]. https://download.geofabrik.de/europe.html
+-   WorldPop. (n.d.). Population count 100m Poland in the year 2020 \[Geotif\]. https://hub.worldpop.org/geodata/summary?id=50049
 
 ## Appendix
 
@@ -1387,6 +1396,6 @@ print(p10)
 
 Degree or Urbanization
 
-*Initial Exploration of a various degrees of urbanization*
+*Initial Exploration- Degree of urbanization Computed through ratio or green:urbanized land*
 
 ![](report_files/libs/imgs/appendix_Urbanisation.png)
