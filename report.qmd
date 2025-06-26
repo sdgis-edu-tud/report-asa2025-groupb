@@ -1289,6 +1289,16 @@ Use as buffer or ecological corridor zone.
 
 ## Conclusion
 
+We can consider the MCDA study successful; it ended up giving us a valuable data set that directly informs us of the spaces with more necessity for urban stream restoration. Understanding the areas with need for urban stream restoration as those with higher values of our three research questions. Essentially, those areas with a combination of low ecological value, the areas in more risk of dangerous climate change disturbances, and the areas with lower life quality values.
+
+It is also important to understand that the three maps that we obtain as answers to our three main questions can be used to evaluate and give responses depending on the combination of these three values. Not all spaces are going to have a low value regarding the three questions simultaneously, and vice versa. For example, we can find spaces with a low value in species richness and lacking climate adaptation, but, on the contrary, life quality is good. So maybe in these areas the response action needs to be oriented towards improving the natural medium and climate adaptation without getting into the urban/social aspect. And the opposite situation could also occur.
+
+The clustering study also appears to be successful, resulting in six clusters that can also help define specific types of solutions for each cluster type. Although finding the k value using the elbow method wasn’t representative in our case, we ended up choosing a number of clusters that seemed representative and showed enough differences between the final clusters. Ending up with six unique and representative clusters with distinctive attributes.
+ 
+Combining the MCDA study and the clustering can be a useful tool to come up with specific tailored solutions for each of the defined areas. While the clustering helps us understand the different types of spaces in contact with or close to the streams, the MCDA study shows us what to be concerned about in each of these areas. Even more specifically, if we look at them from the perspective of each one of the questions.
+ 
+We can already see a coincidence between the MCDA synthesis map and the clustering. In which the areas considered in more need of urban stream restoration are overlapping with cluster number four, classified as: High-risk urban core. These spaces are described as densely populated, with a low amount of vegetation and low infiltration, high heat, and several environmental stresses. On the other hand, the areas with less need of urban stream restoration mainly overlap with the cluster number one, classified as: Green low-density Residential. This type of spaces are described as low populated space with a high amount of vegetation, permeable and with low urban stress.
+
 ## Discussion
 
 The method of scientific, data driven analysis and design used in this project offers a structured, transparent, and reproducible way to understand complex urban and ecological systems. Using these tools allow for systematic evaluation and helps to ground design interventions in measurable evidence rather than purely subjective factors.
