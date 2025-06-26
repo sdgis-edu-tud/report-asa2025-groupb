@@ -387,7 +387,7 @@ Although this method is more detailed and knowldege and literature informed, unc
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/2-8_nuisence_by_industries.png){width="100%"}
+![](files/2-8_nuisence_by_industries.png){width="100%"}
 :::
 :::::
 
@@ -400,11 +400,11 @@ The analysis considers proximity to industrial areas but does not account for ac
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-11_urban_barrier_data.jpg){width="100%"}
+![](files/2-11_urban_barrier_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/2-12_urban_barrier_index.jpg){width="100%"}
+![](files/2-12_urban_barrier_index.jpg){width="100%"}
 :::
 :::::
 
@@ -415,7 +415,7 @@ The assessment is based solely on speed limits, without considering road width, 
 
 **Saaty Matrix:**\
 
-![](report_files/libs/imgs/EB_weight.jpg)
+![](files/EB_weight.jpg)
 
 2.  **Promote Climate Adaptation**\
     2-1. Risk of Flooding\
@@ -434,11 +434,11 @@ fr_scaled <- fr |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/3-1_flood_data.jpg){width="100%"}
+![](files/3-1_flood_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/3-2_flood_risk_index.jpg){width="100%"}
+![](files/3-2_flood_risk_index.jpg){width="100%"}
 :::
 :::::
 
@@ -460,11 +460,11 @@ is_scaled <- is |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/3-3_permeability_data.jpg){width="100%"}
+![](files/3-3_permeability_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/3-4_permeability_index.jpg){width="100%"}
+![](files/3-4_permeability_index.jpg){width="100%"}
 :::
 :::::
 
@@ -502,42 +502,42 @@ hr_index <- hn_scaled |>
 hr_scaled <- hr_index |>
   mutate(hr_scaled = as.numeric(scale(hr_index$heat_risk_index)))
 
-# ### Map plotting
-# p1 <- ggplot(hn) +
-#   geom_sf(aes(fill = X10y_hotnights), color = NA) +
-#   scale_fill_viridis_c() +
-#   labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
-#   theme_minimal()
-# 
-# p2 <- ggplot(uhi) +
-#   geom_sf(aes(fill = UHI_max_norm), color = NA) +
-#   scale_fill_viridis_c() +
-#   labs(title = "UHI max", fill = "UHI") +
-#   theme_minimal()
-# 
-# p3 <- ggplot(hn_scaled) +
-#   geom_sf(aes(fill = hn_scaled), color = NA) +
-#   scale_fill_gradient2() +
-#   labs(title = "Standardized Hot Nights", fill = "Z-score") +
-#   theme_minimal()
-# 
-# p4 <- ggplot(uhi_scaled) +
-#   geom_sf(aes(fill = uhi_scaled), color = NA) +
-#   scale_fill_gradient2() +
-#   labs(title = "Standardized UHI max", fill = "Z-score") +
-#   theme_minimal()
-# 
-# p5 <- ggplot(hr_index) +
-#   geom_sf(aes(fill = heat_risk_index), color = NA) +
-#   scale_fill_gradient2() +
-#   labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
-#   theme_minimal()
-# 
-# print(p1)
-# print(p2)
-# print(p3)
-# print(p4)
-# print(p5)
+### Map plotting
+p1 <- ggplot(hn) +
+  geom_sf(aes(fill = X10y_hotnights), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "Number of Hot Nights (2015–24)", fill = "Hot Nights") +
+  theme_minimal()
+
+p2 <- ggplot(uhi) +
+  geom_sf(aes(fill = UHI_max_norm), color = NA) +
+  scale_fill_viridis_c() +
+  labs(title = "UHI max", fill = "UHI") +
+  theme_minimal()
+
+p3 <- ggplot(hn_scaled) +
+  geom_sf(aes(fill = hn_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized Hot Nights", fill = "Z-score") +
+  theme_minimal()
+
+p4 <- ggplot(uhi_scaled) +
+  geom_sf(aes(fill = uhi_scaled), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Standardized UHI max", fill = "Z-score") +
+  theme_minimal()
+
+p5 <- ggplot(hr_index) +
+  geom_sf(aes(fill = heat_risk_index), color = NA) +
+  scale_fill_gradient2() +
+  labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
+  theme_minimal()
+
+print(p1)
+print(p2)
+print(p3)
+print(p4)
+print(p5)
 
 # Write the combined file (Comment out if it has been done once)
 #st_write(hr_index, "files/promote_climate_adaptation/heat_risk.gpkg")
@@ -548,11 +548,11 @@ hr_scaled <- hr_index |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/3-7_river_sinuosity_data.jpg){width="100%"}
+![](files/3-7_river_sinuosity_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/3-8_river_sinuosity_index.jpg){width="100%"}
+![](files/3-8_river_sinuosity_index.jpg){width="100%"}
 :::
 :::::
 
@@ -581,7 +581,7 @@ rs_scaled <- rs |>
 
 **Saaty Matrix:**
 
-![](report_files/libs/imgs/CA_weight.jpg)
+![](files/CA_weight.jpg)
 
 3.  **Improve Quality of Life**\
     3-1. Residents Number\
@@ -597,11 +597,11 @@ rn_scaled <- rn |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/4-1_population_data.jpg){width="100%"}
+![](files/4-1_population_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/4-2_population_index.jpg){width="100%"}
+![](files/4-2_population_index.jpg){width="100%"}
 :::
 :::::
 
@@ -614,11 +614,11 @@ Areas with higher residential populations present greater potential for vibrant 
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/4-3_Landusemap_basemap.png){width="100%"}
+![](files/4-3_Landusemap_basemap.png){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/4-4_Landusemap_urbanisation.png){width="100%"}
+![](files/4-4_Landusemap_urbanisation.png){width="100%"}
 :::
 :::::
 
@@ -631,11 +631,11 @@ Urban land use doesn’t always translate to accessible or usable public space. 
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/4-5_poi_data.jpg){width="100%"}
+![](files/4-5_poi_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/4-6_poi_index.jpg){width="100%"}
+![](files/4-6_poi_index.jpg){width="100%"}
 :::
 :::::
 
@@ -657,11 +657,11 @@ lc_scaled <- lc |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/4-9_local_centrality_data.jpg){width="100%"}
+![](files/4-9_local_centrality_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/4-10_local_centrality_index.jpg){width="100%"}
+![](files/4-10_local_centrality_index.jpg){width="100%"}
 :::
 :::::
 
@@ -674,11 +674,11 @@ Centrality metrics are purely spatial and may not reflect actual land use or soc
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/4-11_public_transport_data.jpg){width="100%"}
+![](files/4-11_public_transport_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/4-12_public_transport_index.jpg){width="100%"}
+![](files/4-12_public_transport_index.jpg){width="100%"}
 :::
 :::::
 
@@ -706,11 +706,11 @@ ab_scaled <- ab_cleaned |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/4-17_attraction_betweeness_data.jpg){width="100%"}
+![](files/4-17_attraction_betweeness_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/4-18_attraction_betweeness_index.jpg){width="100%"}
+![](files/4-18_attraction_betweeness_index.jpg){width="100%"}
 :::
 :::::
 
@@ -721,7 +721,7 @@ The analysis assumes rational route choices and may not reflect barriers like po
 
 **Saaty Matrix:**\
 
-![](report_files/libs/imgs/LQ_weight.jpg)
+![](files/LQ_weight.jpg)
 
 #### Aggregated Results for Research Questions
 
