@@ -1377,4 +1377,4 @@ Degree or Urbanization
 
 *Initial Exploration- Degree of urbanization Computed through ratio of 'green:urbanized' land*
 
-![](report_files/libs/imgs/appendix_Urbanisation.png){width="468"}
+![](files/appendix_Urbanisation.png){width="468"}
