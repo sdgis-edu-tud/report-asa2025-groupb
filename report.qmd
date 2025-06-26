@@ -1260,7 +1260,7 @@ We can already see a coincidence between the MCDA synthesis map and the clusteri
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/synthetic_map.jpg){width="100%"}
+![](files/synthetic_map.jpg){width="100%"}
 :::
 
 ::: g-col-6
