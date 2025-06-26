@@ -33,13 +33,12 @@ execute:
 #install.packages("fmsb")
 ```
 
-```{r}
+```{r,}
 library(sf) # for processing vector data 
 library(dplyr) # for selecting and transforming data
 library(leaflet)
 library(RColorBrewer)
 library(rJava)
-#library(swipeR) # Could be depreciated, as in I don't want to use it 
 library(ggplot2)
 library(htmltools)
 library(fmsb)
@@ -972,6 +971,13 @@ leaflet(data = sm_index_wgs84) %>%
 
 ### Typology Construction
 
+Link with the problem: To successfully implement Urban stream restoration projects a targeted approach must be taken, where we can compare similar locations in order to design a consistent approach which can be implemented throughout the city. For this we propose to create a system of typologies, for which similar risks can be identified, from which needs can be described, and actions can be undertaken. To begin the typology construction we have decided on the following theoretical framework, which explains our hypothesis, chosen variables, and proposed outcome:
+
+![](files/cluster_analysis/ClusterHypothesis.jpg){width="100%"}
+
+Justification for chosen method & Workflow: The method that we chose to perform the typology construction was through a scaled, k-Means clustering. All variables were chosen due to them being continuous, and could be scaled according to a normal distribution. K-means clustering defines cluster centers according to the data, and the number of clusters you prescribe. To fine tune the number of clusters for our typology, two methods were used. Firstly, we calculated the optimal number of clusters by analysing the changes in inertia with the increased k. The *elbow point* was not very telling for us, therefore we also experimented with the mean distance of all of the points per cluster. By combining these two methods, we were able to come upon six clusters which seemed appropriate according to both methods, as well as visual inspection. 
+
+
 ```{r}
 terrain_slope <- "files/promote_climate_adaptation/terrain_slope.gpkg"
 
@@ -1157,6 +1163,19 @@ output_path <- "files/cluster_analysis/closest_cells_to_centers4.gpkg"
   pal <- colorFactor(palette = "Set1", domain = as.character(cluster_input_wgs84$cluster))
   leaflet(data = cluster_input_wgs84) %>%
     addProviderTiles(providers$Esri.WorldImagery, options = providerTileOptions(opacity = 0.5)) %>%
+    addPolylines(
+      data = stream_wgs84,
+      color = "black",
+      weight = 1.5,
+      opacity = 1
+    ) %>%
+    addPolylines(
+      data = boundary_wgs84,
+      color = "darkred",
+      weight = 1.5,
+      opacity = 1,
+      dashArray = "4,4"
+    ) %>%
     addPolygons(
       fillColor = ~pal(as.character(cluster)),
       color = "#444444", weight = 0.5, opacity = 1, fillOpacity = 0.6,
@@ -1203,91 +1222,42 @@ process_clustering("files/cluster_analysis/clusters_raw2.gpkg", "files/cluster_a
 
 **Cluster 1:** Green Low-Density Residential Description: Low urban stress, high vegetation, low impermeability, low population.
 
-Needs: Likely not a priority for restoration but valuable for conservation.
+*Interpreting the cluster:* 
 
-Mean distance from cluster center: 0.990
-
-Actions:
-
-Preserve existing vegetation buffers.
-
-Maintain low-impact development.
-
-Use as reference site for restoration benchmarking.
+![](files/cluster_analysis/Cluster1.png){width="100%"}
 
 **Cluster 2:** Dense Urban Hotspot Description: High heat, impermeability, and population; poor vegetation; but highly navigable stream.
 
-Needs: Urgent cooling and greening interventions.
+![](files/cluster_analysis/Cluster2.png){width="100%"}
 
-Mean distance from cluster center: 1.07
-
-Actions:
-
-Implement green roofs, urban forestry, and reflective materials.
-
-Restore vegetated riparian zones.
-
-Improve stormwater management with permeable surfaces.
-
-Use stream navigability as a recreational anchor for engagement.
 
 **Cluster 3:** Transitional Urban Zone Description: Balanced profile across indicators.
 
-Needs: Moderate intervention to maintain equilibrium.
-
-Mean distance from cluster center: 1.03
-
-Actions:
-
-Promote nature-based solutions before conditions degrade.
-
-Targeted vegetation improvements and stormwater retrofits.
+![](files/cluster_analysis/Cluster3.png){width="100%"}
 
 **Cluster 4:** High-Risk Urban Core Description: Severe environmental stress—highest heat, impermeability, lowest vegetation; dense population.
 
-Needs: Comprehensive transformation.
-
-Mean distance from cluster center: 1.12
-
-Actions:
-
-Major greening (parks, bioswales, green corridors).
-
-Riparian daylighting or stream restoration projects.
-
-Community outreach to reduce impermeability (e.g., green driveways).
-
-Resilience planning with local stakeholders.
+![](files/cluster_analysis/Cluster4.png){width="100%"}
 
 **Cluster 5:** Stable Suburban Description: Slight stress, relatively healthy.
 
-Needs: Low-intensity maintenance.
-
-Mean distance from cluster center: 0.997
-
-Actions:
-
-Encourage private vegetation upkeep.
-
-Light interventions to enhance stormwater infiltration.
-
-Monitor for encroaching stressors (urban sprawl).
+![](files/cluster_analysis/Cluster5.png){width="100%"}
 
 **Cluster 6:** Degraded Low-Density Fringe Description: Sparse population, low vegetation, moderate heat.
 
-Needs: Ecological repair more than social infrastructure.
-
-Mean distance from cluster center: 1.18
-
-Actions:
-
-Passive reforestation or rewilding.
-
-Target invasive species removal.
-
-Use as buffer or ecological corridor zone.
+![](files/cluster_analysis/Cluster6.png){width="100%"}
 
 ## Conclusion
+
+::::: grid
+::: g-col-6
+![](report_files/libs/imgs/synthetic_map.jpg){width="100%"}
+:::
+
+::: g-col-6
+![](files/cluster_analysis/ClustersSquare.png){width="100%"}
+:::
+:::::
 
 ## Discussion
 
