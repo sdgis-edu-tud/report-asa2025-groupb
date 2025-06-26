@@ -4,5 +4,7 @@
 .Ruserdata
 data/
 .idea
-report.html
+
 report_files/figure-html/
+
+/.quarto/
