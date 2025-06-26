@@ -165,15 +165,15 @@ leaflet(options = leafletOptions(minZoom = 10)) %>%
   )
 ```
 
-![](report_files/libs/imgs/0-1_poznan_satellite_map.jpeg)\
+![](files/0-1_poznan_satellite_map.jpeg)\
 
 2.  The streams end up in Warta River Valley, which suggests that we should also have River Warta included in the research scope together with the stream system. This helps us develop our spatial units of study.\
 
-![](report_files/libs/imgs/0-2_topography.jpeg)\
+![](files/0-2_topography.jpeg)\
 
 **What is the conceptual framework guiding the research?**
 
-![](report_files/libs/imgs/conceptual_framework.jpg)\
+![](files/conceptual_framework.jpg)\
 
 From the background research, we come up with several key values that we would like to address in the working process, which are transformed into two goals: to develop the urban streams in Poznan into not only ecological corridors but also social public spaces which improve the environmental quality of the city. From those two goals, we identify the physical spaces we would be tackling, which is the streams as well as some relevant spaces in the vicinity. This also works as a base for the justification of the spatial unit system we adopt.
 
@@ -181,17 +181,17 @@ From the background research, we come up with several key values that we would l
 
 The two methods adopted in this research each has different focus but at the same time sharing a common basis. The results we expect from the two methods can be combined into a guidance for urban stream restoration actions, in which the MCDA will answer the question of *"where"* according to the synthetic assessment, while the typology construction will mostly focus on *"what"*, as it helps to identify patterns derived from the characteristics of the spatial units.
 
-![](report_files/libs/imgs/methodology_framework.jpg)\
+![](files/methodology_framework.jpg)\
 
 The relevant indicators for this research are put into a shared pool of criteria. For each method, several of them are selected and categorized to align with the different focuses.
 
-![](report_files/libs/imgs/shared_pool_criteria.jpg)\
+![](files/shared_pool_criteria.jpg)\
 
 ### Spatial Unit of Analysis
 
 **Why Hexagon Grid and What are the Parameters?**\
 
-![](report_files/libs/imgs/1-3_full_grid.jpeg)
+![](files/1-3_full_grid.jpeg)
 
 **Hexagons**:\
 For the spatial analysis, the study area was subdivided using a hexagonal grid, which served as the primary unit of analysis. The choice of hexagons was narrowed down by several methodological advantages.
@@ -205,7 +205,7 @@ For the spatial analysis, the study area was subdivided using a hexagonal grid, 
 - Integrate stream restoration intervention into urban life in the vicinity\
 - Reasonable amount of cells in the whole city area\
 
-![](report_files/libs/imgs/1-4_buffer.jpeg)\
+![](files/1-4_buffer.jpeg)\
 
 **Buffer Zone = 300m**:\
 - Potential area under the influence of the streams for local residents\
@@ -215,7 +215,7 @@ For the spatial analysis, the study area was subdivided using a hexagonal grid, 
 
 #### MCDA Structure
 
-![](report_files/libs/imgs/1-1_MCDA_structure.jpg)\
+![](files/1-1_MCDA_structure.jpg)\
 
 **Multi-Criteria Decision Analysis (MCDA)** is a subfield of operations research that systematically evaluates multiple, often conflicting, criteria in the decision-making process. The application of the MCDA methodology begins with the formulation of a primary goal. This overarching goal is then decomposed into specific objectives, each of which is translated into a research question. For each research question, a set of criteria is identified to assess various dimensions relevant to the objective. These criteria are subsequently assigned weights to reflect their relative importance in influencing the overall outcome.\
 
@@ -225,7 +225,7 @@ In the context of our study on urban stream restoration in Poznań, the principa
 
 #### MCDA Indicators and Argumentation
 
-![](report_files/libs/imgs/1-2.jpg)\
+![](files/1-2.jpg)\
 
 1.  **Enrich Biodiversity**\
 
@@ -332,11 +332,11 @@ hv_scaled <- hv |>
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-1.jpg){width="100%"}
+![](files/2-1.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/2-2_vegetation_health_index.jpg){width="100%"}
+![](files/2-2_vegetation_health_index.jpg){width="100%"}
 :::
 :::::
 
@@ -349,11 +349,11 @@ While NDVI is a widely used for vegetation health, it primarily measures photosy
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-3_Greenscapes_basemap.png){width="100%"}
+![](files/2-3_Greenscapes_basemap.png){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/2-4_GreensLandusemap.png){width="100%"}
+![](files/2-4_GreensLandusemap.png){width="100%"}
 :::
 :::::
 
@@ -366,11 +366,11 @@ Although this metric provides a useful approximation of green cover and potentia
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-5_Species_Richness_data.jpg){width="100%"}
+![](files/2-5_Species_Richness_data.jpg){width="100%"}
 :::
 
 ::: g-col-6
-![](report_files/libs/imgs/2-6_Species_Richness_index.jpg){width="100%"}
+![](files/2-6_Species_Richness_index.jpg){width="100%"}
 :::
 :::::
 
@@ -383,7 +383,7 @@ Although this method is more detailed and knowldege and literature informed, unc
 
 ::::: grid
 ::: g-col-6
-![](report_files/libs/imgs/2-7_Industries_basemap.png){width="100%"}
+![](files/2-7_Industries_basemap.png){width="100%"}
 :::
 
 ::: g-col-6
