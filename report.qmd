@@ -169,11 +169,11 @@ leaflet(options = leafletOptions(minZoom = 10)) %>%
 
 2.  The streams end up in Warta River Valley, which suggests that we should also have River Warta included in the research scope together with the stream system. This helps us develop our spatial units of study.\
 
-![](files/0-2_topography.jpeg)\
+!(files/0-2_topography.jpeg)\
 
 **What is the conceptual framework guiding the research?**
 
-![](files/conceptual_framework.jpg)\
+!(files/conceptual_framework.jpg)\
 
 From the background research, we come up with several key values that we would like to address in the working process, which are transformed into two goals: to develop the urban streams in Poznan into not only ecological corridors but also social public spaces which improve the environmental quality of the city. From those two goals, we identify the physical spaces we would be tackling, which is the streams as well as some relevant spaces in the vicinity. This also works as a base for the justification of the spatial unit system we adopt.
 
