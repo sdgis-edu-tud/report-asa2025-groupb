@@ -475,7 +475,7 @@ Landcover maps may not capture small-scale permeability features like green roof
 
 2-3. Heat Risk Index\
 
-Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 in the summer months.
+Combining UHI max (as defined by <https://support.tygron.com/wiki/UHI_formula_(Heat_Overlay)> ) with the number of Hot nights (\>22C) observed between 2015 - 24 during summer months.
 
 ```{r}
 hot_nights <- "files/promote_climate_adaptation/10y_aggregated_hotnights.gpkg"
@@ -533,16 +533,31 @@ p5 <- ggplot(hr_index) +
   labs(title = "Combined Heat Risk Index", fill = "Risk Index") +
   theme_minimal()
 
-print(p1)
-print(p2)
-print(p3)
-print(p4)
-print(p5)
+#print(p1)
+#print(p2)
+#print(p3)
+#print(p4)
+#print(p5)
 
 # Write the combined file (Comment out if it has been done once)
 #st_write(hr_index, "files/promote_climate_adaptation/heat_risk.gpkg")
 
 ```
+
+::::: grid
+::: g-col-6
+![](files/UHISquare.png){width="100%"}
+:::
+
+::: g-col-6
+![](files/HeatRiskSquare.png){width="100%"}
+:::
+:::::
+
+**Reflection:**\
+The Heat Risk index was created by combining multiple data sets. The assessment includes both morphological aspects from the Sky view factor, topological aspects from the vegetation fraction, and multiple weather data sets.\
+**Limitation:**\
+The assessment can have limitations due to the reduced detail used for this assessment due to very high computational costs. The data set has also not been verified with real data coming from climate sensors.\
 
 2-4. River sinuosity\
 
@@ -966,11 +981,12 @@ leaflet(data = sm_index_wgs84) %>%
 
 ### Typology Construction
 
-Link with the problem: To successfully implement Urban stream restoration projects a targeted approach must be taken, where we can compare similar locations in order to design a consistent approach which can be implemented throughout the city. For this we propose to create a system of typologies, for which similar risks can be identified, from which needs can be described, and actions can be undertaken. To begin the typology construction we have decided on the following theoretical framework, which explains our hypothesis, chosen variables, and proposed outcome:
+To successfully implement Urban stream restoration projects a targeted approach must be taken, where we can compare similar locations in order to design a consistent approach which can be implemented throughout the city. For this we propose to create a system of typologies, for which similar risks can be identified, from which needs can be described, and actions can be undertaken.
+These clusters allow us to: (1) Identify risks, (2) Define needs, and (3) Design appropriate actions.To begin the typology construction we have decided on the following theoretical framework, which explains our hypothesis, chosen variables, and proposed outcome:
 
 ![](files/cluster_analysis/ClusterHypothesis.jpg){width="100%"}
 
-Justification for chosen method & Workflow: The method that we chose to perform the typology construction was through a scaled, k-Means clustering. All variables were chosen due to them being continuous, and could be scaled according to a normal distribution. K-means clustering defines cluster centers according to the data, and the number of clusters you prescribe. To fine tune the number of clusters for our typology, two methods were used. Firstly, we calculated the optimal number of clusters by analysing the changes in inertia with the increased k. The *elbow point* was not very telling for us, therefore we also experimented with the mean distance of all of the points per cluster. By combining these two methods, we were able to come upon six clusters which seemed appropriate according to both methods, as well as visual inspection. 
+The method that we chose to perform the typology construction was through a scaled, k-Means clustering. All variables were chosen due to them being continuous, and could be scaled according to a normal distribution. K-means clustering defines cluster centers according to the data, and the number of clusters you prescribe. To fine tune the number of clusters for our typology, two methods were used. Firstly, we calculated the optimal number of clusters by analysing the changes in inertia with the increased k. The *elbow point* was not very telling for us, therefore we also experimented with the mean distance to the Cluster center. By combining these two methods, we were able to come upon six clusters which seemed appropriate according to both methods, as well as visual inspection. 
 
 
 ```{r}
